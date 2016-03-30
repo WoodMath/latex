@@ -1,9 +1,11 @@
-%	Syntax from following sources
-%		https://www.sharelatex.com/learn/Sections_and_chapters
-%		http://www.bibtex.org/Using/
-%		https://www.economics.utoronto.ca/osborne/latex/BIBTEX.HTM
-%		https://www.latex-tutorial.com/tutorials/beginners/latex-bibtex/
-%		http://tex.stackexchange.com/questions/205/what-graphics-packages-are-there-for-creating-graphics-in-latex-documents
+%       Syntax from following sources
+%               https://www.sharelatex.com/learn/Sections_and_chapters
+%               https://www.sharelatex.com/learn/Table_of_contents
+%               http://www.bibtex.org/Using/
+%               https://www.economics.utoronto.ca/osborne/latex/BIBTEX.HTM
+%               https://www.latex-tutorial.com/tutorials/beginners/latex-bibtex/
+%               http://tex.stackexchange.com/questions/205/what-graphics-packages-are-there-for-creating-graphics-in-latex-documents
+% 
 \documentclass[a4paper,10pt]{article}
 %\documentclass[fleqn]{article}
 %\documentclass[a4paper,10pt]{scrartcl}
@@ -35,7 +37,9 @@
 
 \begin{document}
 \maketitle
-
+\newpage
+\tableofcontents
+\newpage
 %\Huge\center\textbf{Geometric Formulas for \newline Computer Vision \& \newline Computer Graphics}\newline
 
 %\large Written by Jeff Wood in LaTeX environment\newline
@@ -45,13 +49,11 @@
 %\flushleft
 \section{Introduction}
 %\begin{flushleft}
-\par\indent 
-With the development of fields including augmented reality, scene reconstruction, and virtual reality; Multi-view image synthesis are finding a wide variety of uses.
-\par
-\indent Multi-view image synthesis can 
+\par Through the development of applications such as augmented and virtual reality, object / scene reconstruction and visual effects, the process of generating images from an arbitrary vantage point can be found in a variety of applications. In this Thesis (or Article) I will discuss various methods for Image Creation from an arbitraryvantage point, which can be accomplished by two main methodologies of Geometric Construction and Image Synthesis. While both methods use stereo correspondance of multiple images, they differ in the way information is stored and used.
+\par Geometric Construction (GC) contains information about the real-world spatial properties (Coordinates in space, Color), thus viewing results are non-constrained in vantage point. Image Synthesis (IS) relies on image properties (pixel displacement) and is thus viewing results are imited in the possible vantage points.
 %\end{flushleft}
 \section{Process}
-This is also a paragraph
+The system in question contains 3 main components
 
 \begin{equation*}
 %\cAij{i}{j}
