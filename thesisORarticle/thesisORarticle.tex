@@ -6,21 +6,28 @@
 %               https://www.latex-tutorial.com/tutorials/beginners/latex-bibtex/
 %               http://tex.stackexchange.com/questions/205/what-graphics-packages-are-there-for-creating-graphics-in-latex-documents
 % 
+
+% Main stuff
 \documentclass[a4paper,10pt]{article}
-%\documentclass[fleqn]{article}
-%\documentclass[a4paper,10pt]{scrartcl}
-%\setlength\parindent{0pt}
 \usepackage[utf8]{inputenc}
+
+%% Math Packages
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-\usepackage{cite}
+
+%% Date Time Pakcages
+\usepackage[USenglish]{babel}
+\usepackage[nodayofweek,level]{datetime}
 \usepackage[margin=0.5in]{geometry}
-\usepackage{hyperref}
+
+%% Formatting Packages
 \usepackage{indentfirst}
 
-\newcommand{\cAij}[2]{\ensuremath{a_{{#1},{#2}}}}
-\setlength{\parindent}{10ex}
+%% Citation Packages
+\usepackage{cite}
+\usepackage{hyperref}
+
 
 \title{Thesis or Article}
 \author{JeffGWood@mavs.uta.edu}
