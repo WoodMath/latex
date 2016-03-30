@@ -1,15 +1,42 @@
+%	Syntax from following sources
+%		https://www.sharelatex.com/learn/Sections_and_chapters
+%		https://www.sharelatex.com/learn/Table_of_contents
+%		http://www.bibtex.org/Using/
+%		https://www.economics.utoronto.ca/osborne/latex/BIBTEX.HTM
+%		https://www.latex-tutorial.com/tutorials/beginners/latex-bibtex/
+%		http://tex.stackexchange.com/questions/205/what-graphics-packages-are-there-for-creating-graphics-in-latex-documents
+%		
 \documentclass[a4paper,10pt]{article}
+%\documentclass[fleqn]{article}
 %\documentclass[a4paper,10pt]{scrartcl}
-
+%\setlength\parindent{0pt}
 \usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+%\usepackage[yyyymmdd]{datetime}
+\usepackage[USenglish]{babel}
+\usepackage[nodayofweek,level]{datetime}
+\usepackage{cite}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\newcommand{\cAij}[2]{\ensuremath{a_{{#1},{#2}}}}
+\newcommand{\logentry}[4]{ \selectlanguage{USenglish} \formatdate{#2}{#1}{#3}  & {#4}  \\ \hline}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\DTMdisplaydate{1994}{6}{3}{-1}
 
-\title{CSE 3314 Notes}
+
+\title{Hang Indent Example}
 \author{JeffGWood@mavs.uta.edu}
-\date{Summer 2014}
+\date{\today}
 
 \pdfinfo{%
-  /Title    ()
-  /Author   ()
+  /Title    (Hang Indent Example)
+  /Author   (Jeff Wood)
   /Creator  ()
   /Producer ()
   /Subject  ()
@@ -18,20 +45,12 @@
 
 \begin{document}
 
-\textbf{Equivalence Relateion}\newline
 
 
-
- A special type of binary relation, called an \textbf{\textit{equivalence relation}}, captures the notion of two objects being equal in some feature. A binary relation R is an equivalence relation if R satisfies three conditions: 
-\newline
-\newline\textbf{1.} \textit{R} is \textbf{\textit{reflexive}} if for every \textit{x}, \textit{xRx};
-\newline\textbf{2.} \textit{R} is \textbf{\textit{symmetric}} if for every \textit{x} and \textit{y}, \textit{xRy} implies \textit{yRx}; and
-\newline\textbf{3.} \textit{R} is \textbf{\textit{transitive}} if for every \textit{x}, \textit{y}, and \textit{z}, \textit{xRy} and \textit{yRz} implies \textit{xRz}.
-
-
-
-
-
-%%\{V,E\} = \{\{1,2,3\},\{(1,2),(2,3),(3,1)\}\}
-
+\begin{tabular}{p{3cm} p{12cm}}\hline
+%\formatdate{28}{9}{2014}& -  &Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text \\
+\logentry{9}{28}{2014}{Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text}
+\logentry{9}{28}{2014}{Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text}
+\
+\end{tabular}
 \end{document}

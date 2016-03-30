@@ -1,0 +1,52 @@
+%	Syntax from following sources
+%		https://www.sharelatex.com/learn/Sections_and_chapters
+%		https://www.sharelatex.com/learn/Table_of_contents
+%		http://www.bibtex.org/Using/
+%		https://www.economics.utoronto.ca/osborne/latex/BIBTEX.HTM
+%		https://www.latex-tutorial.com/tutorials/beginners/latex-bibtex/
+%		http://tex.stackexchange.com/questions/205/what-graphics-packages-are-there-for-creating-graphics-in-latex-documents
+%		
+\documentclass[a4paper,10pt]{article}
+%\documentclass[fleqn]{article}
+%\documentclass[a4paper,10pt]{scrartcl}
+%\setlength\parindent{0pt}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{cite}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\newcommand{\cAij}[2]{\ensuremath{a_{{#1},{#2}}}}
+
+\title{Hang Indent Example}
+\author{JeffGWood@mavs.uta.edu}
+\date{\today}
+
+\pdfinfo{%
+  /Title    (Hang Indent Example)
+  /Author   (Jeff Wood)
+  /Creator  ()
+  /Producer ()
+  /Subject  ()
+  /Keywords ()
+}
+
+\begin{document}
+\linewidth 300pt
+
+\newcommand\mytext{A wonderful serenity has taken possession of my entire soul, like
+these sweet mornings of spring which I enjoy with my whole heart. I am
+alone, and feel the charm of existence in this spot, which was created
+for the bliss of souls like mine. I am so happy, my dear friend, so
+absorbed in the exquisite sense of mere tranquil existence, that I
+neglect my talents.}
+
+\mytext
+
+\hangindent=\parindent
+\parindent 0pt
+\hangafter=-1
+\mytext
+\end{document}
