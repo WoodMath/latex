@@ -5,7 +5,7 @@
 %               https://www.economics.utoronto.ca/osborne/latex/BIBTEX.HTM
 %               https://www.latex-tutorial.com/tutorials/beginners/latex-bibtex/
 %               http://tex.stackexchange.com/questions/205/what-graphics-packages-are-there-for-creating-graphics-in-latex-documents
-% 
+% 				http://www.emerson.emory.edu/services/latex/latex_132.html
 
 % Main stuff
 \documentclass[a4paper,10pt]{article}
@@ -59,8 +59,39 @@
 \par Through the development of applications such as augmented and virtual reality, object / scene reconstruction and visual effects, the process of generating images from an arbitrary vantage point can be found in a variety of applications. In this Thesis (or Article) I will discuss various methods for Image Creation from an arbitraryvantage point, which can be accomplished by two main methodologies of Geometric Construction and Image Synthesis. While both methods use stereo correspondance of multiple images, they differ in the way information is stored and used.
 \par Geometric Construction (GC) contains information about the real-world spatial properties (Coordinates in space, Color), thus viewing results are non-constrained in vantage point. Image Synthesis (IS) relies on image properties (pixel displacement) and is thus viewing results are imited in the possible vantage points.
 %\end{flushleft}
+\section{Backround}
+\subsection*{Change of Reference}
+\subsection*{Fundamental Matrix}
+\subsection*{Intrinsic Calibration Matrix}
+\subsection*{Essential Matrix}
+
 \section{Process}
 The system in question contains 3 main components
+\begin{enumerate}
+	\item Image Acquisition System
+	\begin{itemize}
+		\item Webcam / Kinect set-up
+		\item If Webcam should also contain Image-Processing module for:
+		\begin{itemize}
+			\item Feature Identification
+			\item Point-correspondance
+			\item Sub-Pixel interpolation
+		\end{itemize}
+	\end{itemize}
+	\item Point Cloud Processing
+	\begin{itemize}
+		\item Should take inputs
+		\item Should produce point-clouds as one of the output
+		\item (Possible) Options for Surface Reconstruction include:
+		\begin{itemize}
+			\item Calculation of surface Normal through PCA
+			\item Mesh construction through Delaunay trianglulation
+			\item Parametrization of Bezier surface through linear-least squares.
+		\end{itemize}
+
+	\end{itemize}
+
+\end{enumerate}
 
 \begin{equation*}
 %\cAij{i}{j}
