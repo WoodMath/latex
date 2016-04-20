@@ -17,9 +17,9 @@ do
 #cd ~/Dropbox/rt_proj/deadmau5
 #./usr/share/doc/povray/examples/
 pdflatex $CODE.tex
-#bibtex $CODE.aux
-#pdflatex $CODE.tex
-#pdflatex $CODE.tex
+bibtex $CODE.aux
+pdflatex $CODE.tex
+pdflatex $CODE.tex
 evince $CODE.pdf
 
 #export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig

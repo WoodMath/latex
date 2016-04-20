@@ -18,3 +18,12 @@
 \ensuremath{\textbf{\~{u}}=\left[\begin{array}{ccc}k_u & 0 & u_0\\0 & k_v & v_0\\ 0 & 0 & 1\\\end{array}\right]\textbf{\~{x}}}
 
 \(\displaystyle\frac{\pi^2}{6}=\lim_{n \to \infty}\sum_{k=1}^n \frac{1}{k^2}\)
+
+\ensuremath{\left[ \begin{array}{c} ^{L}{X} \\ ^{L}{Y} \\ 1 \\ \end{array}  \right]=\left[\begin{array}{c|c}^{L}_{R}\textbf{R} & ^{L}_{R}\textbf{t} \\ \hline 0 & 1 \\ \end{array}\right]\times\left[ \begin{array}{c} ^{R}{X} \\ ^{R}{Y} \\ 1 \\ \end{array}  \right]}
+
+\ensuremath{\left[ \begin{array}{c} ^{L}{X} \\ ^{L}{Y} \\ 1 \\ \end{array}  \right]=\left[\begin{array}{c c |c} 0.6 & -0.8 & 4 \\ 0.8 & 0.6 & 3 \\ \hline 0 & 0 & 1 \\ \end{array}\right]\times\left[ \begin{array}{c} ^{R}{X} \\ ^{R}{Y} \\ 1 \\ \end{array}  \right]}
+
+
+\ensuremath{\left[ \begin{array}{c} ^{R}{X} \\ ^{R}{Y} \\ 1 \\ \end{array}  \right]=\left[\begin{array}{c|c}^{R}_{L}\textbf{R} & ^{R}_{L}\textbf{t} \\ \hline 0 & 1 \\ \end{array}\right]\times\left[ \begin{array}{c} ^{L}{X} \\ ^{L}{Y} \\ 1 \\ \end{array}  \right]}
+
+\ensuremath{\left[ \begin{array}{c} ^{R}{X} \\ ^{R}{Y} \\ 1 \\ \end{array}  \right]=\left[\begin{array}{c c |c} 0.6 & 0.8 & -4 \\ -0.8 & 0.6 & -3 \\ \hline 0 & 0 & 1 \\ \end{array}\right]\times\left[ \begin{array}{c} ^{L}{X} \\ ^{L}{Y} \\ 1 \\ \end{array}  \right]}

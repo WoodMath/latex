@@ -35,12 +35,18 @@
 %% Commands Section
 %\newcommand{\logentry}[4]{ \selectlanguage{USenglish} \formatdate{#2}{#1}{#3}  & {#4}  \\ \hline}
 \newcommand{\cW}[1]{^{W}_{C}{#1}}
-\newcommand{\rL}[0]{\ensuremath{^{L}_{R}}}
-\newcommand{\xL}[0]{\ensuremath{^{L}\textbf{x}}}
-\newcommand{\xR}[0]{\ensuremath{^{R}\textbf{x}}}
-\newcommand{\hxL}[0]{\ensuremath{^{L}\tilde{\textbf{x}}}}
-\newcommand{\hxR}[0]{\ensuremath{^{R}\tilde{\textbf{x}}}}
-
+\newcommand{\tR}[0]{\ensuremath{^{R}}}
+\newcommand{\bR}[0]{\ensuremath{_{R}}}
+\newcommand{\tL}[0]{\ensuremath{^{L}}}
+\newcommand{\bL}[0]{\ensuremath{_{L}}}
+\newcommand{\tT}[0]{\ensuremath{^{\intercal}}}
+\newcommand{\rL}[0]{\ensuremath{{\tL\bR}}}
+\newcommand{\xL}[0]{\ensuremath{{\tL\mathbf{x}}}}
+\newcommand{\xR}[0]{\ensuremath{{\tR\mathbf{x}}}}
+\newcommand{\hxL}[0]{\ensuremath{\tL\tilde{\mathbf{x}}}}
+\newcommand{\hxR}[0]{\ensuremath{\tR\tilde{\mathbf{x}}}}
+\newcommand{\rLR}[0]{\ensuremath{{\tL\bR}\mathbf{R}}}
+\newcommand{\rLt}[0]{\ensuremath{{\tL\bR}\mathbf{t}}}
 %% ColumnTypes Section
 \newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
 
@@ -81,14 +87,17 @@
 \toprule
 \multicolumn{1}{l}{\textbf{Symbol}} & \textbf{Description} \\
 \midrule
-$\textbf{v}$ & \textit{Vectors} in \textit{lowercase} bold\\
-$\textbf{M}$ & \textit{Matrices} in \textit{uppercase} bold\\ 
-$\textbf{u}$ & 2-dimensional image coordinate\\
-$\textbf{x}$ & 3-dimensional coordinate\\
-$\tilde{\textbf{x}}$ & 3-dimensional \textit{homogeneous} coordinate\\
-$^{A}{\textbf{x}}$ & 3-dimensional coordinate expressed in reference frame \textit{A} \\
-$^{C}_{B}\textbf{M}$ & Change from of reference frame \textit{B} to reference frame \textit{C}\\
-$^{D}\mathbb{S}$ & Spacial reference frame \textit{D}\\
+$\mathbf{v}$ & \textit{Vectors} in \textit{lowercase} bold\\
+$\mathbf{M}$ & \textit{Matrices} in \textit{uppercase} bold\\ 
+$\mathbf{u}$ & 2-dimensional image coordinate\\
+$\mathbf{\tilde{u}}$ & 2-dimensional \textit{homogeneous} image coordinate\\
+$\mathbf{x}$ & 3-dimensional coordinate\\
+$\mathbf{\tilde{x}}$ & 3-dimensional \textit{homogeneous} coordinate\\
+$^{A}{\mathbf{x}}$ & 3-dimensional coordinate expressed in reference frame \textit{A} \\
+$^{A}{\mathbf{\tilde{x}}}$ & 3-dimensional \textit{homogeneous} coordinates expressed in reference frame {A} \\
+$^{C}_{B}\mathbf{\tilde{M}}$ & Change from of reference frame \textit{B} to reference frame \textit{C}\\
+$s$ & Normalizing factor applied to \textit{homogeneous} vector so last element becomes equal to 1\\
+$^{D}\mathbb{S}$ & Spatial reference frame \textit{D}\\
 \bottomrule
 \end{tabular}
 \newpage
@@ -100,20 +109,29 @@ $^{D}\mathbb{S}$ & Spacial reference frame \textit{D}\\
 
 \subsection*{Change of Reference}
 \par Stereo-vision often involves expressing 3d points from different frames of reference (traditionally referred to \textit{left} and \textit{right}) in a single reference frame. As such it is necessary to be able to express coordinates in a given reference frame in any other reference frame.
-\par Coordinates given in $\hxR$ can be expressed in $\hxL$ by the geometric transformation:
+\par Coordinates given in $\xR$ can be expressed in $\xL$ by the geometric transformation:
 \par
 \begin{equation}
-	\hxL = 
-	\left[\begin{array}{c|c}
+	\xL = 
+%	\left[\begin{array}{c|c}
 %		\rL\textbf{R} & \rL\textbf{t} \\\hline
-		\textbf{R} & \textbf{t} \\\hline
-		0 & 1 \\
-	\end{array}\right]
-	\: \cdot\: \hxR
+%		\textbf{R} & \textbf{t} \\\hline
+%		0 & 1 \\
+%	\end{array}\right]
+%	\: \cdot\: \hxR
+\rLR \times \xR + \rLt
 \end{equation}
-where $\rL{M}$ is also the geometric transformation necessary to transform $^{L}\mathbb{S}$ into $^{R}\mathbb{S}$.
-\subsection*{Fundamental Matrix}
+where $\rL{M}$ is also the geometric transformation necessary to transform $^{L}\mathbb{S}$ into $^{R}\mathbb{S}$. 
+\par Withough calculating any new quantities, rearranging allows us to express coordinates in $\xL$ in the $\xR$ reference frame as:
+\par
+\begin{equation}
+{\rLR\tT}\times\left(\xL - \rLt\right) = \xR
+\end{equation}
 
+\par This similarly transforms $^{R}\mathbb{S}$ into $^{L}\mathbb{S}$.
+
+\subsection*{Fundamental Matrix}
+\par
 \subsection*{Intrinsic Calibration Matrix}
 
 \subsection*{Essential Matrix}
