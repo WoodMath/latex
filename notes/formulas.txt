@@ -1,0 +1,20 @@
+\sHu = \vHuv &= \mHkuv\vHxy = \mHkuv\sHx\
+\newcommand{\sHu}{\ensuremath{\textbf{\~{u}}}}
+\newcommand{\vHuv}{\ensuremath{\left[\begin{array}{c}u\\v\\1\\\end{array}\right]}}
+\newcommand{\mHkuv}{\ensuremath{\left[\begin{array}{ccc}k_u & 0 & u_0\\0 & k_v & v_0\\ 0 & 0 & 1\\\end{array}\right]}}
+\newcommand{\vHxy}{\ensuremath{\left[\begin{array}{c}x\\y\\1\\\end{array}\right]}}
+\newcommand{\mHkuv}{\ensuremath{\left[\begin{array}{ccc}k_u & 0 & u_0\\0 & k_v & v_0\\ 0 & 0 & 1\\\end{array}\right]}}
+\newcommand{\sHx}{\ensuremath{\textbf{\~{x}}}}
+
+\ensuremath{\textbf{\~{u}}}
+\ensuremath{\left[\begin{array}{c}u\\v\\1\\\end{array}\right]}
+\ensuremath{\left[\begin{array}{ccc}k_u & 0 & u_0\\0 & k_v & v_0\\ 0 & 0 & 1\\\end{array}\right]}
+\ensuremath{\left[\begin{array}{c}x\\y\\1\\\end{array}\right]}
+\ensuremath{\left[\begin{array}{ccc}k_u & 0 & u_0\\0 & k_v & v_0\\ 0 & 0 & 1\\\end{array}\right]}
+\ensuremath{\textbf{\~{x}}}
+
+\ensuremath{\textbf{\~{u}}=\left[\begin{array}{c}u\\v\\1\\\end{array}\right]=\left[\begin{array}{ccc}k_u & 0 & u_0\\0 & k_v & v_0\\ 0 & 0 & 1\\\end{array}\right]\left[\begin{array}{c}x\\y\\1\\\end{array}\right]=\left[\begin{array}{ccc}k_u & 0 & u_0\\0 & k_v & v_0\\ 0 & 0 & 1\\\end{array}\right]\textbf{\~{x}}}
+
+\ensuremath{\textbf{\~{u}}=\left[\begin{array}{ccc}k_u & 0 & u_0\\0 & k_v & v_0\\ 0 & 0 & 1\\\end{array}\right]\textbf{\~{x}}}
+
+\(\displaystyle\frac{\pi^2}{6}=\lim_{n \to \infty}\sum_{k=1}^n \frac{1}{k^2}\)
