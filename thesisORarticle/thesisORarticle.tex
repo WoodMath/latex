@@ -35,7 +35,11 @@
 %% Commands Section
 %\newcommand{\logentry}[4]{ \selectlanguage{USenglish} \formatdate{#2}{#1}{#3}  & {#4}  \\ \hline}
 \newcommand{\cW}[1]{^{W}_{C}{#1}}
-\newcommand{\rL}[1]{^{L}_{R}{#1}}
+\newcommand{\rL}[0]{\ensuremath{^{L}_{R}}}
+\newcommand{\xL}[0]{\ensuremath{^{L}\textbf{x}}}
+\newcommand{\xR}[0]{\ensuremath{^{R}\textbf{x}}}
+\newcommand{\hxL}[0]{\ensuremath{^{L}\tilde{\textbf{x}}}}
+\newcommand{\hxR}[0]{\ensuremath{^{R}\tilde{\textbf{x}}}}
 
 %% ColumnTypes Section
 \newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
@@ -77,11 +81,14 @@
 \toprule
 \multicolumn{1}{l}{\textbf{Symbol}} & \textbf{Description} \\
 \midrule
+$\textbf{v}$ & \textit{Vectors} in \textit{lowercase} bold\\
+$\textbf{M}$ & \textit{Matrices} in \textit{uppercase} bold\\ 
 $\textbf{u}$ & 2-dimensional image coordinate\\
 $\textbf{x}$ & 3-dimensional coordinate\\
 $\tilde{\textbf{x}}$ & 3-dimensional \textit{homogeneous} coordinate\\
 $^{A}{\textbf{x}}$ & 3-dimensional coordinate expressed in reference frame \textit{A} \\
-$^{C}_{B}\textbf{M}$ & Change from of \\
+$^{C}_{B}\textbf{M}$ & Change from of reference frame \textit{B} to reference frame \textit{C}\\
+$^{D}\mathbb{S}$ & Spacial reference frame \textit{D}\\
 \bottomrule
 \end{tabular}
 \newpage
@@ -90,10 +97,25 @@ $^{C}_{B}\textbf{M}$ & Change from of \\
 \section{Stereo-vision}
 \par \textit{Stereo-vision} refers to the extraction of 3-dimensional information from multiple viewpoints. The advantage of stereo-vision over \textit{monocular-vision} involving only single images is that quantities such as size and position can be calculated based on the position of features common to both images. Though it can involve multiple cameras resulting in multiple viewpoints, the majority of research is limited to only 2-view principles as they can be extened 3-views or more.
 \par \textbf{NOTE:} When discussing concepts and principles specific or limited to only 2 view points we will prefix terminology with \textit{stereo-} and when discussing topics that apply to any number views we will use the prefix with \textit{mutli-}.
+
 \subsection*{Change of Reference}
-\par Stereo-vision often involves expressing 3d points from different frames of reference (traditionally referred to \textit{left} and \textit{right}) in a single reference frame. As such it is necessary to be able to express coordinates in one frame to another frame.
+\par Stereo-vision often involves expressing 3d points from different frames of reference (traditionally referred to \textit{left} and \textit{right}) in a single reference frame. As such it is necessary to be able to express coordinates in a given reference frame in any other reference frame.
+\par Coordinates given in $\hxR$ can be expressed in $\hxL$ by the geometric transformation:
+\par
+\begin{equation}
+	\hxL = 
+	\left[\begin{array}{c|c}
+%		\rL\textbf{R} & \rL\textbf{t} \\\hline
+		\textbf{R} & \textbf{t} \\\hline
+		0 & 1 \\
+	\end{array}\right]
+	\: \cdot\: \hxR
+\end{equation}
+where $\rL{M}$ is also the geometric transformation necessary to transform $^{L}\mathbb{S}$ into $^{R}\mathbb{S}$.
 \subsection*{Fundamental Matrix}
+
 \subsection*{Intrinsic Calibration Matrix}
+
 \subsection*{Essential Matrix}
 
 \chapter{Process}
