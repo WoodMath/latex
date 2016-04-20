@@ -8,7 +8,8 @@
 % 				http://www.emerson.emory.edu/services/latex/latex_132.html
 
 % Main stuff
-\documentclass[a4paper,10pt]{article}
+%\documentclass[a4paper,10pt]{article}
+\documentclass{report}
 \usepackage[utf8]{inputenc}
 
 %% Math Packages
@@ -28,6 +29,16 @@
 \usepackage{cite}
 \usepackage{hyperref}
 
+%% Tables Packages
+\usepackage{array,booktabs,ragged2e}
+
+%% Commands Section
+%\newcommand{\logentry}[4]{ \selectlanguage{USenglish} \formatdate{#2}{#1}{#3}  & {#4}  \\ \hline}
+\newcommand{\cW}[1]{^{W}_{C}{#1}}
+\newcommand{\rL}[1]{^{L}_{R}{#1}}
+
+%% ColumnTypes Section
+\newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
 
 \title{Thesis or Article}
 \author{JeffGWood@mavs.uta.edu}
@@ -43,7 +54,9 @@
 }
 
 \begin{document}
+\Huge
 \maketitle
+\large
 \newpage
 \tableofcontents
 \newpage
@@ -52,20 +65,38 @@
 %\large Written by Jeff Wood in LaTeX environment\newline
 %\large Updated 2016/03/06 \newline
 
-\normalsize
+%\normalsize
 %\flushleft
-\section{Introduction}
+\chapter{Introduction}
 %\begin{flushleft}
 \par Through the development of applications such as augmented and virtual reality, object / scene reconstruction and visual effects, the process of generating images from an arbitrary vantage point can be found in a variety of applications. In this Thesis (or Article) I will discuss various methods for Image Creation from an arbitraryvantage point, which can be accomplished by two main methodologies of Geometric Construction and Image Synthesis. While both methods use stereo correspondance of multiple images, they differ in the way information is stored and used.
 \par Geometric Construction (GC) contains information about the real-world spatial properties (Coordinates in space, Color), thus viewing results are non-constrained in vantage point. Image Synthesis (IS) relies on image properties (pixel displacement) and is thus viewing results are imited in the possible vantage points.
+\newpage
+\section*{Symbols and Notation}
+\begin{tabular}{R{2cm} p{14cm}}
+\toprule
+\multicolumn{1}{l}{\textbf{Symbol}} & \textbf{Description} \\
+\midrule
+$\textbf{u}$ & 2-dimensional image coordinate\\
+$\textbf{x}$ & 3-dimensional coordinate\\
+$\tilde{\textbf{x}}$ & 3-dimensional \textit{homogeneous} coordinate\\
+$^{A}{\textbf{x}}$ & 3-dimensional coordinate expressed in reference frame \textit{A} \\
+$^{C}_{B}\textbf{M}$ & Change from of \\
+\bottomrule
+\end{tabular}
+\newpage
 %\end{flushleft}
-\section{Backround}
+\chapter{Backround}
+\section{Stereo-vision}
+\par \textit{Stereo-vision} refers to the extraction of 3-dimensional information from multiple viewpoints. The advantage of stereo-vision over \textit{monocular-vision} involving only single images is that quantities such as size and position can be calculated based on the position of features common to both images. Though it can involve multiple cameras resulting in multiple viewpoints, the majority of research is limited to only 2-view principles as they can be extened 3-views or more.
+\par \textbf{NOTE:} When discussing concepts and principles specific or limited to only 2 view points we will prefix terminology with \textit{stereo-} and when discussing topics that apply to any number views we will use the prefix with \textit{mutli-}.
 \subsection*{Change of Reference}
+\par Stereo-vision often involves expressing 3d points from different frames of reference (traditionally referred to \textit{left} and \textit{right}) in a single reference frame. As such it is necessary to be able to express coordinates in one frame to another frame.
 \subsection*{Fundamental Matrix}
 \subsection*{Intrinsic Calibration Matrix}
 \subsection*{Essential Matrix}
 
-\section{Process}
+\chapter{Process}
 The system in question contains 3 main components
 \begin{enumerate}
 	\item Image Acquisition System
