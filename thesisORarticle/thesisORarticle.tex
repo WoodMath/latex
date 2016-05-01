@@ -35,10 +35,10 @@
 %% Commands Section
 %\newcommand{\logentry}[4]{ \selectlanguage{USenglish} \formatdate{#2}{#1}{#3}  & {#4}  \\ \hline}
 \newcommand{\cW}[1]{^{W}_{C}{#1}}
-\newcommand{\tR}[0]{\ensuremath{^{R}}}
-\newcommand{\bR}[0]{\ensuremath{_{R}}}
-\newcommand{\tL}[0]{\ensuremath{^{L}}}
-\newcommand{\bL}[0]{\ensuremath{_{L}}}
+\newcommand{\tR}[0]{\ensuremath{^{A}}}
+\newcommand{\bR}[0]{\ensuremath{_{A}}}
+\newcommand{\tL}[0]{\ensuremath{^{B}}}
+\newcommand{\bL}[0]{\ensuremath{_{B}}}
 \newcommand{\tT}[0]{\ensuremath{^{\intercal}}}
 \newcommand{\rL}[0]{\ensuremath{{\tL\bR}}}
 \newcommand{\xL}[0]{\ensuremath{{\tL\mathbf{x}}}}
@@ -47,6 +47,11 @@
 \newcommand{\hxR}[0]{\ensuremath{\tR\tilde{\mathbf{x}}}}
 \newcommand{\rLR}[0]{\ensuremath{{\tL\bR}\mathbf{R}}}
 \newcommand{\rLt}[0]{\ensuremath{{\tL\bR}\mathbf{t}}}
+\newcommand{\skewsym}[1]{\ensuremath{\left[#1\right]_{\times}}}
+\newcommand{\sR}[0]{\ensuremath{^{A}\mathbb{S}}}
+\newcommand{\sL}[0]{\ensuremath{^{B}\mathbb{S}}}
+\newcommand{\lR}[0]{\ensuremath{{^{A}l}}}
+\newcommand{\lL}[0]{\ensuremath{{^{B}l}}}
 %% ColumnTypes Section
 \newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
 
@@ -89,15 +94,17 @@
 \midrule
 $\mathbf{v}$ & \textit{Vectors} in \textit{lowercase} bold\\
 $\mathbf{M}$ & \textit{Matrices} in \textit{uppercase} bold\\ 
-$\mathbf{u}$ & 2-dimensional image coordinate\\
-$\mathbf{\tilde{u}}$ & 2-dimensional \textit{homogeneous} image coordinate\\
-$\mathbf{x}$ & 3-dimensional coordinate\\
-$\mathbf{\tilde{x}}$ & 3-dimensional \textit{homogeneous} coordinate\\
-$^{A}{\mathbf{x}}$ & 3-dimensional coordinate expressed in reference frame \textit{A} \\
-$^{A}{\mathbf{\tilde{x}}}$ & 3-dimensional \textit{homogeneous} coordinates expressed in reference frame {A} \\
+$\mathbf{u}$ & Image coordinate\\
+$\mathbf{\tilde{u}}$ & Image coordinate (expressed \textit{homogeneously})\\
+$\mathbf{x}$ & Spatial coordinate\\
+$\mathbf{\tilde{x}}$ & Spatial coordinate (expressed \textit{homogeneously})\\
+$^{A}{\mathbf{x}}$ & Spatial coordinate in reference frame \textit{A} \\
+$^{A}{\mathbf{\tilde{x}}}$ & Spatial coordinate (expressed \textit{homogeneously}) in reference frame {A} \\
 $^{C}_{B}\mathbf{\tilde{M}}$ & Change from of reference frame \textit{B} to reference frame \textit{C}\\
 $s$ & Normalizing factor applied to \textit{homogeneous} vector so last element becomes equal to 1\\
 $^{D}\mathbb{S}$ & Spatial reference frame \textit{D}\\
+$\skewsym{\mathbf{x}}$ & Skew-symmetric matrix version of vector $\mathbf{x}$ used as \textit{left}-operand in the \textit{cross}-product such that $\skewsym{\mathbf{x}}\cdot\mathbf{y}=\mathbf{x}\times\mathbf{y}$\\
+$l$ & Epipolar line\\
 \bottomrule
 \end{tabular}
 \newpage
@@ -109,7 +116,7 @@ $^{D}\mathbb{S}$ & Spatial reference frame \textit{D}\\
 
 \subsection*{Change of Reference}
 \par Stereo-vision often involves expressing 3d points from different frames of reference (traditionally referred to \textit{left} and \textit{right}) in a single reference frame. As such it is necessary to be able to express coordinates in a given reference frame in any other reference frame.
-\par Coordinates given in $\xR$ can be expressed in $\xL$ by the geometric transformation:
+\par Coordinates given in $\xR$ can be expressed in $\xL$ by the geometric transformation:i
 \par
 \begin{equation}
 	\xL = 
@@ -128,10 +135,9 @@ where $\rL{M}$ is also the geometric transformation necessary to transform $^{L}
 {\rLR\tT}\times\left(\xL - \rLt\right) = \xR
 \end{equation}
 
-\par This similarly transforms $^{R}\mathbb{S}$ into $^{L}\mathbb{S}$.
-
-\subsection*{Fundamental Matrix}
-\par
+\par This similarly transforms $\sR$ into $\sL$.
+\subsection*{Essential Matrix}
+\par When coordinates from a reference frame are expressed as \textit{normalized image coordinate}s the range of possible NIC values in the corresponding image are given by the \textit{epipolar} constraint 
 \subsection*{Intrinsic Calibration Matrix}
 
 \subsection*{Essential Matrix}
