@@ -43,8 +43,9 @@
 \newcommand{\rL}[0]{\ensuremath{{\tL\bR}}}
 \newcommand{\xL}[0]{\ensuremath{{\tL\mathbf{x}}}}
 \newcommand{\xR}[0]{\ensuremath{{\tR\mathbf{x}}}}
-\newcommand{\hxL}[0]{\ensuremath{\tL\tilde{\mathbf{x}}}}
-\newcommand{\hxR}[0]{\ensuremath{\tR\tilde{\mathbf{x}}}}
+\newcommand{\hxL}[0]{\ensuremath{{\tL\tilde{\mathbf{x}}}}}
+\newcommand{\hxR}[0]{\ensuremath{{\tR\tilde{\mathbf{x}}}}}
+\newcommand{\rLM}[0]{\ensuremath{{\tL\bR}\mathbf{M}}}
 \newcommand{\rLR}[0]{\ensuremath{{\tL\bR}\mathbf{R}}}
 \newcommand{\rLt}[0]{\ensuremath{{\tL\bR}\mathbf{t}}}
 \newcommand{\skewsym}[1]{\ensuremath{\left[#1\right]_{\times}}}
@@ -109,35 +110,52 @@ $l$ & Epipolar line\\
 \end{tabular}
 \newpage
 %\end{flushleft}
+
 \chapter{Backround}
-\section{Stereo-vision}
-\par \textit{Stereo-vision} refers to the extraction of 3-dimensional information from multiple viewpoints. The advantage of stereo-vision over \textit{monocular-vision} involving only single images is that quantities such as size and position can be calculated based on the position of features common to both images. Though it can involve multiple cameras resulting in multiple viewpoints, the majority of research is limited to only 2-view principles as they can be extened 3-views or more.
-\par \textbf{NOTE:} When discussing concepts and principles specific or limited to only 2 view points we will prefix terminology with \textit{stereo-} and when discussing topics that apply to any number views we will use the prefix with \textit{mutli-}.
+\par 
+Oridinarily, real-world data contains 3-dimensions. 
+Because standard images only include 2-dimensional data, information regarding depth is lost (i.e. it is often difficult to judge distance from a single image without visual cues). 
+\textit{Stereovision} attempts to resolved this by finding the same point in both \textit{stereoscopic} images (known as a \textit{corresponding point}), and recovering the depth information.
+An elementry example of this occurs in stereoscopic images with relatively low distance between cameras (i.e they are righht next to each other). 
+Objects that are \textit{farther} away from the observer occur closer together in the stereo images, whereas objects \textit{closer} to the camera appear appear farther appart in the stereo-images.
 
 \subsection*{Change of Reference}
-\par Stereo-vision often involves expressing 3d points from different frames of reference (traditionally referred to \textit{left} and \textit{right}) in a single reference frame. As such it is necessary to be able to express coordinates in a given reference frame in any other reference frame.
-\par Coordinates given in $\xR$ can be expressed in $\xL$ by the geometric transformation:i
 \par
-\begin{equation}
-	\xL = 
-%	\left[\begin{array}{c|c}
-%		\rL\textbf{R} & \rL\textbf{t} \\\hline
-%		\textbf{R} & \textbf{t} \\\hline
-%		0 & 1 \\
-%	\end{array}\right]
-%	\: \cdot\: \hxR
-\rLR \times \xR + \rLt
-\end{equation}
-where $\rL{M}$ is also the geometric transformation necessary to transform $^{L}\mathbb{S}$ into $^{R}\mathbb{S}$. 
-\par Withough calculating any new quantities, rearranging allows us to express coordinates in $\xL$ in the $\xR$ reference frame as:
+Each view from a pair of stereo-images encompasses its own \textit{frame of reference} (i.e. the directions of \textit{forward} or \textit{backward} are unique to image and may differe considerably depending on camera displacement).
+This requires expressing points from different frames of reference (traditionally referred to \textit{left} and \textit{right}) in a single reference frame. 
+As such it is necessary to be able to express coordinates in a given reference frame in any other reference frame.
 \par
-\begin{equation}
-{\rLR\tT}\times\left(\xL - \rLt\right) = \xR
-\end{equation}
+Coordinates given in $\xR$ can be expressed in $\xL$ by the geometric transformation:
+\renewcommand{\arraystretch}{1.5}
+\par
+\begin{align*}
+	\xL = \rLR \cdot \xR + \rLt
+\end{align*}
+or
+\begin{align*}
+	\hxL &=
+	\left[\begin{array}{c|c}
+		\rL\textbf{R} & \rL\textbf{t} \\\hline
+		0 & 1 \\
+	\end{array}\right]
+	\cdot\hxR \\
+	&\\
+	&= \rLM\cdot\hxR\\
+\end{align*}
+where $\rLM$ is also the geometric transformation necessary to transform $\sL$ into $\sR$. 
+\par
+Withough calculating any new quantities, rearranging allows us to express coordinates in $\xL$ in the $\xR$ reference frame as:
+\par
+\begin{equation*}
+	{\rLR\tT}\cdot (\xL - \rLt ) = \xR
+\end{equation*}
+and similarly transforms $\sR$ into $\sL$.
 
-\par This similarly transforms $\sR$ into $\sL$.
+\subsection*{Epipolar constraint}
+
 \subsection*{Essential Matrix}
 \par When coordinates from a reference frame are expressed as \textit{normalized image coordinate}s the range of possible NIC values in the corresponding image are given by the \textit{epipolar} constraint 
+
 \subsection*{Intrinsic Calibration Matrix}
 
 \subsection*{Essential Matrix}
@@ -176,7 +194,7 @@ The system in question contains 3 main components
 
 %Longuet-Higgins' Fundamental Matix ~\cite{Longuet-Higgins}
 
-%\bibliography{fundamental}{}
+%\bibliography{citations}{}
 %\bibliographystyle{plain}
 
 \end{document}
