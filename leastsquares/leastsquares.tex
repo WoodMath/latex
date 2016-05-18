@@ -1,0 +1,311 @@
+\documentclass[a4paper,10pt]{article}
+%\documentclass[fleqn]{article}
+%\documentclass[a4paper,10pt]{scrartcl}
+%\setlength\parindent{0pt}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsmath,amssymb}
+
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\cA}{\ensuremath{\mathbf{A}}}
+%\newcommand{\cx}{\ensuremath{\textbf{\vec{x}}}}
+\newcommand{\cx}{\ensuremath{\vec{\mathbf{x}}}}
+\newcommand{\cy}{\ensuremath{\vec{\mathbf{y}}}}
+\newcommand{\cyt}{\ensuremath{\vec{\mathbf{y}}^{T}}}
+
+\newcommand{\cZero}{\ensuremath{\vec{\mathbf{0}}}}
+\newcommand{\vLength}[1]{\ensuremath{\lvert\lvert{#1}\lvert\lvert}}
+\newcommand{\cAij}[2]{\ensuremath{a_{{#1},{#2}}}}
+\newcommand{\caj}[1]{\ensuremath{\vec{\mathbf{a}}_{#1}}}
+\newcommand{\cajt}[1]{\ensuremath{\vec{\mathbf{a}}^{T}_{#1}}}
+
+
+\newcommand{\cxj}[1]{\ensuremath{x_{#1}}}
+\newcommand{\cyi}[1]{\ensuremath{y_{#1}}}
+\newcommand{\cxjt}[1]{\ensuremath{x_{#1}^{T}}}
+\newcommand{\cyit}[1]{\ensuremath{y_{#1}^{T}}}
+
+\newcommand{\aax}{
+	\ensuremath{
+		\begin{bmatrix}
+		\caj{1}\cxj{1} + \caj{2}\cxj{2} + \hdots + \caj{n}\cxj{n} \\
+		\end{bmatrix}
+	}
+}
+\newcommand{\aay}{
+	\ensuremath{
+		\begin{bmatrix}
+		\caj{1}^{T}\cy & \caj{2}^{T}\cy & \hdots & \caj{n}^{T}\cy \\
+		\end{bmatrix}
+	}
+}
+\newcommand{\aya}{
+	\ensuremath{
+		\begin{bmatrix}
+		\cy^{T}\caj{1} & \cy^{T}\caj{2} & \hdots & \cy^{T}\caj{n} \\
+		\end{bmatrix}
+	}
+}
+\newcommand{\syax}{
+	\ensuremath{
+		\begin{bmatrix}
+		\cy^{T}\caj{1}\cxj{1} + \cy^{T}\caj{2}\cxj{2} + \hdots + \cy^{T}\caj{n}\cxj{n} \\
+		\end{bmatrix}
+	}
+}
+\newcommand{\maa}{
+	\ensuremath{
+		\begin{bmatrix}
+		\cajt{1}\caj{1} & \cajt{1}\caj{2} & \hdots & \cajt{1}\caj{n} \\
+		\cajt{2}\caj{1} & \cajt{2}\caj{2} & \hdots & \cajt{2}\caj{n} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\cajt{n}\caj{1} & \cajt{n}\caj{2} & \hdots & \cajt{n}\caj{n} \\
+		\end{bmatrix}
+	}
+}
+\newcommand{\saax}{
+	\ensuremath{
+		\begin{bmatrix}
+		\cajt{1}\caj{1}\cxj{1} + \cajt{1}\caj{2}\cxj{2} + \hdots + \cajt{1}\caj{n}\cxj{n} \\
+		\cajt{2}\caj{1}\cxj{1} + \cajt{2}\caj{2}\cxj{2} + \hdots + \cajt{2}\caj{n}\cxj{n} \\
+		\vdots  \\
+		\cajt{n}\caj{1}\cxj{1} + \cajt{n}\caj{2}\cxj{2} + \hdots + \cajt{n}\caj{n}\cxj{n} \\
+		\end{bmatrix}
+	}
+}
+\newcommand{\saaxx}{
+	\ensuremath{
+		\begin{pmatrix}
+		\cajt{1}\caj{1}\cxj{1}\cxj{1} + \cajt{1}\caj{2}\cxj{2}\cxj{1} + \hdots + \cajt{1}\caj{n}\cxj{n}\cxj{1} + \\
+		\cajt{2}\caj{1}\cxj{1}\cxj{2} + \cajt{2}\caj{2}\cxj{2}\cxj{2} + \hdots + \cajt{2}\caj{n}\cxj{n}\cxj{2} + \\
+		\vdots  \\
+		\cajt{n}\caj{1}\cxj{1}\cxj{n} + \cajt{n}\caj{2}\cxj{2}\cxj{n} + \hdots + \cajt{n}\caj{n}\cxj{n}\cxj{n} \\
+		\end{pmatrix}
+	}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\title{Linear Least Squares Derivation}
+\author{JeffGWood@mavs.uta.edu}
+\date{Spring 2016}
+
+\pdfinfo{%
+  /Title    (Linear Least Squares Derivation)
+  /Author   (Jeff Wood)
+  /Creator  ()
+  /Producer ()
+  /Subject  ()
+  /Keywords ()
+}
+
+\begin{document}
+\Huge\center\textbf{Linear Least Squares Derivation}\newline
+
+\large Written by Jeff Wood in LaTeX environment\newline
+\large Updated 2016/01/31 \newline
+\normalsize
+
+\flushleft
+Solution of $\cx$ to $_{\min}\vLength{\cy - \cA\cdot\cx}$ is obtained by solving $\left(\cy - \cA\cdot\cx\right)^{T}\cdot{\cA} = \cZero$ for $\cx$, where
+
+\begin{itemize}
+\item $\cA$ is $m \times n$
+\item $\cy$ is $m \times 1$
+\item $\cx$ is $n \times 1$ 
+\end{itemize}
+
+and
+
+
+
+
+\begin{equation}
+\cA = 
+\begin{bmatrix}
+\caj{1} & \caj{2} & \hdots & \caj{n}\\ 
+\end{bmatrix}
+=
+\begin{bmatrix}
+\cAij{1}{1} & \cAij{1}{2} & \hdots & \cAij{1}{n} \\ 
+\cAij{2}{1} & \cAij{2}{2} & \hdots & \cAij{2}{n} \\ 
+\vdots & \vdots & \ddots & \vdots \\
+\cAij{m}{1} & \cAij{m}{2} & \hdots & \cAij{m}{n} \\ 
+\end{bmatrix},
+\cy = 
+\begin{bmatrix}
+\cyi{1}\\ 
+\cyi{2}\\ 
+\vdots\\
+\cyi{m}\\ 
+\end{bmatrix},
+\cx = 
+\begin{bmatrix}
+\cxj{1}\\ 
+\cxj{2}\\ 
+\vdots\\
+\cxj{n}\\ 
+\end{bmatrix},
+\end{equation}
+
+
+Minimizing $f\left(\cx\right)=\vLength{\cy - \cA\cdot\cx}$ is the same as minimizing $\left(\cy - \cA\cdot\cx\right)^{T}\left(\cy - \cA\cdot\cx\right)$
+
+\begin{equation}
+_{\min}\vLength{f\left(\cx\right)}=_{\min}\vLength{\cy - \cA\cdot\cx}=_{\min}\left[\left(\cy - \cA\cdot\cx\right)^{T}\left(\cy - \cA\cdot\cx\right)\right]
+\end{equation}
+
+Multiplying out by the FOIL method gives:\\ 
+\begin{equation}
+\begin{split}
+f\left(\cx\right)&=\left(\cy - \cA\cdot\cx\right)^{T}\left(\cy - \cA\cdot\cx\right)\\
+&=\left(\cy^{T} - \left(\cA\cdot\cx\right)^{T}\right)\left(\cy - \cA\cdot\cx\right)\\
+&=\left(\cy^{T} - \cx^{T}\cdot\cA^{T}\right)\left(\cy - \cA\cdot\cx\right)\\
+&=\cy^{T}\cy - \cx^{T}\cA^{T}\cy - \cy^{T}\cA\cx+\cx^{T}\cA^{T}\cA\cx\\
+\end{split}
+\end{equation}
+
+
+This gives a summation of matrix products
+\begin{equation}
+\begin{split}
+f\left(\cx\right)&=\cy^{T}\cy - \cx^{T}\cA^{T}\cy - \cy^{T}\cA\cx+\cx^{T}\cA^{T}\cA\cx\\
+\end{split}
+\end{equation}
+Which can further be reduced by writing as a partition of vectors and inner products:
+\begin{equation}
+\begin{split}
+&=\vLength{\cy} - \cx^{T}\aay^{T} - \aya\cx
++\cx^{T}
+\maa
+\cx\\
+\end{split}
+\end{equation}
+And then further reduced by writing sums in terms of $x$-components of the vector $\cx$:\\
+\begin{equation}
+\begin{split}
+&=\vLength{\cy} - 2\cdot\aya\cx
++\saaxx\\
+&=\sum^{m}_{j=1}{\cyi{j}^2} - 2\cdot\syax
++\saaxx\\
+\end{split}
+\end{equation}
+This gives us a total \textit{square}-distance of $\vLength{\cy-\cA\cx}$ which we can attempt to minimize by varying each $x$-component.\\
+The value of each $\cxj{j}$ that gives the minimum distance is calculated by setting the partial derivative of (6) equal to zero.\\
+\break
+Setting ${\partial{f\left(\cx\right)}}/{\partial\cxj{j}}=0$
+gives:
+\begin{equation}
+\begin{split}
+{\partial{f\left(\cx\right)}}/{\partial\cxj{j}}=0&=-2\cyt\caj{j}+2\cdot\sum_{i=1}^{n}\cajt{j}\caj{i}\cxj{i}\\
+&=-2\cyt\caj{j}+2\cdot\cajt{j}\sum_{i=1}^{n}\caj{i}\cxj{i}\\
+&=-2\cyt\caj{j}+2\cdot\cajt{j}\cA\cx
+\end{split}
+\end{equation}
+Rearranging the sum to eliminate the 0 term, then simplifying gives:
+\begin{equation}
+\begin{split}
+2\cyt\caj{j}&=2\cdot\cajt{j}\cA\cx\\
+2\left(\cyt\caj{j}\right)&=2\cdot\cajt{j}\cA\cx\\
+2\left(\cajt{j}\cy\right)&=2\cdot\cajt{j}\cA\cx\\
+\cajt{j}\cy&=\cajt{j}\cA\cx\\
+\end{split}
+\end{equation}
+Since only gives the value for $\cxj{j}$, finding the vector $\cx$ requires solving (8) for all \textit{n} cases.\\
+\break
+This can be accomplished by creating a \textit{n}-length vector from the last line of (8) as:
+\begin{equation}
+\begin{split}
+\ensuremath{
+\begin{bmatrix}
+\cajt{1}\cy\\
+\cajt{2}\cy\\
+\vdots\\
+\cajt{n}\cy\\
+\end{bmatrix}&=
+\begin{bmatrix}
+\cajt{1}\cA\cx\\
+\cajt{2}\cA\cx\\
+\vdots\\
+\cajt{n}\cA\cx\\
+\end{bmatrix}=\\
+\begin{bmatrix}
+\cajt{1}\\
+\cajt{2}\\
+\vdots\\
+\cajt{n}\\
+\end{bmatrix}\cy&=
+\begin{bmatrix}
+\cajt{1}\\
+\cajt{2}\\
+\vdots\\
+\cajt{n}\\
+\end{bmatrix}\cA\cx=\\
+\cA^{T}\cy&=
+\cA^{T}\cA\cx\\
+}
+\end{split}
+\end{equation}
+The last step involves solving for $\cx$ which is:
+\begin{equation}
+\begin{split}
+\left({\cA}^{T}\cA\right)^{-1}{\cA}^{T}\cy&=\cx
+\end{split}
+\end{equation}
+\newpage
+\begin{equation}
+\begin{split}
+\left(\cy - \cA\cdot\cx\right)^{T}\cdot{\cA} = \cZero
+\end{split}
+\end{equation}
+
+
+\begin{equation}
+\begin{split}
+{\cA}^{T}\cdot\left(\cy - \cA\cdot\cx\right) &= \cZero\\
+{\cA}^{T}\cdot\cy - {\cA}^{T}\cdot\cA\cdot\cx &= \cZero\\
+{\cA}^{T}\cdot\cy &= {\cA}^{T}\cdot\cA\cdot\cx\\
+\left({\cA}^{T}\cdot\cA\right)^{-1}{\cA}^{T}\cdot\cy &= \cx\\
+\end{split}
+\end{equation}
+
+
+
+\end{document}

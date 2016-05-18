@@ -1,0 +1,143 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{lscape}
+\title{glFrustum}
+\author{jeffwood314 }
+\date{April 2016}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+\url{http://www.songho.ca/opengl/gl_projectionmatrix.html}\\
+\url{https://www.opengl.org/sdk/docs/man2/xhtml/glFrustum.xml}\\
+\\
+\texttt{
+glFrustum(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble near, GLdouble far);
+}
+\newline
+\begin{equation*}
+    \begin{split}
+        ^{P}_{E}{M}=
+        \begin{bmatrix}
+            n & 0 & 0 & 0 \\
+            0 & n & 0 & 0 \\
+            0 & 0 & \ 1 & 0 \\
+            0 & 0 & -1 & 0\\
+        \end{bmatrix}
+    \end{split}
+\end{equation*}
+\begin{equation*}
+    \begin{split}
+        X_P = \frac{n \cdot X_E}{-Z_E} 
+        \qquad &\hdots \qquad
+        Y_P = \frac{n \cdot Y_E}{-Z_E} 
+    \end{split}
+\end{equation*}
+
+\begin{equation*}
+    \begin{split}
+        \frac{A_Z\cdot n + B_Z}{-n}=-1 
+        \qquad &\hdots \qquad 
+        \frac{A_Z\cdot f + B_Z}{-f}=1 \\
+        A_Z\cdot n + B_Z=n 
+        \qquad &\hdots \qquad 
+        A_Z\cdot f + B_Z=-f \\ 
+    \end{split}
+\end{equation*}
+
+\begin{equation*}
+\begin{split}
+    \\&=
+    \begin{bmatrix}
+        \frac{2\cdot near}{right-left} &
+        0 & \frac{right+left}{right-left} & 0\\
+        0 &
+        \frac{2\cdot near}{top-bottom} & \frac{top+bottom}{top-bottom} & 0\\
+        0 &
+        0 &
+        -\frac{far+near}{far-near} & -\frac{2\cdot far\cdot near}{far-near}\\
+        0 & 0 & -1 & 0\\    
+    \end{bmatrix}
+    \\&=
+    \begin{bmatrix}
+        \frac{2\cdot near}{right-left} &
+        0 & 
+        \left(\frac{2 \cdot near}{right-left}\right)\cdot
+        \left(\frac{right+left}{2\cdot near}\right)
+        & 0\\
+        0 &
+        \frac{2\cdot near}{top-bottom} &
+        \left(\frac{2 \cdot near}{top-bottom}\right)\cdot
+        \left(\frac{top+bottom}{2\cdot near}\right)
+        & 0\\
+        0 &
+        0 &
+        \left(\frac{-2 \cdot near}{far-near}\right)\cdot
+        \left(\frac{far+near}{2\cdot near}\right)
+        & \left(\frac{2\cdot near}{far-near}\right)\cdot\left(-far\right)\\
+        0 & 0 & -1 & 0\\    
+    \end{bmatrix}
+    \\&=
+    \begin{bmatrix}
+        \frac{2\cdot near}{right-left} &
+        0 & 0 & 0\\
+        0 &
+        \frac{2\cdot near}{top-bottom} & 0
+        & 0\\
+        0 & 0 &
+        \frac{-2 \cdot near}{far-near} & 0\\
+        0 & 0 & 0 & 1\\    
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+        1 &
+        0 & 
+        \frac{right+left}{2\cdot near}
+        & 0\\
+        0 &
+        1 &
+        \frac{top+bottom}{2\cdot near}
+        & 0\\
+        0 & 0 &
+        \frac{far+near}{2\cdot near}
+        & far\\
+        0 & 0 & -1 & 0\\    
+    \end{bmatrix}
+    \\&=
+    \begin{bmatrix}
+        \frac{2\cdot near}{right-left} &
+        0 & 0 & 0\\
+        0 &
+        \frac{2\cdot near}{top-bottom} & 0
+        & 0\\
+        0 & 0 &
+        \frac{-2 \cdot near}{far-near} & 0\\
+        0 & 0 & 0 & 1\\    
+    \end{bmatrix}\cdot
+    \begin{bmatrix}
+        1 &
+        0 & 
+        \frac{right+left}{2\cdot near}
+        & 0\\
+        0 &
+        1 &
+        \frac{top+bottom}{2\cdot near}
+        & 0\\
+        0 & 0 &
+        \frac{far+near}{2\cdot near}
+        & far\\
+        0 & 0 & -1 & 0\\    
+    \end{bmatrix}
+\end{split}
+\end{equation*}
+
+
+
+
+\end{document}
