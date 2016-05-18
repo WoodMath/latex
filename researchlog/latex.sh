@@ -20,7 +20,7 @@ pdflatex $CODE.tex
 #bibtex $CODE.aux
 #pdflatex $CODE.tex
 #pdflatex $CODE.tex
-evince $CODE.pdf
+#evince $CODE.pdf
 
 #export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 done
