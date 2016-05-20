@@ -31,7 +31,7 @@
 \usepackage{longtable}
 
 %% Commands section
-\newcommand{\logentry}[4]{ \selectlanguage{USenglish} \formatdate{#2}{#1}{#3}  & {#4}  \\ \hline}
+\newcommand{\logentry}[4]{ \selectlanguage{USenglish} \formatdate{#2}{#1}{#3}  & {\noindent{#4}\newline}  \\ \hline}
 
 
 \title{Research Log}
@@ -59,7 +59,7 @@
 			\begin{itemize}
 				\item \textbf{Camera Plane} : Cooridinates \textit{u},\textit{v}
 				\item \textbf{Focal Plane} : Cooridinates \textit{s},\textit{t}
-			\end{itemize}
+			\end{itemize}. 
 		}
 		\logentry{4}{11}{2016}{Reviewing blog articles located at:
 			\begin{itemize}
@@ -87,7 +87,7 @@
 			\begin{enumerate}
 				\item This would effectively make this structure a point cloud (but no mention of it in the paper).
 				\item There is no mention of special "depth-based" hardware or cameras (Far as I know this is upposed to be a regular image).
-			\end{enumerate}
+			\end{enumerate}.
 		}
 		\logentry{4}{30}{2016}{Checked understanding of \textit{epipolar constraint} through reading of [Hartley2004]~\cite{Hartley2004} and its derivation of 
 			\begin{equation*}
@@ -100,19 +100,31 @@
 			and creation of MatLab code verifying this.\newline
 			\par I may have been mistaken about relation of \textbf{Fundamental Matrix} and \textbf{Essential Matrix}. \newline
 			\par My current understanding is the \textit{Fundamental Matrix} describes point/epipolar line correspondance for images under \textbf{scale invariant} conditions (i.e. point correspondance and Fundamental matrix does not change when one image (or both images) are scaled (uniformly or omni-directionally). \newline
-			\par \textit{Essential Matrix} describes point/epipolar line correspondance for images under \textbf{normalized} conditions (i.e. unit-length is set equal to focal-length, and projection center is set at $(0,0,1)$.\newline 
+			\par \textit{Essential Matrix} describes point/epipolar line correspondance for images under \textbf{normalized} conditions (i.e. unit-length is set equal to focal-length, and projection center is set at $(0,0,1)$.
 		}
-		\logentry{5}{2}{2016}{
-			Additional wording to Stereo-vision section. I am unsure of best order to present ideas related to \textit{multi-view} geometry.
+		\logentry{5}{2}{2016}{Additional wording to Stereo-vision section. I am unsure of best order to present ideas related to \textit{multi-view} geometry.
 		}
-		\logentry{5}{18}{2016}{
-			Reviewed [Chen93]~\cite{Chen93} Section 2. Consider reviewing follow relevant articles:
+		\logentry{5}{18}{2016}{Reviewed [Chen93]~\cite{Chen93} Section 2. Consider reviewing follow relevant articles:
 			\begin{itemize}
 				\item Disparity [Gosh89]
 				\item Optical Flow [Nage86]
 				\item Look-up tables [Wolb89]
 				\item 3d scenes [Pogg91]
 			\end{itemize}
+			Working on MatLab code to pick correspondig points in stereo-images, and calculate pixel offset vectors.
+		}
+		\logentry{5}{19}{2016}{Read Section 2.3 of [Chen93]~\cite{Chen93}. View interpolation is limited by:
+			\begin{itemize}
+				\item \textbf{Penumbra}: pixels visible in one source image \textit{but not both}
+				\item \textbf{Umbra}, pixels visible in neither source image, and \textit{invisible} in destination image.
+				\item \textbf{Holes}, pixels visible in neither source image, but \textit{visible} in destination image.
+			\end{itemize}
+Calculatred formula for \textit{pre-displaced} quad-pixel calculation using a bi-linear interpolation as:
+\begin{equation*}
+\mathbf{P}(u,v) = 
+\mathbf{P}(0,0)\cdot (1-u)\cdot (1-v)+\mathbf{P}(1,0)\cdot u \cdot (1-v)+
+\mathbf{P}(0,1)\cdot (1-u)\cdot v +\mathbf{P}(1,1)\cdot u \cdot v
+\end{equation*}
 		}
 	\end{longtable}
 
