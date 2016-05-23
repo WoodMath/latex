@@ -6,9 +6,12 @@
 %		https://www.latex-tutorial.com/tutorials/beginners/latex-bibtex/
 %		http://tex.stackexchange.com/questions/205/what-graphics-packages-are-there-for-creating-graphics-in-latex-documents
 %		
-% Main stuff
+%% Main stuff
 \documentclass[a4paper,10pt]{article}
+
+%% PACKAGES section
 \usepackage[utf8]{inputenc}
+\usepackage{parskip}
 
 %% Math Packages
 \usepackage{amssymb}
@@ -33,11 +36,21 @@
 %% Color packages
 \usepackage{color}
 
-%% Commands section
-\newcommand{\logentry}[4]{\\[-0.25ex] \selectlanguage{USenglish} \formatdate{#2}{#1}{#3}  & {\noindent{#4}}
-\\[1.5ex] \hline}
+%% COMMANDS section
+\newcommand{\logentry}[4]{\\[-0.25ex]\selectlanguage{USenglish}\formatdate{#2}{#1}{#3}&{#4}\\[1.5ex]\hline}
 
-
+\newcommand{\Kamangar}[1]{
+	{\noindent\textbf{\color{red}Question for Kamangar: }{\noindent #1} \noindent}
+}
+\newcommand{\NOTE}[1]{
+	{\noindent\textbf{\color{blue}NOTE: }{\noindent #1} \noindent}
+}
+\newcommand{\SUMMARY}[1]{
+	{\noindent\textbf{\color{blue}SUMMARY: }{\noindent #1} \noindent}
+}
+\newcommand{\UPDATE}[1]{
+	{\noindent\textbf{\color{blue}UPDATE: }{\noindent #1} \noindent}
+}
 \title{Research Log}
 \author{JeffGWood@mavs.uta.edu}
 \date{\today}
@@ -52,19 +65,23 @@
 }
 
 \begin{document}
-
+%% SET section
+\setlength\parindent{0pt}
+\setlength{\parskip}{10pt}
+\setlength{\parskip}{\baselineskip}
 	\maketitle
+%% TABLE section
 	\begin{longtable}{l p{12cm}}
 		\hline
 		\logentry{3}{30}{2016}{Established research log after 3 hours of learning new \LaTeX}
 		\logentry{4}{2}{2016}{Added some additional comments to the \textbf{Process}}
-		\logentry{4}{3}{2016}{Have been reading ~\cite{IBR-Book}. 
-			\textbf{Have Question for Kamangar} regarding ~\cite{IBR-Book} about difference between:
+		\logentry{4}{3}{2016}{Have been reading [ImageBasedRendering]~\cite{IBR-Book}.\newline\par 
+			\Kamangar{ regarding [ImageBasedRendering]~\cite{IBR-Book} about difference between:
 			\begin{itemize}
 				\item \textbf{Camera Plane} : Cooridinates \textit{u},\textit{v}
 				\item \textbf{Focal Plane} : Cooridinates \textit{s},\textit{t}
 			\end{itemize} 
-		}
+		}}
 		\logentry{4}{11}{2016}{Reviewing blog articles located at:
 			\begin{itemize}
 				\item \url{https://erget.wordpress.com/2014/02/01/calibrating-a-stereo-camera-with-opencv/}
@@ -74,17 +91,20 @@
 			\end{itemize}
 			for process to get webcam up and running. Previous issues related to fine-tuning \textit{block matching} parameters. Need to review sources at list at bottom of \url{http://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html} to understand.
 		}
-		\logentry{4}{19}{2016}{Made adjustments to python for image acquisition scripts (from blogs mentioned on \formatdate{11}{4}{2016}.) \textbf{NOTE:} Consider creating rig with glue to keep stereo camera placement / direction constant.}
-		\logentry{4}{19}{2016}{\textbf{UPDATE:} Error with \texttt{calibrate\_cameras} python code causing linux machine to crash. If can't be resolved switch over to MacBook. \textbf{NOTE:} Package should be setup by calling \texttt{\$ python setup.py install}}
-		\logentry{4}{19}{2016}{\textbf{UPDATE:} Crash due to recursive shell call and was fixed. OpenCV not detecting all chessboard corners. Will try a new board.}
+		\logentry{4}{19}{2016}{Made adjustments to python for image acquisition scripts (from blogs mentioned on \formatdate{11}{4}{2016}.) \newline\par
+\NOTE{Consider creating rig with glue to keep stereo camera placement / direction constant.}}
+		\logentry{4}{19}{2016}{\UPDATE{Error with \texttt{calibrate\_cameras} python code causing linux machine to crash. If can't be resolved switch over to MacBook.}
+\newline\par\NOTE{Package should be setup by calling \texttt{\$ python setup.py install}}}
+		\logentry{4}{19}{2016}{\UPDATE{Crash due to recursive shell call and was fixed. OpenCV not detecting all chessboard corners. Will try a new board.}}
 		\logentry{4}{20}{2016}{Did small amount of work on \textbf{Change of Reference} section in the paper. Added a section to the intro containing a map of commonly used symbols and notation}
 		\logentry{4}{29}{2016}{Read following sections of [Chen93]~\cite{Chen93}:
 			\begin{itemize}
 				\item Abstract
 				\item Introduction
 				\item Visibility Morphing
-			\end{itemize}
-			\textbf{Summary:} Explicit Geometry is ignored (i.e. surface mesh and 3d-points). Geometry is kept in 2-d. 
+			\end{itemize} 
+			\quad\par
+			\SUMMARY{Explicit Geometry is ignored (i.e. surface mesh and 3d-points). Geometry is kept in 2-d. 
 			Whereas Image Morphing interpolates between \textit{pixel intensity values in fixed locations} the method in this article interpolates between 
 			\textit{pixel locations with (relatively) fixed intensity values}.
 			\textbf{Question:} Sections read mention that pixel positions are stored in 3d (3-tuple) data structure. I'm not sure I understand this correctly, since 
@@ -92,7 +112,7 @@
 				\item This would effectively make this structure a point cloud (but no mention of it in the paper).
 				\item There is no mention of special "depth-based" hardware or cameras (Far as I know this is upposed to be a regular image).
 			\end{enumerate}
-		}
+		}}
 		\logentry{4}{30}{2016}{Checked understanding of \textit{epipolar constraint} through reading of [Hartley2004]~\cite{Hartley2004} and its derivation of 
 			\begin{equation*}
 				\begin{split}
@@ -108,6 +128,7 @@
 		}
 		\logentry{5}{2}{2016}{Additional wording to Stereo-vision section. I am unsure of best order to present ideas related to \textit{multi-view} geometry.
 		}
+%\newpage\\\hline %% e-mail 20160523
 		\logentry{5}{18}{2016}{Reviewed [Chen93]~\cite{Chen93} Section 2. Consider reviewing follow relevant articles:
 			\begin{itemize}
 				\item Disparity [Gosh89]
@@ -154,7 +175,7 @@ y_{uv} &=
 \begin{bmatrix}u \\ 1\\\end{bmatrix}\\
 \end{split}\end{equation*}
 
-			\par\textbf{\color{red} Question for Kamangar:} Is there a way given $x$ and $y$ to solve for $u$ and $v$?
+			\par\Kamangar{Is there a way given $x$ and $y$ to solve for $u$ and $v$?}
 		}
 		\logentry{5}{22}{2016}{
 			Added more to thesis document.\newline
@@ -191,8 +212,12 @@ where
 \mathbf{G} =\begin{bmatrix}-1 & 1 \\ 1 & 0\\\end{bmatrix}
 \end{split}
 \end{equation*}
-
-
+		}
+		\logentry{5}{23}{2016}{
+Read [Chen93]~\cite{Chen93} section 2.4 on \textit{Block Compression}.\newline\par
+\SUMMARY{Blocks are established established by \textit{threshold} where each block contains pixels that are \textit{offset by no more than the threshold}, allowing all pixels to be offset at once.}\newline\par
+\Kamangar{Doesn't this assume that all pixels in the block have a uniform offset?}\newline\par
+Working on MatLab program to perform pixel offsets of corresponding points (i.e. assign corresponding points to pixels in MatLab by non automatic methods) 
 
 
 		}
