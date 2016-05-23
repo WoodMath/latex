@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="BiLinear_Point_Correspondance.svg">
+   sodipodi:docname="BiLinear_Point_Correspondance.pdf">
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -22,11 +22,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="374.3677"
-     inkscape:cy="674.13439"
+     inkscape:zoom="31.678384"
+     inkscape:cx="261.73528"
+     inkscape:cy="897.85159"
      inkscape:document-units="px"
-     inkscape:current-layer="layer7"
+     inkscape:current-layer="g3889"
      showgrid="true"
      inkscape:window-width="1280"
      inkscape:window-height="760"
@@ -1153,7 +1153,7 @@
     <path
        inkscape:connector-curvature="0"
        id="path3891-3"
-       d="M 255,100 600,850"
+       d="M 250,100 600,850"
        style="fill:none;stroke:#0000ff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
        sodipodi:nodetypes="cc" />
     <path

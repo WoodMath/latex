@@ -173,7 +173,7 @@ and similarly transforms $\sR$ into $\sL$.
 
 \chapter{Point Interpolation}
 \par
-Pixels from image \textit{a} and image \textit{b} can be used to create a new images. This is done by interpolating the pixel positions ($\mathbf{p}_{a}$ and $\mathbf{p}_{b}$) of corresponding points between frames. Because not all pixels are established as corresponding points, pixel correspondances \textit{between} corresponding points are calculated through bi-linear interpolation. 
+Pixels from image \textit{a} and image \textit{b} can be used to create a new images. This is done by interpolating the pixel positions ($\mathbf{p}_{a}$ and $\mathbf{p}_{b}$) of corresponding points between frames. Because not all pixels are established as corresponding points, pixel correspondances \textit{between} corresponding points are calculated through bi-linear interpolation of 4 established corresponding points. 
 \begin{figure}[htbp]
 	\centering
 %	\includesvg{BiLinear_Point_Correspondance}
