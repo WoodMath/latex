@@ -32,6 +32,13 @@
 %% Tables Packages
 \usepackage{array,booktabs,ragged2e}
 
+%% SVG Packages
+\usepackage{svg}
+%\setsvg{
+%	inkscape = inkscape -z -D 
+%	% conversion options for svg package, export drawing instead of page
+%}
+
 %% Commands Section
 %\newcommand{\logentry}[4]{ \selectlanguage{USenglish} \formatdate{#2}{#1}{#3}  & {#4}  \\ \hline}
 \newcommand{\cW}[1]{^{W}_{C}{#1}}
@@ -159,6 +166,20 @@ and similarly transforms $\sR$ into $\sL$.
 \subsection*{Intrinsic Calibration Matrix}
 
 \subsection*{Essential Matrix}
+%Longuet-Higgins' Fundamental Matix ~\cite{Longuet-Higgins}
+
+%\bibliography{citations}{}
+%\bibliographystyle{plain}
+
+\chapter{Point Interpolation}
+\par
+Pixels from image \textit{a} and image \textit{b} can be used to create a new images. This is done by interpolating the pixel positions ($\mathbf{p}_{a}$ and $\mathbf{p}_{b}$) of corresponding points between frames. Because not all pixels are established as corresponding points, pixel correspondances \textit{between} corresponding points are calculated through bi-linear interpolation. 
+\begin{figure}[htbp]
+	\centering
+%	\includesvg{BiLinear_Point_Correspondance}
+	\includegraphics[scale=0.25]{BiLinear_Point_Correspondance}
+	\caption{Bi-Linear Point Correspondance}
+\end{figure}
 
 \chapter{Process}
 The system in question contains 3 main components
@@ -192,9 +213,5 @@ The system in question contains 3 main components
 %\cAij{i}{j}
 \end{equation*}
 
-%Longuet-Higgins' Fundamental Matix ~\cite{Longuet-Higgins}
-
-%\bibliography{citations}{}
-%\bibliographystyle{plain}
 
 \end{document}
