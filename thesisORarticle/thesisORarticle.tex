@@ -173,26 +173,14 @@ and similarly transforms $\sR$ into $\sL$.
 
 \chapter{Point Interpolation}
 \par
-Pixels from image \textit{a} and image \textit{b} can be used to create a new images. This is done by interpolating the pixel positions ($\mathbf{p}^{a}_{uv}$ and $\mathbf{p}^{b}_{uv}$) of corresponding points between frames. Because not all pixels are established as corresponding points, pixel correspondances \textit{between} corresponding points are calculated through bi-linear interpolation of 4 established corresponding points. 
-%\begin{figure}[htbp]
-%	\centering
-%%	\includesvg{BiLinear_Point_Correspondance}
-%	\includegraphics[scale=0.25]{BiLinear_Point_Correspondance}
-%	\caption{Bi-Linear Point Correspondance}
-%\end{figure}
+Pixels from image \textit{a} and image \textit{b} can be used to create a new images. This is done by interpolating the pixel positions ($\mathbf{p}^{a}_{uv}$ and $\mathbf{p}^{b}_{uv}$) of corresponding points between frames. Because not all pixels are established as corresponding points, pixel correspondances \textit{between} corresponding points ($\mathbf{p}_{uv}$) are calculated through bi-linear interpolation of 4 established corresponding points: 
 \begin{equation*}
 \mathbf{P}_{uv} = 
 \mathbf{P}_{00}\cdot (1-u)\cdot (1-v)+\mathbf{P}_{10}\cdot u \cdot (1-v)+
 \mathbf{P}_{01}\cdot (1-u)\cdot v +\mathbf{P}_{11}\cdot u \cdot v
 \end{equation*}
-
+This is done through the following series of linear equations
 %textit{uv} calculation using 
-\textit{geometry matrix}, \textit{blending matrix} and
-\textit{basis vectors} of 
-$\mathbf{u}=[u\ 1]^{T}$ and 
-$\mathbf{v}=[v\ 1]^{T}$
-
-
 \begin{equation*}\begin{split}
 x_{uv} &= 
 \begin{bmatrix}u & 1\end{bmatrix}
@@ -207,8 +195,7 @@ y_{uv} &=
 \begin{bmatrix}-1 & 1\\ 1 & 0\\\end{bmatrix}
 \begin{bmatrix}v \\ 1\\\end{bmatrix}\\
 \end{split}\end{equation*}
-
-
+or as a single matrix equation of 
 \begin{equation*}
 \begin{split}
 \begin{bmatrix}x_{uv} & 0 \\ 0 & y_{uv}\\\end{bmatrix}
@@ -220,9 +207,6 @@ y_{uv} &=
 \begin{bmatrix}\mathbf{v} & \mathbf{0} \\ \mathbf{0} & \mathbf{v} \end{bmatrix}
 \end{split}
 \end{equation*}
-
-
-
 where
 \begin{equation*}
 \begin{split}
@@ -242,6 +226,14 @@ where
 \mathbf{M} =\begin{bmatrix}-1 & 1 \\ 1 & 0\\\end{bmatrix}
 \end{split}
 \end{equation*}
+\begin{figure}[htbp]
+	\centering
+%	\includesvg{BiLinear_Point_Correspondance}
+	\includegraphics[scale=0.25]{BiLinear_Point_Correspondance}
+	\caption{Bi-Linear Point Correspondance}
+\end{figure}
+
+
 	
 \chapter{Process}
 The system in question contains 3 main components
