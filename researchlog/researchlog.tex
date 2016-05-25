@@ -39,16 +39,16 @@
 %% COMMANDS section
 \newcommand{\logentry}[4]{\\[-0.25ex]\selectlanguage{USenglish}\formatdate{#2}{#1}{#3}&{#4}\\[1.5ex]\hline}
 
-\newcommand{\Kamangar}[1]{
+\newcommand{\Kamangar}[1]{%
 	{\noindent\textbf{\color{red}Question for Kamangar: }{\noindent #1} \noindent}
 }
-\newcommand{\NOTE}[1]{
+\newcommand{\NOTE}[1]{%
 	{\noindent\textbf{\color{blue}NOTE: }{\noindent #1} \noindent}
 }
-\newcommand{\SUMMARY}[1]{
+\newcommand{\SUMMARY}[1]{%
 	{\noindent\textbf{\color{blue}SUMMARY: }{\noindent #1} \noindent}
 }
-\newcommand{\UPDATE}[1]{
+\newcommand{\UPDATE}[1]{%
 	{\noindent\textbf{\color{blue}UPDATE: }{\noindent #1} \noindent}
 }
 \title{Research Log}
@@ -66,12 +66,12 @@
 
 \begin{document}
 %% SET section
-\setlength\parindent{0pt}
+\setlength\parindent{-10pt}
 \setlength{\parskip}{10pt}
 \setlength{\parskip}{\baselineskip}
 	\maketitle
 %% TABLE section
-	\begin{longtable}{l p{12cm}}
+	\begin{longtable}{l p{10cm} }
 		\hline
 		\logentry{3}{30}{2016}{Established research log after 3 hours of learning new \LaTeX}
 		\logentry{4}{2}{2016}{Added some additional comments to the \textbf{Process}}
@@ -91,11 +91,14 @@
 			\end{itemize}
 			for process to get webcam up and running. Previous issues related to fine-tuning \textit{block matching} parameters. Need to review sources at list at bottom of \url{http://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html} to understand.
 		}
-		\logentry{4}{19}{2016}{Made adjustments to python for image acquisition scripts (from blogs mentioned on \formatdate{11}{4}{2016}.) \newline\par
+		\logentry{4}{19}{2016}{%
+Made adjustments to python for image acquisition scripts (from blogs mentioned on \formatdate{11}{4}{2016}.) \newline\par
 \NOTE{Consider creating rig with glue to keep stereo camera placement / direction constant.}}
-		\logentry{4}{19}{2016}{\UPDATE{Error with \texttt{calibrate\_cameras} python code causing linux machine to crash. If can't be resolved switch over to MacBook.}
+		\logentry{4}{19}{2016}{%
+\UPDATE{Error with \texttt{calibrate\_cameras} python code causing linux machine to crash. If can't be resolved switch over to MacBook.}
 \newline\par\NOTE{Package should be setup by calling \texttt{\$ python setup.py install}}}
-		\logentry{4}{19}{2016}{\UPDATE{Crash due to recursive shell call and was fixed. OpenCV not detecting all chessboard corners. Will try a new board.}}
+		\logentry{4}{19}{2016}{%
+\UPDATE{Crash due to recursive shell call and was fixed. OpenCV not detecting all chessboard corners. Will try a new board.}}
 		\logentry{4}{20}{2016}{Did small amount of work on \textbf{Change of Reference} section in the paper. Added a section to the intro containing a map of commonly used symbols and notation}
 		\logentry{4}{29}{2016}{Read following sections of [Chen93]~\cite{Chen93}:
 			\begin{itemize}
@@ -221,7 +224,7 @@ Working on MatLab program to perform pixel offsets of corresponding points (i.e.
 
 
 		}
-		\logentry{5}{24}{2016}{
+		\logentry{5}{24}{2016}{%
 			Read following sections from [Chen93]~\cite{Chen93}:
 			\begin{itemize}
 				\item Implementations (3)
@@ -242,6 +245,10 @@ Working on MatLab program to perform pixel offsets of corresponding points (i.e.
 		\newline\par
 		Made additional changes / added material to thesis document.
 		}
+		\logentry{5}{25}{2016}{%
+Was using figures from \url{http://www.robots.ox.ac.uk/~vgg/hzbook/hzbook2/HZfigures.html} as test images, which may not be best source as there white borders, appear to be up-sampled, and do not contain (extrinsic) calibration info. Consider using images located at \url{http://vision.middlebury.edu/stereo/data/scenes2014/} that contain meta-info including (intrinsic) calibration info.
+		}
+
 	\end{longtable}
 
 	\newpage
