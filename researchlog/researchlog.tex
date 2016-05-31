@@ -248,6 +248,15 @@ Working on MatLab program to perform pixel offsets of corresponding points (i.e.
 		\logentry{5}{25}{2016}{%
 Was using figures from \url{http://www.robots.ox.ac.uk/~vgg/hzbook/hzbook2/HZfigures.html} as test images, which may not be best source as there white borders, appear to be up-sampled, and do not contain (extrinsic) calibration info. Consider using images located at \url{http://vision.middlebury.edu/stereo/data/scenes2014/} that contain meta-info including (intrinsic) calibration info.
 		}
+		\logentry{5}{29}{2016}{%
+Finished [Chen93]~\cite{Chen93}. Not sure if remaining article is of consequence.\newline
+\par
+Finished MatLab program for \textit{animating} / \textit{hand-drawing} (See wording in [Chen93]~\cite{Chen93}) offset vectors. Program performs offsets in 2-dimensional space. Conisder adding automatic \textit{feature correspondance} and \textit{z-buffer} information from depth map images avaiable on MiddleBury database.
+		}
+		\logentry{5}{30}{2016}{%
+Point-correspondances do not follow even pattern as indicated in [Chen93]~\cite{Chen93}:  \textit{Bi-linear coordinates} and \textit{quad partitionions}; May be better to use \textit{Barycentric coordinates} \ \textit{triangle partitions}.\newline
+\par Read on MatLab \texttt{tform}, \texttt{maketform}, and \texttt{Delaunay} triangles for purpose of image partitions.
+		}
 
 	\end{longtable}
 
