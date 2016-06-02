@@ -116,7 +116,7 @@ Made adjustments to python for image acquisition scripts (from blogs mentioned o
 				\item There is no mention of special "depth-based" hardware or cameras (Far as I know this is upposed to be a regular image).
 			\end{enumerate}
 		}}
-		\logentry{4}{30}{2016}{Checked understanding of \textit{epipolar constraint} through reading of [Hartley2004]~\cite{Hartley2004} and its derivation of 
+		\logentry{4}{30}{2016}{Checked understanding of \textit{epipolar constraint} through reading of [Hartley04]~\cite{Hartley04} and its derivation of 
 			\begin{equation*}
 				\begin{split}
 					{\mathbf{'x}^T}\cdot{\mathbf{E}}\cdot\mathbf{x} &= 
@@ -257,7 +257,13 @@ Finished MatLab program for \textit{animating} / \textit{hand-drawing} (See word
 Point-correspondances do not follow even pattern as indicated in [Chen93]~\cite{Chen93}:  \textit{Bi-linear coordinates} and \textit{quad partitionions}; May be better to use \textit{Barycentric coordinates} \ \textit{triangle partitions}.\newline
 \par Read on MatLab \texttt{tform}, \texttt{maketform}, and \texttt{Delaunay} triangles for purpose of image partitions.
 		}
-
+		\logentry{6}{1}{2016}{%
+Read and finished [Park03]~\cite{Park03}.\newline
+\par \SUMMARY{Multiple sections including \textit{point correspondance} and \textit{interpolation}. 
+\textbf{Point correspondance}: Breaks images into rectangular partitions. Gets maximum horizontal and vertical pixel gradients using \textit{Sobel operator} in each partition. The maximum gradient in each partition is thresholded to disregard homogeneous and textured regions. 
+\textbf{Interpolation}: The images are partitioned with \textit{Delaunay triangulation} using the point correspondances as triangle vertices.}\newline
+\par \Kamangar{Article published seems to be vastly different depending on source (See \texttt{Park2003} folder). ScienceDirect version has more math and detail (maybe too much since it details what a \textit{Sobel filter} is). Why would critical information, including algorithm steps and details, be ommitted?}
+		}
 	\end{longtable}
 
 	\newpage
