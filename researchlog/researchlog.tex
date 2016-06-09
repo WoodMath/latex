@@ -278,7 +278,17 @@ Continuting work on getting triangular patches transformed in MatLab. Will use \
 		\logentry{6}{5}{2016}{%
 Almost done with MatLab triangle interpolation program. Hoping to have something to show Kamangar in the next few days.\newline
 \par Was reading up on image-segmentation as a way to improve feature detection through masking. Came accross references to \textbf{spectral clustering} which I still don't understand after data mining class. Was reading tutorial at \url{http://classes.engr.oregonstate.edu/eecs/spring2012/cs534/notes/Spectral.pdf} for starters.
-	}
+		}
+		\logentry{6}{8}{2016}{%
+Finalized most recent changes to MatLab program. It performs interpolation (between \textit{source} and \textit{destination} images of triangular patches defined by Delaunay triangularization of point correspondances from stereo images (See \texttt{Wood\_Kamangar/StatusReports/StatusReport\_00/Images}). Delaunay triangularization is performed on the source image only then extended to the corresponding points in the destination image so the arrangement of Delaunay triangles remains the same between images.\newline
+\par Summary of results is as follows:
+\begin{itemize}
+\item Triangles confined to one disparity region (See statue head in \texttt{image\_source.png}, \texttt{image\_destination.png}, and \texttt{truedisp.row3.col3.pgm}) show few artifacts and minimal blurring.
+\item Triangles crossing disparity regions or containing pixels occluded in the source or destination images (see camcorder tripod and lamp stand) have visibly more artifacts.\newline
+\end{itemize}
+\par Started reading first page (\textit{Abstract} and \textit{Introduction} sections) of [Sharstein2002]~\cite{Scharstein2002}.
+		}
+
 %	\hline
 	\end{longtable}
 
