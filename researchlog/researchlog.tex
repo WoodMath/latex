@@ -288,7 +288,26 @@ Finalized most recent changes to MatLab program. It performs interpolation (betw
 \end{itemize}
 \par Started reading first page (\textit{Abstract} and \textit{Introduction} sections) of [Sharstein2002]~\cite{Scharstein2002}.
 		}
-
+		\logentry{6}{9}{2016}{%
+Continuing to read [Scharstein2002]~\cite{Scharstein2002}.\newline
+\par
+\SUMMARY{
+Disparity can be defined by two ideas:
+\begin{itemize}
+\item \textit{Human Vision} : Difference in location of features in the left and right eye.
+\item \textit{Computer Vision} : Inverse depth. Can be treated as a 3-dimensional projective transformation (collineation or homographyv)of 3-d space (X,Y,Z).
+\newline
+\end{itemize}
+\par Define fllowing terms:
+\begin{itemize} 
+\item \textbf{Disparity Map}: $d(x,y)$
+\item \textbf{Disparity Space}: $(x,y,d)$
+\item \textbf{Correspondance}: Pixel $(x,y)$ in reference image $r$ and corresponding pixel $(x',y')$ in matching image $m$ given by $x' = x + s d(x,y)$ and$y' = y$ (assuming horizontal displacement \textit{only}), where $s = \pm 1$ is chose do $d$ is always positive. 
+\item \textbf{Disparity Space Image}: Any function or image defined over continous or dispartiy space.
+\newline
+\end{itemize}
+}
+		}
 %	\hline
 	\end{longtable}
 
