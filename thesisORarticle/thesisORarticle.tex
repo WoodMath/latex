@@ -233,7 +233,13 @@ where
 	\caption{Bi-Linear Point Correspondance}
 \end{figure}
 
+\chapter{Image segmentation}
+Central to our need to localize corresponding points in stereo images is the ability to partition images by similar texture or planar attributes compared to the image at hole. Such techniques are referred to as \textit{image segmentation}. 
 
+Image segmentation of regions of similar color or textures region is often approached from a graph-theory standpoint, in which individual pixels form the nodes of the graph. Edges are formed by a number of methods, the simplest of which is for each pixel to have 4 equally weighted edges connecting with the 4 immediate adjoining pixels in \textit{North}, \textit{East}, \textit{South} and \textit{West} vicinities (referred to as the \textbf{4-neighborhood region}). A common variation of this is to \textit{also} include the next 4 closest adjoining pixels in the \textit{Northeast}, \textit{Southeast}, \textit{Southwest} and \textit{Northwest} vicinities (referred to as the \textbf{8-neighborhood region}). More sophisticated methods assign edge weightings proportional to the difference in color values (\textit{scalar gray values} or \textit{euclidean distance of color vectors}) between each pixel-pair.
+
+
+Binary segmentation (partitioning into two regions) can be accomplished through
 	
 \chapter{Process}
 The system in question contains 3 main components

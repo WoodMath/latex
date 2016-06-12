@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.13)  2 JUN 2016 16:57
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.13)  12 JUN 2016 14:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -863,7 +863,7 @@ Chapter 2.
 
 ] [5]
 Chapter 3.
-<BiLinear_Point_Correspondance_v1.pdf, id=67, 803.0pt x 803.0pt>
+<BiLinear_Point_Correspondance_v1.pdf, id=72, 803.0pt x 803.0pt>
 File: BiLinear_Point_Correspondance_v1.pdf Graphic file (type pdf)
 
 <use BiLinear_Point_Correspondance_v1.pdf>
@@ -874,30 +874,34 @@ e 232.
 
 ] [7 <./BiLinear_Point_Correspondance_v1.pdf>]
 Chapter 4.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 243.
+[8
+
+]
+Chapter 5.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 249.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 243.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 271.
- [8
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 249.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 277.
+ [9
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 271.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 277.
 
 (./thesisORarticle.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 271.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 271.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 277.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 277.
 Package rerunfilecheck Info: File `thesisORarticle.out' has not changed.
-(rerunfilecheck)             Checksum: F74FACE4CCD42549F2418344455D09B5;187.
+(rerunfilecheck)             Checksum: 9DF3D55478F66CBC0BDC063200D146AC;240.
  ) 
 Here is how much of TeX's memory you used:
- 10190 strings out of 494985
- 146917 string characters out of 6180355
+ 10193 strings out of 494985
+ 146943 string characters out of 6180355
  263090 words of memory out of 5000000
- 13192 multiletter control sequences out of 15000+600000
+ 13193 multiletter control sequences out of 15000+600000
  11676 words of font info for 43 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  68i,21n,98p,1066b,376s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -914,10 +918,10 @@ sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 i12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam
 10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
 0.pfb>
-Output written on thesisORarticle.pdf (9 pages, 146549 bytes).
+Output written on thesisORarticle.pdf (10 pages, 149893 bytes).
 PDF statistics:
- 137 PDF objects out of 1000 (max. 8388607)
- 110 compressed objects within 2 object streams
- 23 named destinations out of 1000 (max. 500000)
- 38 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 147 PDF objects out of 1000 (max. 8388607)
+ 119 compressed objects within 2 object streams
+ 25 named destinations out of 1000 (max. 500000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
