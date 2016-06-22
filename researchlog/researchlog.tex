@@ -346,6 +346,31 @@ Holding off on reading any more of [Scharstein2002]~\cite{Scharstein2002}(\texti
 \par Feature based correpondance finds locally unique or identifiable pixels (i.e. Corners or edge gradients), matchingbetween images occurrs between these reduced set of points. Advantages are only a few points are necessary. Disadvantages are that disparity calculations are confined to these points, so interpoint disparity have to be calculated through interpolation and may not be accurate.\newline
 \par Area based correspondance occurrs over \textit{regions in the image} instead of points used in feature correspondance. Advantages are a denser (and therefore more accurate) disparity map, but require assumptions about local disparity. }
 		}
+		\logentry{6}{21}{2016}{%
+Continued reading [Scharstein1999]~\cite{Scharstein1999}. \SUMMARY{
+3 general methods are being differentiated:\newline
+\par\begin{itemize}
+\item \textbf{Image Synthesis based on Stereo}: Uses stereo mathods for image creation.
+\item \textbf{Image Interpolation}: Similar to \textit{Image Synthesis based on Stereo}, except mages generated must be on baseline, and baseline must be parallel to image planes.
+\item \textbf{Information from Many Images}: Includes image stitching and panoramic mosaicing.\newline
+\end{itemize}
+\par Other sections involve summaries of various papers and methods published under each of the 3 categories.
+}\newline
+\par Got further clarification on steps for coorespondance matching for \textit{feature-based correspondance}.\newline
+\par\begin{enumerate}
+\item \textbf{Preprocessing}: Color correction between stereo images for conconsitancy, and image warping through rectification so features occur at (approximatley) same horizontal distance reducing search area to the scanline.
+\item \textbf{Cost Calculation}: Per-pixel cost calculation done as either a \textit{square difference} or \textit{absolute difference}.
+\item \textbf{Aggregation}: The summing of the cost calculations over the window in question.
+\item \textbf{Comparison / Calculation}: Window on feature trying to be matched is kept fixed.Window in corresponding image  is moved along the scanline for a comparison of potential window aggregates. Correspondance with minimum aggregate (in difference of costs) is selected as the corresponding point in the image being scanned.
+\item \textbf{Sup-pixel Calculation}: Not yet read. Could be smoothing.\newline
+\end{enumerate}
+\par Read up to section 2.2.5 \textit{Disparity Selection} (PDF page 49, Numbered page 35). Stopped to read up on using Dynamic Programming to increase consistancy of stereo points and disparity, including following sourceses:\newline
+\par\begin{itemize}
+\item \url{http://www.robots.ox.ac.uk/~az/lectures/opt/lect2.pdf}
+\item \url{http://www.cs.umd.edu/~djacobs/CMSC426/PS7.pdf}
+\end{itemize}
+
+		}
 %	\hline
 	\end{longtable}
 
