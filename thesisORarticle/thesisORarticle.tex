@@ -109,10 +109,11 @@ $\mathbf{\tilde{x}}$ & Spatial coordinate (expressed \textit{homogeneously})\\
 $^{A}{\mathbf{x}}$ & Spatial coordinate in reference frame \textit{A} \\
 $^{A}{\mathbf{\tilde{x}}}$ & Spatial coordinate (expressed \textit{homogeneously}) in reference frame {A} \\
 $^{C}_{B}\mathbf{\tilde{M}}$ & Change from of reference frame \textit{B} to reference frame \textit{C}\\
-$s$ & Normalizing factor applied to \textit{homogeneous} vector so last element becomes equal to 1\\
+$s$ & Normalizing factor applied to \textit{homogeneous} vector $\mathbf{\tilde{x}}$ such that recover original $\mathbf{x}=s\cdot\mathbf{\tilde{x}}$ is recovered\\
 $^{D}\mathbb{S}$ & Spatial reference frame \textit{D}\\
 $\skewsym{\mathbf{x}}$ & Skew-symmetric matrix version of vector $\mathbf{x}$ used as \textit{left}-operand in the \textit{cross}-product such that $\skewsym{\mathbf{x}}\cdot\mathbf{y}=\mathbf{x}\times\mathbf{y}$\\
 $l$ & Epipolar line\\
+$\mathbb{P}$ & Ray (or \textit{pencil}) of all possible vectors $\mathbf{x}$ where $\mathbf{x}=s\cdot\mathbf{\tilde{x}}$ for some value of $s$\\
 \bottomrule
 \end{tabular}
 \newpage
@@ -163,6 +164,10 @@ and similarly transforms $\sR$ into $\sL$.
 \par When viewed in the original image, this set of points overlaps and appear as a single point consistant with the original point at location $\mathbf{\tilde{x}}=[x,y,1]^\intercal$. When viewed in an image from a differing angle, this set of points forms a line extending the boundaries of the image. Known as the \textit{epipolar line}, the line has a row-vector form of $\mathbf{l'}=[A',B',C']$. The corresponding point of $\mathbf{\tilde{x}'}=[x',y',1]^\intercal$ is limited in location to this epipolar line, and is thus constrained by the equation $\mathbf{l'}\cdot\mathbf{\tilde{x}'}=0 $. Similarly, the point in the original image of $\mathbf{\tilde{x}}=[x,y,1]^\intercal$ is limited in location to an epipolar line of $\mathbf{l}=[A,B,C]$, and the equation of $\mathbf{l}\cdot\mathbf{\tilde{x}}=0 $. The requirements that $\mathbf{l}\cdot\mathbf{\tilde{x}}=A\cdot{x}+B\cdot{y}+C\cdot 1=0 $ and  $\mathbf{l'}\cdot\mathbf{\tilde{x}'}=A'\cdot{x'}+B'\cdot{y'}+C'\cdot 1=0 $ are also referred to as the \textit{epipolar constraint}. 
 \par All corresponding points are given \textit{homogenously} with values of $z=1$ and $z'=1$, regardless of depth from the image plane occurring in the real world. This results in differing 3-dimensional coordinates, and therefore a change of reference between coordinates $\mathbf{\tilde{x}}$ and $\mathbf{\tilde{x}'}$  
 \subsection*{Fundamental Matrix}
+In stereo vision, points ($\mathbf{\tilde{x}}$) in one image $I$ are related to the epipolar line ($l'$) that contain the corresponding point ($\mathbf{\tilde{x}}'$) by the \textit{Fundamental Matrix} ($\mathbf{F}$).
+\begin{equation*}
+l'=\mathbf{F}\cdot\mathbf{\tilde{x}}
+\end{equation*}
 
 \subsection*{Intrinsic Calibration Matrix}
 
@@ -233,9 +238,8 @@ where
 \end{figure}
 
 \chapter{Image segmentation}
-Central to our need to localize corresponding points in stereo images is the ability to partition images by similar texture or planar attributes compared to the image at hole. Such techniques are referred to as \textit{image segmentation}. 
-
-Image segmentation of regions of similar color or textures region is often approached from a graph-theory standpoint, in which individual pixels form the nodes of the graph. Edges are formed by a number of methods, the simplest of which is for each pixel to have 4 equally weighted edges connecting with the 4 immediate adjoining pixels in \textit{North}, \textit{East}, \textit{South} and \textit{West} vicinities (referred to as the \textbf{4-neighborhood region}). A common variation of this is to \textit{also} include the next 4 closest adjoining pixels in the \textit{Northeast}, \textit{Southeast}, \textit{Southwest} and \textit{Northwest} vicinities (referred to as the \textbf{8-neighborhood region}). More sophisticated methods assign edge weightings proportional to the difference in color values (\textit{scalar gray values} or \textit{euclidean distance of color vectors}) between each pixel-pair.
+\par Central to our need to localize corresponding points in stereo images is the ability to partition images by similar texture or planar attributes compared to the image at hole. Such techniques are referred to as \textit{image segmentation}. 
+\par Image segmentation of regions of similar color or textures region is often approached from a graph-theory standpoint, in which individual pixels form the nodes of the graph. Edges are formed by a number of methods, the simplest of which is for each pixel to have 4 equally weighted edges connecting with the 4 immediate adjoining pixels in \textit{North}, \textit{East}, \textit{South} and \textit{West} vicinities (referred to as the \textbf{4-neighborhood region}). A common variation of this is to \textit{also} include the next 4 closest adjoining pixels in the \textit{Northeast}, \textit{Southeast}, \textit{Southwest} and \textit{Northwest} vicinities (referred to as the \textbf{8-neighborhood region}). More sophisticated methods assign edge weightings proportional to the difference in color values (\textit{scalar gray values} or \textit{euclidean distance of color vectors}) between each pixel-pair.
 
 
 Binary segmentation (partitioning into two regions) can be accomplished through
