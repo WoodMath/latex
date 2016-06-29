@@ -405,10 +405,27 @@ Continued reading Chapter 2 of [Hartley2004]~\cite{Hartley2004} containing infor
 \par \SUMMARY{
 Transformations of points in the image plane can be grouped into the following categories:
 \begin{itemize}
-\item \textbf{Isometries} (Denoted by $\mathbf{H}_E$):
-\item \textbf{Similarity (Denoted by $\mathbf{H}_S$):
-\item \textbf{Affine} (Denoted by $\mathbf{H}_A$):
-\item \textbf{Projective} (Denoted by $\mathbf{H}_P$):
+\item \textbf{Isometries} (Denoted by $\mathbf{H}_E$): Transfomrations in $\mathbb{P}_2$ including \textit{translation} and  \textit{rotation} (including composites of the two) that peserve \textit{Euclidean}-distance. Tranformations are of the form
+\begin{equation*}
+\begin{bmatrix}\epsilon\cos(\theta) & -\sin(\theta) & t_x \\ \epsilon\sin(\theta) & \cos(\theta) & t_y \\ 0 & 0 & 1 \end{bmatrix}
+\end{equation*}
+where $\epsilon=\pm 1$. Angles are preserved if $\epsilon=1$, else if $\epsilon=-1$ angles are reversed (reflection accross an axis).
+\item \textbf{Similarity} (Denoted by $\mathbf{H}_S$): Transformations include \textit{translation}, \textit{rotation}, and \textit{scaling}. Matrices are of the form
+\begin{equation*}
+\begin{bmatrix}s\cos(\theta) & -s\sin(\theta) & t_x \\ s\sin(\theta) & s\cos(\theta) & t_y \\ 0 & 0 & 1 \end{bmatrix}
+\end{equation*}
+where $s$ is the scaling factor. While \textit{distances} are not preserved, the \textit{ratio of distances} and \textit{angles} are preserved.
+\item \textbf{Affine} (Denoted by $\mathbf{H}_A$): Transformations include all linear transformations of \textit{translation}, \textit{rotation}, \textit{scaling}, and \textit{shearing}. Matrices are of the form
+\begin{equation*}
+\begin{bmatrix}a_{11} & a_{12} & t_x \\ a_{21} & a_{22} & t_y \\ 0 & 0 & 1 \end{bmatrix}
+\end{equation*}
+
+\item \textbf{Projective} (Denoted by $\mathbf{H}_P$): Transformations in $\mathbb{P}_2$ that are linear transformations in $\mathbb{R}_3$. Matrices are of the form
+\begin{equation*}
+\begin{bmatrix}h_{11} & h_{12} & h_{13} \\ h_{21} & h_{22} & h_{23} \\ h_{31} & h_{32} & h_{33} \end{bmatrix}
+\end{equation*}
+
+
 \end{itemize}
 
 }
