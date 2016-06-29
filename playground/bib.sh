@@ -20,24 +20,29 @@ do
 #cd ~/Dropbox/rt_proj/deadmau5
 #./usr/share/doc/povray/examples/
 	pdflatex $CODE.tex
-	bibtex $CODE.aux
-	pdflatex $CODE.tex
-	pdflatex $CODE.tex
+	echo "Reurn Code of $?"
+	if [ $?=0 ];
+	then
+		echo "Success"
+	
+		bibtex $CODE.aux
+		pdflatex $CODE.tex
+		pdflatex $CODE.tex
 
-	if [ "$(uname)" == "Darwin" ]; then
-		# Do something under Mac OS X platform        
-		echo "Operating system is $(uname)"
-		open $CODE.pdf
-	elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-		# Do something under GNU/Linux platform
-		echo "Operating system is $(uname)"
-		evince $CODE.pdf
-	elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
-		# Do something under Windows NT platform
-		echo "Operating system is $(uname)"
+		if [ "$(uname)" == "Darwin" ]; then
+			# Do something under Mac OS X platform        
+			echo "Operating system is $(uname)"
+			open $CODE.pdf
+		elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+			# Do something under GNU/Linux platform
+			echo "Operating system is $(uname)"
+			evince $CODE.pdf
+		elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+			# Do something under Windows NT platform
+			echo "Operating system is $(uname)"
+		fi
+
 	fi
-
-
 #export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 done
 #ls -l -r -t
