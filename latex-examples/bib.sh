@@ -2,6 +2,7 @@
 
 # From:
 #	http://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux
+#	http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-11.html
 
 for CODE in $@
 do
