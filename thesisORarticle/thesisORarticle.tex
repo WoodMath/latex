@@ -128,7 +128,7 @@ $\mathbb{P}$ & Ray (or \textit{pencil}) of all possible vectors $\mathbf{x}$ whe
 \newpage
 %\end{flushleft}
 
-\chapter{Backround}
+\chapter{Background}
 \par 
 Oridinarily, real-world data contains 3-dimensions. 
 Because standard images only include 2-dimensional data, information regarding depth is lost (i.e. it is often difficult to judge distance from a single image without visual cues). 
@@ -136,7 +136,7 @@ Because standard images only include 2-dimensional data, information regarding d
 An elementry example of this occurs in stereoscopic images with relatively low distance between cameras (i.e they are righht next to each other). 
 Objects that are \textit{farther} away from the observer occur closer together in the stereo images, whereas objects \textit{closer} to the camera appear appear farther appart in the stereo-images.
 
-\subsection*{Change of Reference}
+\section{Change of Reference}
 \par
 Each view from a pair of stereo-images encompasses its own \textit{frame of reference} (i.e. the directions of \textit{forward} or \textit{backward} are unique to image and may differe considerably depending on camera displacement).
 This requires expressing points from different frames of reference (traditionally referred to \textit{left} and \textit{right}) in a single reference frame. 
@@ -167,21 +167,40 @@ Withough calculating any new quantities, rearranging allows us to express coordi
 	{\rLR\tT}\cdot (\xL - \rLt ) = \xR
 \end{equation*}
 and similarly transforms $\sR$ into $\sL$.
+\section{Points and Lines in the Image Plane}
+\par The image plane exists in $\mathbb{R}^2$. Points can be reprsented as vectors in the \textit{standard}-form $\mathbf{x}=[x,y]^\intercal$ or in \textit{homogeneous}-form of $\mathbf{\tilde{x}}=[x,y,1]^\intercal$. Points of the form $\mathbf{\tilde{x}}=[x,y,0]^\intercal$ are a special case that are referred to as \textit{point at infinity}.
+\par
+Lines in $\mathbf{R}^2$ can also be represented in different contexts. The \textit{vector offset} method calculates a line $\mathbf{s}(t)$ between points $\mathbf{x_1}$ and $\mathbf{x_2}$ as
+\begin{equation*}
+\begin{split}
+\mathbf{s}(t)&=(1-t)\cdot\mathbf{x_1}+\mathbf{x_2}\\
+&=\mathbf{x_1}+t\cdot(\mathbf{x_2}-\mathbf{x_1})\\
+\end{split}
+\end{equation*}
+in which the line is parrallel to the vector $\mathbf{x_2}-\mathbf{x_1}$ and offset from the  origin by the vector $\mathbf{x_1}$. Lines are also represented by their coefficients as $\mathbf{l}=[a,b,c]^\intercal$ where
+\begin{equation*}
+\begin{split}
+\mathbf{l}^\intercal\cdot\mathbf{\tilde{x}}&=\left[\begin{array}{ccc}a & b & c\end{array}\right]\cdot\left[\begin{array}{c}x\\y\\1\end{array}\right]\\
+&=a\cdot{x}+b\cdot{y}+c\cdot{1}\\
+&=0
+\end{split}
+\end{equation*}
+This definition allows us to say point $\mathbf{\tilde{x}}$ lies on line $\mathbf{l}$ if $\mathbf{l}^\intercal\cdot\mathbf{\tilde{x}}=0$. The line $\mathbf{l}$ joining two points $\mathbf{\tilde{x_1}}$ and $\mathbf{\tilde{x_2}}$ is then calculated as the cross product of $\mathbf{l}=\mathbf{x_1}\times\mathbf{x_2}$
 
-\subsection*{Epipolar constraint}
+\section{Epipolar constraint}
 \par Each point of of interest (also referred to as a \textit{feature}) in a single image occurs in a 2-dimensional space at location $\mathbf{\tilde{y}}=[x,y,1]^\intercal$. Unless the position is given in 3-dimensional space, or the corrsponding location of $\mathbf{\tilde{y}'}=[x',y',1]^\intercal$ in an image viewed from a different angle is known, then depth information is lost. The most that can be determined from the 2-dimensional information is the \textit{line of sight} (also referred to as a \textit{pencil}), or \textit{the region in 3-dimensions space the point can exist while still appearing as the same point in the original image}. From a mathematical context, this set of infinitley many points form a 1-dimensional subspace of the 3-dimensional space that makes up the physical world around us.   
 \par When viewed in the original image, this set of points overlaps and appear as a single point consistant with the original point at location $\mathbf{\tilde{y}}=[x,y,1]^\intercal$. When viewed in an image from a differing angle, this set of points forms a line extending the boundaries of the image. Known as the \textit{epipolar line}, the line has a row-vector form of $\mathbf{l'}=[A',B',C']$. The corresponding point of $\mathbf{\tilde{y}'}=[x',y',1]^\intercal$ is limited in location to this epipolar line, and is thus constrained by the equation $\mathbf{l'}\cdot\mathbf{\tilde{y}'}=0 $. Similarly, the point in the original image of $\mathbf{\tilde{y}}=[x,y,1]^\intercal$ is limited in location to an epipolar line of $\mathbf{l}=[A,B,C]$, and the equation of $\mathbf{l}\cdot\mathbf{\tilde{y}}=0 $. The requirements that $\mathbf{l}\cdot\mathbf{\tilde{y}}=A\cdot{x}+B\cdot{y}+C\cdot 1=0 $ and  $\mathbf{l'}\cdot\mathbf{\tilde{y}'}=A'\cdot{x'}+B'\cdot{y'}+C'\cdot 1=0 $ are also referred to as the \textit{epipolar constraint}. 
 \par All corresponding points are given as \textit{homogenous image coordinates} ($\mathbf{\tilde{y}}$ and $\mathbf{\tilde{y}'}$), or equivalently \textit{non-homogenous spatial coordinates} ($\mathbf{x}$ and $\mathbf{x'}$) with values of $\mathbf{x}_z=1$ and $\mathbf{x}'_z=1$. This happens regardless of the physical distance of the points in the real world from the image plane.Correspoinding Points with differing \textit{homogenous image coordinates} between frames ($\mathbf{\tilde{u}}\neq\mathbf{\tilde{u}'}$), will therefore result from different \textit{spatial coordinates} between frames ($\mathbf{x}\neq\mathbf{x'}$), requiring a change of reference between coordinates $\mathbf{\tilde{x}}$ and $\mathbf{\tilde{x}'}$.
   
-\subsection*{Fundamental Matrix}
+\section{Fundamental Matrix}
 In stereo vision, points ($\mathbf{\tilde{x}}$) in one image $I$ are related to the epipolar line ($l'$) that contain the corresponding point ($\mathbf{\tilde{x}}'$) by the \textit{Fundamental Matrix} ($\mathbf{F}$).
 \begin{equation*}
 l'=\mathbf{F}\cdot\mathbf{\tilde{x}}
 \end{equation*}
 
-\subsection*{Intrinsic Calibration Matrix}
+\section{Intrinsic Calibration Matrix}
 
-\subsection*{Essential Matrix}
+\section{Essential Matrix}
 \par When coordinates from a reference frame are expressed as \textit{normalized image coordinates} the range of possible NIC values in the corresponding image are given by the 
 
 %Longuet-Higgins' Fundamental Matix ~\cite{Longuet-Higgins}
