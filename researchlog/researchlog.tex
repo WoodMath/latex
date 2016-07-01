@@ -18,7 +18,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-
+\allowdisplaybreaks
 %% Date Time Pakcages
 \usepackage[USenglish]{babel}
 \usepackage[nodayofweek,level]{datetime}
@@ -39,6 +39,8 @@
 
 %% COMMANDS section
 \newcommand{\logentry}[4]{\hline\\[-0.25ex]\selectlanguage{USenglish}\formatdate{#2}{#1}{#3}&{#4}\par\\[-0.25ex]}
+\newcommand{\logpage}[0]{\}\{\\[-0.25ex]\selectlanguage{USenglish}\par\\[-0.25ex]}
+
 
 \newcommand{\Kamangar}[1]{%
 	{\noindent\textbf{\color{red}Question for Kamangar: }{\noindent #1} \noindent}
@@ -432,23 +434,77 @@ where $s$ is the scaling factor. While \textit{distances} are not preserved, the
 
 	}
 	\logentry{6}{29}{2016}{%
-Continuing to read [Hartley2004]~\cite{Hartley2004} for \textit{affine rectification}. Chapters of [Hartley2004]~\cite{Hartley2004} include:
+Continuing to read [Hartley2004]~\cite{Hartley2004} for \textit{affine rectification}. Chapters of [Hartley2004]~\cite{Hartley2004} include:\newline
 \begin{itemize}
 \item \textbf{Chapter 2: Projective Geometry}:
-\subitem Section 2.1: Planar Geometry
-\subitem Section 2.2: The 2D projective plane
-\subitem Section 2.3: Projective transformations
-\subitem Section 2.4: A hierarchy of transformations
+\begin{itemize}
+\item \textbf{Section 2.1: Planar Geometry}:
+\item \textbf{Section 2.2: The 2D projective plane}:\newline
+\par
+Lines in $\mathbb{R}^{2}$ are detailed by $\mathbf{l}=[a,b,c]^{\intercal}$ and points as $\mathbf{x}=[x,y,1]^\intercal$ such that $\mathbf{l}^{\intercal}\cdot\mathbf{x}=a\cdot{x}+b\cdot{y}+1=0$. Coordinates $\mathbf{x}=[x,y,0]^\intercal$ with a $0$ instead of $1$ in the last place represent a \textit{point at infinity} since they are the only points where $a\cdot{x}+b\cdot{y}+c\cdot{0}=a\cdot{x}+b\cdot{y}+c'\cdot{0}$ for the two \textit{parallel} lines of $\mathbf{l}=[a,b,c]^\intercal$ and $\mathbf{l'}=[a,b,c']^\intercal$
+\newline
+\par Cross product of points $\mathbf{x}$ and $\mathbf{x'}$ result in line $\mathbf{l}$ joining the two points (i.e. $\mathbf{x}\times\mathbf{x'}=\mathbf{l}$). Cross product of lines $\mathbf{l}$ and $\mathbf{l'}$ result in point $\mathbf{x}$ where intersection of two lines (i.e. $\mathbf{l}\times\mathbf{l'}=\mathbf{x}$).\newline
+\par Circles and ovals can be reprsented by a \textit{conic-matrix} of the form
+\begin{equation*}
+\begin{split}
+0&=\mathbf{x}^\intercal\cdot\mathbf{C}\cdot\mathbf{x}\\
+&=\left[\begin{array}{ccc}x & y & 1\end{array} \right]\cdot
+\left[\begin{array}{ccc}a & b/2 & d/2 \\ b/2 & c & e/2 \\ d/2 & e/2 & f\\\end{array}\right]\cdot\left[\begin{array}{c}x \\ y \\ 1 \end{array}\right]\\
+&=a\cdot{x}^2+b\cdot{xy}+c\cdot{y}^2+d\cdot{x}+e\cdot{y}+f\cdot{1}
+\end{split}
+\end{equation*}
+\item \textbf{Section 2.3: Projective transformations}:\newline
+\par Point $\mathbf{x}$ on an image is mapped to point $\mathbf{x'}$ via a homography $\mathbf{H}$, such that $\mathbf{x'}=\mathbf{H}\cdot\mathbf{x}$. Because a point $\mathbf{x}$ lies on line $\mathbf{l}$ if $\mathbf{l}^\intercal\cdot\mathbf{x}=0$, then because 
+\begin{equation*}
+\begin{split}
+0&=\mathbf{l}^\intercal\cdot\mathbf{x}\\
+&=\mathbf{l}^\intercal\cdot\mathbf{H}^{-1}\cdot\mathbf{H}\cdot\mathbf{x}\\
+&=\mathbf{l}^\intercal\cdot\mathbf{H}^{-1}\cdot\mathbf{x'}
+\end{split}
+\end{equation*}
+the point $\mathbf{x'}$ lies on the line $\mathbf{l'}$ defined by $\mathbf{l'}^\intercal=\mathbf{l}^\intercal\cdot\mathbf{H}^{-1}$, or $\mathbf{l'}=\mathbf{H}^{-\intercal}\cdot\mathbf{l}$. Therefore a homograhy that gives a \textit{point-mapping} of $\mathbf{x'}=\mathbf{H}\cdot{x}$ has a corresponding \textit{line-mapping} of $\mathbf{l'}=\mathbf{H}^{-\intercal}\cdot\mathbf{l}$.\newline
+\par Similarly, for a homography given by $\mathbf{x'}=\mathbf{H}\cdot\mathbf{x}$, the conic under the homography is given by 
+\begin{equation*}
+\begin{split}
+0&=\mathbf{x}^\intercal\cdot\mathbf{C}\cdot\mathbf{x}\\
+&=(\mathbf{H}^{-1}\cdot\mathbf{x'})^{\intercal}\cdot\mathbf{C}\cdot(\mathbf{H}^{-1}\cdot\mathbf{x'})\\
+&=\mathbf{x'}^\intercal\cdot\mathbf{H}^{-\intercal}\cdot\mathbf{C}\cdot\mathbf{H}^{-1}\cdot\mathbf{x'}\\
+&=\mathbf{x'}^\intercal\cdot\mathbf{C'}\cdot\mathbf{x'}\\
+\end{split}
+\end{equation*}
+where $\mathbf{C'}=\mathbf{H}^{-\intercal}\cdot\mathbf{C}\cdot\mathbf{H}^{-1}$.\newline
+\par
+\item \textbf{Section 2.4: A hierarchy of transformations}:\newline
+\par See entry from \formatdate{27}{6}{2016}.\newline
+\par
+\end{itemize}
+\end{itemize}
+}\logentry{6}{29}{2016}{%
+\textit{...Continued}
+\begin{itemize}
 \item \textbf{Chapter 6: Camera Models}:
-\subitem Section 6.1: Finite cameras
-\subitem Section 6.2: The projective camera
+\begin{itemize}
+\item \textbf{Section 6.1: Finite cameras}:\newline
+\par Transformation from \textit{world-coordinate} system $\mathbf{x}$ to \textit{camera-coordinate} system $^{C}\mathbf{x}$ is given by $^{C}\mathbf{x}=\mathbf{R}\cdot(\mathbf{x}-\mathbf{c})$. Camera in world-space occurs is at $\mathbf{x}=\mathbf{c}$. Camera coordinate system has the camera position at $^{c}\mathbf{x}=0$ and includes \textit{image-plane} at
+$z=1$ or $z=\mathit{f}$\par
+\item \textbf{Section 6.2: The projective camera}:
+\end{itemize}
 \item \textbf{Chapter 9: Epipolar Geometry and the Fundamental Matrix}:
-\subitem Section 9.1: Epipolar geometry
-\subitem Section 9.2: The fundamental matrix \texttt{F}
+\begin{itemize}
+\item \textbf{Section 9.1: Epipolar geometry}:
+\item \textbf{Section 9.2: The fundamental matrix \texttt{F}}:
+\end{itemize}
 \item \textbf{Chapter 11: Computation of the Fundamental Matrix}:
-\subitem Section 11.1: Basic Equations
+\begin{itemize}
+\item \textbf{Section 11.1: Basic Equations}:
+\end{itemize}
 \end{itemize}
 
+	}
+
+	\logentry{6}{30}{2016}{%
+\Kamangar{On pages 162 and 244, how is the ray back-projected from $\mathbf{x}$ by $\mathbf{P}$ (where $\mathbf{x}=\mathbf{PX}$ and $\mathbf{P}=\mathbf{K}[\mathbf{R}|\mathbf{t}]$) given by the formula $\mathbf{X}(\lambda)=\mathbf{P}^{+}\mathbf{x}+\lambda\mathbf{C}$? How is the formula derived?
+}
 	}
 %	\hline
 	\end{longtable}

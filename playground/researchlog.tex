@@ -1,0 +1,60 @@
+%	Syntax from following sources
+%		https://www.sharelatex.com/learn/Sections_and_chapters
+%		https://www.sharelatex.com/learn/Table_of_contents
+%		http://www.bibtex.org/Using/
+%		https://www.economics.utoronto.ca/osborne/latex/BIBTEX.HTM
+%		https://www.latex-tutorial.com/tutorials/beginners/latex-bibtex/
+%		http://tex.stackexchange.com/questions/205/what-graphics-packages-are-there-for-creating-graphics-in-latex-documents
+%		https://www.sharelatex.com/learn/Bibtex_bibliography_styles
+%	
+%% Main stuff
+\documentclass[a4paper,10pt]{article}
+
+%% PACKAGES section
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+
+%% Math Packages
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\allowdisplaybreaks
+%% Date Time Pakcages
+\usepackage[USenglish]{babel}
+\usepackage[nodayofweek,level]{datetime}
+\usepackage[margin=0.5in]{geometry}
+
+%% Formatting Packages
+\usepackage{indentfirst}
+
+%% Citation Packages
+\usepackage{cite}
+\usepackage{hyperref}
+
+%% Table packages
+\usepackage{longtable}
+
+%% Color packages
+\usepackage{color}
+
+%% COMMANDS section
+\newcommand{\logentry}[4]{\hline\\[-0.25ex]\selectlanguage{USenglish}\formatdate{#2}{#1}{#3}&{#4}\par\\[-0.25ex]}
+\newcommand{\logpage}[0]{\}\{\\[-0.25ex]\selectlanguage{USenglish}\par\\[-0.25ex]}
+\title{Research Log}
+\date{\today}
+
+
+\begin{document}
+%% SET section
+\setlength\parindent{-10pt}
+\setlength{\parskip}{10pt}
+\setlength{\parskip}{\baselineskip}
+	\maketitle
+%% TABLE section
+	\begin{longtable}{l p{12cm} }
+		\logentry{3}{30}{2016}{Established research log after 3 hours of learning new \LaTeX}
+		\logentry{6}{30}{2016}{Asked for help on \url{http://tex.stackexchange.com/}}
+	\end{longtable}
+
+	\newpage
+\end{document}

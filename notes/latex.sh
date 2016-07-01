@@ -3,6 +3,7 @@
 # From:
 #	http://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux
 #	http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-11.html
+#	http://stackoverflow.com/questions/5195607/checking-bash-exit-status-of-several-commands-efficiently
 
 for CODE in $@
 do
@@ -21,8 +22,9 @@ do
 #cd ~/Dropbox/rt_proj/deadmau5
 #./usr/share/doc/povray/examples/
 	pdflatex $CODE.tex
-	echo "Reurn Code of $?"
-	if [ $?=0 ];
+	RTRN=$?
+	echo "Reurn Code of $RTRN"
+	if [ $RTRN -eq 0 ];
 	then
 		echo "Success"
 	
