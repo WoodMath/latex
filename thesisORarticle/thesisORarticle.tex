@@ -168,33 +168,35 @@ Withough calculating any new quantities, rearranging allows us to express coordi
 \end{equation*}
 and similarly transforms $\sR$ into $\sL$.
 \section{Points and Lines in the Image Plane}
-\par The image plane exists in $\mathbb{R}^2$. Points can be reprsented as vectors in the \textit{standard}-form $\mathbf{x}=[x,y]^\intercal$ or in \textit{homogeneous}-form of $\mathbf{\tilde{x}}=[x,y,1]^\intercal$. Points of the form $\mathbf{\tilde{x}}=[x,y,0]^\intercal$ are a special case that are referred to as \textit{point at infinity}.
-\par
-Lines in $\mathbb{R}^2$ can also be represented in different contexts. The \textit{vector offset} method calculates a line $\mathbf{s}(t)$ between points $\mathbf{x_1}$ and $\mathbf{x_2}$ as
+\par Points in \textit{world-space} of $\mathbb{R}^3$ are converted to points in the \textit{image-plane} of $\mathbb{R}^2$ by \textit{homogenization}. This occurs when a \textit{world-coordinate} of $\mathbf{x}=[x_1,x_2,x_3]^\intercal$ is mapped to a \textit{homogeneous image coordinate} of $\mathbf{\tilde{y}}=[y_1,y_2,1]^\intercal=[x_1/x_3,\;x_2/x_3,\;x_3/x_3]^\intercal$ or a \textit{non-homogeneous image coordinate} of $\mathbf{y}=[y_1,y_2]^\intercal=[x_1/x_3,\;x_2/x_3]^\intercal$. Points of the form $\mathbf{\tilde{y}}=[y_1,y_2,0]^\intercal$ are special case of homogeneous point referred to as a \textit{point at infinity}.
+
+\par Lines in $\mathbb{R}^2$ can be represented in different contexts. The \textit{vector offset} method calculates a line $\mathbf{s}(t)$ between points $\mathbf{y_1}$ and $\mathbf{y_2}$ as 
+%$\mathbf{s}(t)=(1-t)\cdot\mathbf{y_1}+t\cdot\mathbf{y_2}=\mathbf{y_1}+t\cdot(\mathbf{y_2}-\mathbf{y_1})$
 \begin{equation*}
 \begin{split}
-\mathbf{s}(t)&=(1-t)\cdot\mathbf{x_1}+\mathbf{x_2}\\
-&=\mathbf{x_1}+t\cdot(\mathbf{x_2}-\mathbf{x_1})\\
+\mathbf{s}(t)&=(1-t)\cdot\mathbf{y_1}+t\cdot\mathbf{y_2}\\
+&=\mathbf{y_1}+t\cdot(\mathbf{y_2}-\mathbf{y_1})\\
 \end{split}
 \end{equation*}
-in which the line is parrallel to the vector $\mathbf{x_2}-\mathbf{x_1}$ and offset from the  origin by the vector $\mathbf{x_1}$. Lines are also represented by their coefficients as $\mathbf{l}=[a,b,c]^\intercal$ where
+in which the line is parrallel to the vector $\mathbf{y_2}-\mathbf{y_1}$ and offset from the  origin by the vector $\mathbf{y_1}$. Lines are also represented by their coefficients as $\mathbf{l}=[a,b,c]^\intercal$ where
 \begin{equation*}
 \begin{split}
-\mathbf{l}^\intercal\cdot\mathbf{\tilde{x}}&=\left[\begin{array}{ccc}a & b & c\end{array}\right]\cdot\left[\begin{array}{c}x\\y\\1\end{array}\right]\\
-&=a\cdot{x}+b\cdot{y}+c\cdot{1}\\
+\mathbf{l}^\intercal\cdot\mathbf{\tilde{y}}&=\left[\begin{array}{ccc}a & b & c\end{array}\right]\cdot\left[\begin{array}{c}y_1\\y_2\\1\end{array}\right]\\
+&=a\cdot{y_1}+b\cdot{y_2}+c\cdot{1}\\
 &=0
 \end{split}
 \end{equation*}
-This definition allows us to say point $\mathbf{\tilde{x}}$ lies on line $\mathbf{l}$ if $\mathbf{l}^\intercal\cdot\mathbf{\tilde{x}}=0$. The line $\mathbf{l}$ joining two points $\mathbf{\tilde{x}_1}$ and $\mathbf{\tilde{x}_2}$ is then calculated as the cross product of $\mathbf{l}=\mathbf{x_1}\times\mathbf{x_2}$
+This definition lets us say $\mathbf{\tilde{y}}$ is located on line $\mathbf{l}$ \textit{if and only if} $\mathbf{l}^\intercal\cdot\mathbf{\tilde{y}}=0$. The line $\mathbf{l}$ joining two \textit{homogeneous image coordinates} $\mathbf{\tilde{y}_1}$ and $\mathbf{\tilde{y}_2}$ is then calculated as the cross product of $\mathbf{l}=\mathbf{\tilde{y}_1}\times\mathbf{\tilde{y}_2}$. 
 
-\section{Epipolar constraint}
+\section{Epipolar Geometry}
 
 \par Each point of of interest (also referred to as a \textit{feature}) in a single image occurs in a 2-dimensional space at location $\mathbf{\tilde{y}}=[x,y,1]^\intercal$. The same point in space when viewed from an image at a similar (though different) angle is referred to as a \textit{corresponding point} with location of $\mathbf{\tilde{y}'}=[x',y',1]^\intercal$\footnote{A \textit{change of reference} is implied between cooridinates $\mathbf{\tilde{y}}=[x', y', 1]^\intercal$ and $\mathbf{\tilde{y}'}=[x', y', 1]^\intercal$. The majority of corresponding points do not occur at the same \textit{image coordinates} between images (i.e $\mathbf{\tilde{y}}\neq\mathbf{\tilde{y}'}$. The only way a single \textit{world coordinate} can yield different \textit{image coordinates}, is if a \textit{change of reference} occurs in \textit{world space} each time the \textit{image coordinates} are obtained by dividing by $z_{world}$.}. This set of infinitley many points form a 1-dimensional subspace (also known as a \textit{pencil}) of the 3-dimensional world space.
 
 \par The pencil, when viewed from an image at a different angled-position, appears as a line $\mathbf{l'}=[A',B',C']^\intercal$, known as the \textit{epipolar line}. The fact that the corresponding point (in the \textit{angled image}) of $\mathbf{\tilde{y}'}=[x',y',1]^\intercal$ occurs on this epipolar line is referred to as the \textit{epipolar constraint}. It is formalized, using the previously given \textit{line-point equality} of $\mathbf{l'}^\intercal\cdot\mathbf{\tilde{y}'}=0$ for the \textit{angled} image. Similarly, the corresponding point of $\mathbf{\tilde{y}'}=[x',y',1]^\intercal$ produces an epipolar line in the \textit{original image} of $\mathbf{l}=[A,B,C]$. The original point of $\mathbf{\tilde{y}}=[x,y,1]^\intercal$ must lie located on this epipolar line as required by the epipolar constraint, resulting in the \textit{line-point equality} of $\mathbf{l}^\intercal\cdot\mathbf{\tilde{y}}=0$ for the \textit{original image}. 
 
-\par When viewed in ther respective images, each point ($\mathbf{\tilde{y}}$ and $\mathbf{\tilde{y}'}$) has a pencil that coincides with that point. Since the pencils act as \textit{directional}-vectors in 3-dimensional space, there is a unique 2-dimensional plane which contain both of these vectors, known as the \textit{epipolar plane}. It is the intersection of the epipolar plane with the \textit{original} image-plane and the \textit{angled} image-plane that results in the epipolar lines of $\mathbf{l}$ and $\mathbf{l'}$. In fact, the epipolar plane (in each image's reference frame)\footnote{There is a single \textit{epipolar plane} for pair of corresponding points $\mathbf{\tilde{y}}$ and $\mathbf{\tilde{y}'}$, though it can be parameterized infinitley many ways, depending on the \textit{frame of reference}} has the same vector form of $\mathbf{l}=\mathbf{P}=[A,B,C]^\intercal$ and $\mathbf{l'}=\mathbf{P'}=[A',B',C']^\intercal$. When testing whether points lie on the planes, we use \textit{spatial coordinates} instead of the \textit{homogeneous image coordinates} in the \textit{point-line-plane equality} of $\mathbf{P}^\intercal\cdot\mathbf{x}=0$ and $\mathbf{P'}^\intercal\cdot\mathbf{x'}=0$. 
-  
+\par When viewed in ther respective images, each point ($\mathbf{\tilde{y}}$ and $\mathbf{\tilde{y}'}$) has a pencil that coincides with that point. Since the pencils act as \textit{directional}-vectors in 3-dimensional space, there is a unique 2-dimensional plane which contain both of these vectors, known as the \textit{epipolar plane}. It is the intersection of the epipolar plane with the \textit{original image}-plane and the \textit{angled image}-plane that results in the epipolar lines of $\mathbf{l}$ and $\mathbf{l'}$, respectively. In fact, the \textit{epipolar plane} (in each image's \textit{coordinate systems})\footnote{There is a single \textit{epipolar plane} for each pair of corresponding points $\mathbf{\tilde{y}}$ and $\mathbf{\tilde{y}'}$. However, the single plane can be parameterized infinitley many ways, depending on the \textit{frame of reference}} has the same vector form as its epipolar line. Specifically, in the \textit{original image} reference frame $\mathbf{l}=\mathbf{P}=[A,B,C]^\intercal$, and in the \textit{angled image} reference frame $\mathbf{l'}=\mathbf{P'}=[A',B',C']^\intercal$. This results from the fact that any \textit{world}-point $\mathbf{x}$ lying on the \textit{epipolar plane} $\mathbf{P}$ will result in a \textit{homogeneous image}-point $\mathbf{\tilde{y}}$ that also lies on the plane $\mathbf{P}$. Specifically, when $\mathbf{x}=s\cdot\mathbf{\tilde{y}}$ for some non-zero value of \textit{s}, then $\mathbf{P}^\intercal\cdot\mathbf{x}=0$ implies $\mathbf{P}^\intercal\cdot\mathbf{x}=\mathbf{P}^\intercal\cdot(s\cdot\mathbf{\tilde{y}})=0$. Since $s\neq0$, its true that $\mathbf{P}^\intercal\cdot\mathbf{\tilde{y}}=0$. 
+
+\par In the majority of images, the sets of epipolar lines will converge at a point known as an \textit{epipole}, denoted as $\mathbf{e}$ in the \textit{original image} $\mathbf{e'}$ in the \textit{angled image}. 
 \section{Fundamental Matrix}
 In stereo vision, points ($\mathbf{\tilde{x}}$) in one image $I$ are related to the epipolar line ($l'$) that contain the corresponding point ($\mathbf{\tilde{x}}'$) by the \textit{Fundamental Matrix} ($\mathbf{F}$).
 \begin{equation*}
@@ -202,6 +204,7 @@ l'=\mathbf{F}\cdot\mathbf{\tilde{x}}
 \end{equation*}
 
 \section{Intrinsic Calibration Matrix}
+\par As previously mentioned, the point $\mathbf{x}$ in $\mathbb{R}^3$ is projected to the point $\mathbf{\tilde{y}}$ in $\mathbb{R}^{2}$ by \textit{homogenization}. Within this system, the \textit{origin} is referred to as the \textit{optical center} since all light rays converge at this point. The image plane containing all the projected points $\mathbf{\tilde{y}}$ is interpreted as occurring at \textit{z}-plane in which $\mathbf{x}$ iThis results implying an \textit{image-plane} at a fixed distance of 1 unit from the
 
 \section{Essential Matrix}
 \par When coordinates from a reference frame are expressed as \textit{normalized image coordinates} the range of possible NIC values in the corresponding image are given by the 
