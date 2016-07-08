@@ -5,7 +5,7 @@
 %               https://www.economics.utoronto.ca/osborne/latex/BIBTEX.HTM
 %               https://www.latex-tutorial.com/tutorials/beginners/latex-bibtex/
 %               http://tex.stackexchange.com/questions/205/what-graphics-packages-are-there-for-creating-graphics-in-latex-documents
-% 				http://www.emerson.emory.edu/services/latex/latex_132.html
+% 		http://www.emerson.emory.edu/services/latex/latex_132.html
 
 % Main stuff
 %\documentclass[a4paper,10pt]{article}
@@ -95,15 +95,18 @@
 \par Through the development of applications such as augmented and virtual reality, object / scene reconstruction and visual effects, the process of generating images from an arbitrary vantage point can be found in a variety of applications. In this Thesis (or Article) I will discuss various methods for Image Creation from an arbitraryvantage point, which can be accomplished by two main methodologies of Geometric Construction and Image Synthesis. While both methods use stereo correspondance of multiple images, they differ in the way information is stored and used.
 \par Geometric Construction (GC) contains information about the real-world spatial properties (Coordinates in space, Color), thus viewing results are non-constrained in vantage point. Image Synthesis (IS) relies on image properties (pixel displacement) and is thus viewing results are imited in the possible vantage points.
 \newpage
+
 \section*{Symbols and Notation}
+
 \begin{tabular}{R{2cm} p{14cm}}
 \toprule
 \multicolumn{1}{l}{\textbf{Symbol}} & \textbf{Description} \\
 \midrule
 $\mathbf{v}$ & \textit{Vectors} in \textit{lowercase} bold\\
-$\mathbf{v}_a$ & \textit{a}-component of vector $\mathbf{v}$ \\
+$v_a$ & \textit{a}-component of vector $\mathbf{v}$ \\
 $\mathbf{M}$ & \textit{Matrices} in \textit{uppercase} bold\\ 
-$\mathbf{M}_{r,c}$ & Entry in row \textit{r} and column \textit{c} of matrix $\mathbf{M}$\\
+$M_{r,c}$ & Entry in row \textit{r} and column \textit{c} of matrix $\mathbf{M}$\\
+$\mathbf{m}_c$ & \textit{Vector} occurring in column \textit{c} of matrix $\mathbf{M}$\\
 $\mathbf{x}$ & Generic 3-dimensional spatial coordinate\\
 $\mathbf{\tilde{x}}$ & Generic 3-dimensional spatial coordinate (expressed \textit{homogeneously})\\
 
@@ -129,20 +132,20 @@ $\mathbb{P}$ & Ray (or \textit{pencil}) of all possible vectors $\mathbf{x}$ whe
 %\end{flushleft}
 
 \chapter{Background}
-\par 
-Oridinarily, real-world data contains 3-dimensions. 
+
+\par Oridinarily, real-world data contains 3-dimensions. 
 Because standard images only include 2-dimensional data, information regarding depth is lost (i.e. it is often difficult to judge distance from a single image without visual cues). 
 \textit{Stereovision} attempts to resolved this by finding the same point in both \textit{stereoscopic} images (known as a \textit{corresponding point}), and recovering the depth information.
 An elementry example of this occurs in stereoscopic images with relatively low distance between cameras (i.e they are righht next to each other). 
 Objects that are \textit{farther} away from the observer occur closer together in the stereo images, whereas objects \textit{closer} to the camera appear appear farther appart in the stereo-images.
 
 \section{Change of Reference}
-\par
-Each view from a pair of stereo-images encompasses its own \textit{frame of reference} (i.e. the directions of \textit{forward} or \textit{backward} are unique to image and may differe considerably depending on camera displacement).
+
+\par Each view from a pair of stereo-images encompasses its own \textit{frame of reference} (i.e. the directions of \textit{forward} or \textit{backward} are unique to image and may differe considerably depending on camera displacement).
 This requires expressing points from different frames of reference (traditionally referred to \textit{left} and \textit{right}) in a single reference frame. 
 As such it is necessary to be able to express coordinates in a given reference frame in any other reference frame.
-\par
-Coordinates given in $\xR$ can be expressed in $\xL$ by the geometric transformation:
+
+\par Coordinates given in $\xR$ can be expressed in $\xL$ by the geometric transformation:
 \renewcommand{\arraystretch}{1.5}
 \par
 \begin{align*}
@@ -160,14 +163,16 @@ or
 	&= \rLM\cdot\hxR\\
 \end{align*}
 where $\rLM$ is also the geometric transformation necessary to transform $\sL$ into $\sR$. 
-\par
-Withough calculating any new quantities, rearranging allows us to express coordinates in $\xL$ in the $\xR$ reference frame as:
-\par
-\begin{equation*}
+
+\par Withough calculating any new quantities, rearranging allows us to express coordinates in $\xL$ in the $\xR$ reference frame as:
+
+\par \begin{equation*}
 	{\rLR\tT}\cdot (\xL - \rLt ) = \xR
 \end{equation*}
 and similarly transforms $\sR$ into $\sL$.
+
 \section{Points and Lines in the Image Plane}
+
 \par Points in \textit{world-space} of $\mathbb{R}^3$ are converted to points in the \textit{image-plane} of $\mathbb{R}^2$ by \textit{homogenization}. This occurs when a \textit{world-coordinate} of $\mathbf{x}=[x_1,x_2,x_3]^\intercal$ is mapped to a \textit{homogeneous image coordinate} of $\mathbf{\tilde{y}}=[y_1,y_2,1]^\intercal=[x_1/x_3,\;x_2/x_3,\;x_3/x_3]^\intercal$ or a \textit{non-homogeneous image coordinate} of $\mathbf{y}=[y_1,y_2]^\intercal=[x_1/x_3,\;x_2/x_3]^\intercal$. Points of the form $\mathbf{\tilde{y}}=[y_1,y_2,0]^\intercal$ are special case of homogeneous point referred to as a \textit{point at infinity}.
 
 \par Lines in $\mathbb{R}^2$ can be represented in different contexts. The \textit{vector offset} method calculates a line $\mathbf{s}(t)$ between points $\mathbf{y_1}$ and $\mathbf{y_2}$ as 
@@ -204,9 +209,20 @@ l'=\mathbf{F}\cdot\mathbf{\tilde{x}}
 \end{equation*}
 
 \section{Intrinsic Calibration Matrix}
-\par As previously mentioned, the point $\mathbf{x}$ in $\mathbb{R}^3$ is projected to the point $\mathbf{\tilde{y}}$ in $\mathbb{R}^{2}$ by \textit{homogenization}. Within this system, the \textit{origin} is referred to as the \textit{optical center} since all light rays converge at this point. The image plane containing all the projected points $\mathbf{\tilde{y}}$ is interpreted as occurring at \textit{z}-plane in which $\mathbf{x}$ iThis results implying an \textit{image-plane} at a fixed distance of 1 unit from the
+
+\par As previously mentioned, the point $\mathbf{x}$ in $\mathbb{R}^3$ is projected to the point $\mathbf{\tilde{y}}$ in $\mathbb{R}^{2}$ by \textit{homogenization}. This is done by setting 
+\begin{equation*}
+\begin{split}
+\mathbf{x}/x_3&=[x_1/x_3,\; x_2/x_3,\; x_3/x_3]^\intercal\\
+&=[x_1/x_3,\; x_2/x_3,\; 1]^\intercal\\
+&=[y_1,\; y_2,\; 1]^\intercal\\
+&=\mathbf{\tilde{y}}
+\end{split}
+\end{equation*}
+which is interpreted as as projecting the image through the \textit{image plane} located at $z=1$. The origin at $[0,\;0,\;0]^\intercal$ is referred to as the \textit{optical center} since all light rays converge at this point. 
 
 \section{Essential Matrix}
+
 \par When coordinates from a reference frame are expressed as \textit{normalized image coordinates} the range of possible NIC values in the corresponding image are given by the 
 
 %Longuet-Higgins' Fundamental Matix ~\cite{Longuet-Higgins}
