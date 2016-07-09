@@ -210,16 +210,29 @@ l'=\mathbf{F}\cdot\mathbf{\tilde{x}}
 
 \section{Intrinsic Calibration Matrix}
 
-\par As previously mentioned, the point $\mathbf{x}$ in $\mathbb{R}^3$ is projected to the point $\mathbf{\tilde{y}}$ in $\mathbb{R}^{2}$ by \textit{homogenization}. This is done by setting 
+\par As previously mentioned, the point $\mathbf{x}$ in the \textit{camera-coordinate system} of $\mathbb{R}^3$ is projected to the point $\mathbf{\tilde{y}}$ in $\mathbb{R}^{2}$ by \textit{homogenization}. This is done by setting 
 \begin{equation*}
 \begin{split}
+%%
+%%^C\mathbf{x}/^{C}x_3&=[^{C}x_1/^{C}x_3,\; ^{C}x_2/^{C}x_3,\; ^{C}x_3/^{C}x_3]^\intercal\\
+%%&=[^{C}x_1/^{C}x_3,\; ^{C}x_2/^{C}x_3,\; 1]^\intercal\\
+%%
 \mathbf{x}/x_3&=[x_1/x_3,\; x_2/x_3,\; x_3/x_3]^\intercal\\
 &=[x_1/x_3,\; x_2/x_3,\; 1]^\intercal\\
 &=[y_1,\; y_2,\; 1]^\intercal\\
 &=\mathbf{\tilde{y}}
 \end{split}
 \end{equation*}
-which is interpreted as as projecting the image through the \textit{image plane} located at $z=1$. The origin at $[0,\;0,\;0]^\intercal$ is referred to as the \textit{optical center} since all light rays converge at this point. 
+which is interpreted as as projecting the image through the \textit{image plane} located at $z=1$. This results in an image in which points with the same $x_1/x_3$ ratio appear in the same \textit{horizontal} position and points with the same $x_2/x_3$ ratio appear in the same vertical position. Points with identical ratios for both $x_1/x_3$ and $x_2/x_3$ appear along the same \textit{line of sight} (as show in the image below). 
+\begin{figure}[htbp]
+	\centering
+%	\includesvg{BiLinear_Point_Correspondance_v1}
+	\includegraphics[scale=0.25]{Camera}
+	\caption{Pinhole Camera model}
+\end{figure}
+Point with the smallest \textit{positive} $x_3$ are considered the \textit{visible} points, as they are closest to the camera and therefore occlude the remaining visible points along the line of sight.
+
+the origin (in \textit{camera-frame of reference} at $\mathbf{C}=[0,\;0,\;0]^\intercal$ is referred to as the \textit{optical center} since all light rays converge at this point. 
 
 \section{Essential Matrix}
 
