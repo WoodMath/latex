@@ -210,29 +210,37 @@ l'=\mathbf{F}\cdot\mathbf{\tilde{x}}
 
 \section{Intrinsic Calibration Matrix}
 
-\par As previously mentioned, the point $\mathbf{x}$ in the \textit{camera-coordinate system} of $\mathbb{R}^3$ is projected to the point $\mathbf{\tilde{y}}$ in $\mathbb{R}^{2}$ by \textit{homogenization}. This is done by setting 
-\begin{equation*}
-\begin{split}
-%%
-%%^C\mathbf{x}/^{C}x_3&=[^{C}x_1/^{C}x_3,\; ^{C}x_2/^{C}x_3,\; ^{C}x_3/^{C}x_3]^\intercal\\
-%%&=[^{C}x_1/^{C}x_3,\; ^{C}x_2/^{C}x_3,\; 1]^\intercal\\
-%%
-\mathbf{x}/x_3&=[x_1/x_3,\; x_2/x_3,\; x_3/x_3]^\intercal\\
-&=[x_1/x_3,\; x_2/x_3,\; 1]^\intercal\\
-&=[y_1,\; y_2,\; 1]^\intercal\\
-&=\mathbf{\tilde{y}}
-\end{split}
-\end{equation*}
-which is interpreted as as projecting the image through the \textit{image plane} located at $z=1$. This results in an image in which points with the same $x_1/x_3$ ratio appear in the same \textit{horizontal} position and points with the same $x_2/x_3$ ratio appear in the same vertical position. Points with identical ratios for both $x_1/x_3$ and $x_2/x_3$ appear along the same \textit{line of sight} (as show in the image below). 
+\par A point $\mathbf{x}$ in the \textit{camera-coordinate system} of $\mathbb{R}^3$ is projected to the point $\mathbf{\tilde{y}}$ in $\mathbb{R}^{2}$ by means of the \textit{pinhole camera model}. The set of all $\mathbf{\tilde{y}}$ are the result of \textit{rays} passing through the \textit{image plane} located at $z=f$, and converging at the \textit{optical center} as shown in the figure below:
 \begin{figure}[htbp]
 	\centering
 %	\includesvg{BiLinear_Point_Correspondance_v1}
 	\includegraphics[scale=0.25]{Camera}
 	\caption{Pinhole Camera model}
 \end{figure}
-Point with the smallest \textit{positive} $x_3$ are considered the \textit{visible} points, as they are closest to the camera and therefore occlude the remaining visible points along the line of sight.
+The location of $\mathbf{\tilde{y}}$ is determined by utilizing the \textit{similarity of triangles} between $\mathbf{x}$ and $\mathbf{\tilde{y}}$. Specifically, we see that $y_1/f=x_1/x_3$ and $y_2/f=x_2/x_3$ lets us exprss the \textit{image coordinate} $\mathbf{\tilde{y}}$ as $y_1=f\cdot x_1/x_3$ and $y_2=f\cdot x_2/x_3$. The point in the \textit{image plane} of $\mathbf{\tilde{y}}$ is derived from the point $\mathbf{x}$ in \textit{camera space} by means of the the \textit{Camera Projection Matrix} $\mathbf{P}$ such that
 
-the origin (in \textit{camera-frame of reference} at $\mathbf{C}=[0,\;0,\;0]^\intercal$ is referred to as the \textit{optical center} since all light rays converge at this point. 
+\begin{equation*}
+\begin{split}
+\mathbf{P}\cdot\mathbf{\tilde{x}}&=
+\begin{bmatrix}
+f & 0 & 0 & 0\\
+0 & f & 0 & 0\\
+0 & 0 & 1 & 0\\
+\end{bmatrix}\begin{bmatrix}x_1\\x_2\\x_3\\1\\\end{bmatrix}
+=\begin{bmatrix}
+f\cdot x_1\\
+f\cdot x_2\\
+x_3
+\end{bmatrix}\\
+&=
+x_3\cdot\begin{bmatrix}
+f\cdot x_1/x_3\\
+f\cdot x_2/x_3\\
+1\\
+\end{bmatrix}
+=x_3\cdot\mathbf{\tilde{y}}
+\end{split}
+\end{equation*} 
 
 \section{Essential Matrix}
 
