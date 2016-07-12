@@ -216,7 +216,7 @@ l'=\mathbf{F}\cdot\mathbf{\tilde{x}}
 %	\includesvg{BiLinear_Point_Correspondance_v1}
 	\includegraphics[scale=0.25]{Camera}
 	\caption{Pinhole Camera model}
-\end{figure}
+\end{figure}\newline
 The location of $\mathbf{\tilde{y}}$ is determined by utilizing the \textit{similarity of triangles} between $\mathbf{x}$ and $\mathbf{\tilde{y}}$. Specifically, we see that $y_1/f=x_1/x_3$ and $y_2/f=x_2/x_3$ lets us exprss the \textit{image coordinate} $\mathbf{\tilde{y}}$ as $y_1=f\cdot x_1/x_3$ and $y_2=f\cdot x_2/x_3$. The point in the \textit{image plane} of $\mathbf{\tilde{y}}$ is derived from the point $\mathbf{x}$ in \textit{camera space} by means of the the \textit{Camera Projection Matrix} $\mathbf{P}$ such that
 
 \begin{equation*}
@@ -241,6 +241,31 @@ f\cdot x_2/x_3\\
 =x_3\cdot\mathbf{\tilde{y}}
 \end{split}
 \end{equation*} 
+
+This results in points $\mathbf{\tilde{x}}$ containing infinitley large values of $x_3$ being mapped to the same point $\mathbf{\tilde{y}}$ in the \textit{image plane}. This point $\mathbf{y}=0$ is referred to as the $\textit{principal point}$ in the \textit{image plane}. This assumes the \textit{principal point} is always located in the \textit{image plane} at $\mathbf{y}=0$. Projecting point $\mathbf{\tilde{x}}$ to the \textit{image plane} with arbitrary \textit{principal point} $\mathbf{p}=[p_x,p_y]^\intercal$ requires modifying the \textit{projection matrix} to include \textit{camera-specific} parameters. The \textit{camera calibration matrix} $\mathbf{K}$ is given as
+\begin{equation*}
+\begin{split}
+\mathbf{P}\cdot\mathbf{\tilde{x}}&=
+\begin{bmatrix}
+f & 0 & p_x & 0\\
+0 & f & p_y & 0\\
+0 & 0 & 1 & 0\\
+\end{bmatrix}\begin{bmatrix}x_1\\x_2\\x_3\\1\\\end{bmatrix}
+=\begin{bmatrix}
+f\cdot x_1+p_x\cdot x_3\\
+f\cdot x_2+p_y\cdot x_3\\
+x_3
+\end{bmatrix}\\
+&=
+x_3\cdot\begin{bmatrix}
+f\cdot x_1/x_3+p_x\\
+f\cdot x_2/x_3+p_y\\
+1\\
+\end{bmatrix}
+=x_3\cdot\mathbf{\tilde{y}}
+\end{split}
+\end{equation*} 
+
 
 \section{Essential Matrix}
 

@@ -485,19 +485,68 @@ where $\mathbf{C'}=\mathbf{H}^{-\intercal}\cdot\mathbf{C}\cdot\mathbf{H}^{-1}$.\
 \item \textbf{Chapter 6: Camera Models}:
 \begin{itemize}
 \item \textbf{Section 6.1: Finite cameras}:\newline
-\par Transformation from \textit{world-coordinate} system $\mathbf{x}$ to \textit{camera-coordinate} system $^{C}\mathbf{x}$ is given by $^{C}\mathbf{x}=\mathbf{R}\cdot(\mathbf{x}-\mathbf{c})$. Camera in world-space occurs is at $\mathbf{x}=\mathbf{c}$. Camera coordinate system has the camera position at $^{c}\mathbf{x}=0$ and includes \textit{image-plane} at
-$z=1$ or $z=\mathit{f}$\par
-\item \textbf{Section 6.2: The projective camera}:
+\par Transformation from \textit{world-coordinate} system $\mathbf{x}$ to \textit{camera-coordinate} system $^{C}\mathbf{x}$ is given by $^{C}\mathbf{x}=\mathbf{R}\cdot(\mathbf{x}-\mathbf{c})$. The Camera in \textit{world-space} occurs at $\mathbf{x}=\mathbf{c}$. \textit{Camera-space} has the camera located at $^C\mathbf{x}=0$ and includes an \textit{image-plane} at $z=f$. All rays intersect the \textit{image plane} at $z=f$ and converge on the origin $^C\mathbf{x}=0$ which is known as the \textit{camera center}. This results in points $^{C}\mathbf{x}$ in \textit{camera space} being projected to points $\mathbf{\tilde{y}}$ in the \textit{image plane} by means of the \textit{projection matrix} $\mathbf{P}$ such that
+
+ 
+\begin{equation*}
+\begin{split}
+\mathbf{P}\cdot{^{C}\mathbf{\tilde{x}}}&=
+\begin{bmatrix}
+f & 0 & 0 & 0\\
+0 & f & 0 & 0\\
+0 & 0 & 1 & 0\\
+\end{bmatrix}\left[\begin{array}{c}{^Cx_1}\\{^Cx_2}\\{^Cx_3}\\1\\\end{array}\right]
+=\left[\begin{array}{c}
+f\cdot {^Cx_1}\\
+f\cdot {^Cx_2}\\
+{^Cx_3}
+\end{array}\right]\\
+&=
+{^Cx_3}\cdot\begin{bmatrix}
+f\cdot{^Cx_1}/{^Cx_3}\\
+f\cdot{^Cx_2}/{^Cx_3}\\
+1\\
+\end{bmatrix}
+={^Cx_3}\cdot\mathbf{\tilde{y}}
+\end{split}
+\end{equation*} 
+
+This results in points containing infinitley large values of $x_3$ being mapped to the same \textit{principal point} of $\mathbf{y}=0$ in the \textit{image plane}. This assumes the \textit{princpal point} is always located in the \textit{image plane} at $\mathbf{y}=0$. Projecting point $\mathbf{\tilde{x}}$ to the \textit{image plane} with arbitrary \textit{principal point} $\mathbf{p}=[p_x,p_y]$ requires modifying the \textit{projection matrix} to include \textit{camera-specific} parameters. The \textit{camera calibration matrix} $\mathbf{K}$ is given as
+ 
+\begin{equation*}
+\begin{split}
+\mathbf{P}\cdot{^{C}\mathbf{\tilde{x}}}&=
+\begin{bmatrix}
+f & 0 & p_x & 0\\
+0 & f & p_y & 0\\
+0 & 0 & 1 & 0\\
+\end{bmatrix}\left[\begin{array}{c}{^Cx_1}\\{^Cx_2}\\{^Cx_3}\\1\\\end{array}\right]
+=\left[\begin{array}{c}
+f\cdot {^Cx_1}+p_x\cdot {^Cx_3}\\
+f\cdot {^Cx_2}+p_y\cdot {^Cx_3}\\
+{^Cx_3}
+\end{array}\right]\\
+&=
+{^Cx_3}\cdot\begin{bmatrix}
+f\cdot{^Cx_1}/{^Cx_3}+p_x\\
+f\cdot{^Cx_2}/{^Cx_3}+p_y\\
+1\\
+\end{bmatrix}
+={^Cx_3}\cdot\mathbf{\tilde{y}}
+\end{split}
+\end{equation*} 
+
+%\item \textbf{Section 6.2: The projective camera}:
 \end{itemize}
-\item \textbf{Chapter 9: Epipolar Geometry and the Fundamental Matrix}:
-\begin{itemize}
-\item \textbf{Section 9.1: Epipolar geometry}:
-\item \textbf{Section 9.2: The fundamental matrix \texttt{F}}:
-\end{itemize}
-\item \textbf{Chapter 11: Computation of the Fundamental Matrix}:
-\begin{itemize}
-\item \textbf{Section 11.1: Basic Equations}:
-\end{itemize}
+%\item \textbf{Chapter 9: Epipolar Geometry and the Fundamental Matrix}:
+%\begin{itemize}
+%\item \textbf{Section 9.1: Epipolar geometry}:
+%\item \textbf{Section 9.2: The fundamental matrix \texttt{F}}:
+%\end{itemize}
+%\item \textbf{Chapter 11: Computation of the Fundamental Matrix}:
+%\begin{itemize}
+%\item \textbf{Section 11.1: Basic Equations}:
+%\end{itemize}
 \end{itemize}
 
 	}

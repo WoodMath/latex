@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  11 JUL 2016 17:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  11 JUL 2016 20:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -881,48 +881,48 @@ File: Camera.pdf Graphic file (type pdf)
  <use Camera.pdf>
 Package pdftex.def Info: Camera.pdf used on input line 217.
 (pdftex.def)             Requested size: 200.74951pt x 200.74951pt.
- [6 <./Camera.pdf>]
+ [6 <./Camera.pdf>] [7]
 Chapter 3.
-<BiLinear_Point_Correspondance_v1.pdf, id=117, 803.0pt x 803.0pt>
+<BiLinear_Point_Correspondance_v1.pdf, id=121, 803.0pt x 803.0pt>
 File: BiLinear_Point_Correspondance_v1.pdf Graphic file (type pdf)
 
 <use BiLinear_Point_Correspondance_v1.pdf>
 Package pdftex.def Info: BiLinear_Point_Correspondance_v1.pdf used on input lin
-e 308.
+e 333.
 (pdftex.def)             Requested size: 200.74951pt x 200.74951pt.
- [7
+ [8
 
-] [8 <./BiLinear_Point_Correspondance_v1.pdf>]
+] [9 <./BiLinear_Point_Correspondance_v1.pdf>]
 Chapter 4.
-[9
+[10
 
 ]
 Chapter 5.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 324.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 349.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 324.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 356.
- [10
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 349.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 381.
+ [11
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 356.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 381.
 
 (./thesisORarticle.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 356.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 356.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 381.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 381.
 Package rerunfilecheck Info: File `thesisORarticle.out' has not changed.
 (rerunfilecheck)             Checksum: FE01D56E739CDA3CEDF521E4823EB147;652.
  ) 
 Here is how much of TeX's memory you used:
- 10239 strings out of 493089
- 149157 string characters out of 6134842
+ 10242 strings out of 493089
+ 149183 string characters out of 6134842
  274430 words of memory out of 5000000
- 13513 multiletter control sequences out of 15000+600000
- 12982 words of font info for 48 fonts, out of 8000000 for 9000
+ 13514 multiletter control sequences out of 15000+600000
+ 13331 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  68i,21n,98p,1720b,372s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
@@ -944,10 +944,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2015/te
 xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/201
 5/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/
 2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesisORarticle.pdf (11 pages, 234639 bytes).
+Output written on thesisORarticle.pdf (12 pages, 236565 bytes).
 PDF statistics:
- 208 PDF objects out of 1000 (max. 8388607)
- 172 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
+ 213 PDF objects out of 1000 (max. 8388607)
+ 176 compressed objects within 2 object streams
+ 31 named destinations out of 1000 (max. 500000)
  99 words of extra memory for PDF output out of 10000 (max. 10000000)
 
