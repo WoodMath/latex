@@ -564,6 +564,21 @@ Continued adding text to \textbf{Background} section of Thesis Document, in \tex
 	\logentry{7}{11}{2016}{%
 Trying to consolidate knowledge (and explain in thesis document) behind the pinhole camera model. Specifically the concept of \textit{focal-length} as it relates to \textit{similarity of triangles}.
 	}
+	\logentry{7}{12}{2016}{%
+Started reading [Martin2008]~\cite{Martin2008}.
+	}
+	\logentry{7}{13}{2016}{%
+Reading [Fusiello1999]~\cite{Fusiello1999}. Running throuh MatLab code at \url{http://www.diegm.uniud.it/fusiello/demo/rect/} to understand algorithm. [Fusiello1999]~\cite{Fusiello1999} gives more insight into \textit{rectification} discussed on \formatdate{22}{6}{2016}:\newline
+
+\par \SUMMARY{\textit{Rectification of stereo images} warps each image so that points are (vertically) aligned with their conjugate epipolar lines, and so that the collection of epipolar lines (in each image) are parallel. This aids in the use of Dynamic Programming for searching of corresponding points along each \textit{scan-line} of the rectified image.\newline
+
+\par Normally, when the \textit{camera centers} do not lie in \textit{focal planes}, the \textit{epipolar lines} intersect at the \textit{epipole}. When the \textit{camera center} of image A is located in the \textit{focal plane} of image B, the \textit{epipolar lines} in image B will be parallel. Similary, when the \textit{camera center} of image B is located in the \textit{focal plane} of image A, the \textit{epipolar lines} in image A will be parallel.\newline
+
+\par \textbf{Rectification consists of transforming the cameras in each image such that the \textit{camera centers} are co-planar}
+}\newline
+
+\par \Kamangar{My current understanding is this: \textit{Rectification} of images is used to search along \textit{scanlines} for \textit{point correspondances}. In order to do \textit{Rectification}, \textit{point correspondances} are required. Doesn't this present a problem? It seems to be a \textit{chicken and the egg} type problem.}
+	}
 %	\hline
 	\end{longtable}
 
