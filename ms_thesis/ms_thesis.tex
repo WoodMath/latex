@@ -58,13 +58,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%         all the preamble material            %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \usepackage{tabularx}
       \usepackage{graphicx}
+      \usepackage{amssymb}
       \usepackage{amsmath}
+      \usepackage{amsfonts}
+
+      %% Tables Packages
+      \usepackage{array,booktabs,ragged2e}
+
+
     \begin{document}
     \input{psfig.sty}
 %     SAMPLE FRONT MATTER:
        \graduationmonth{December}
-       \graduationyear{2003}
+       \graduationyear{2016}
        \defensedate{November 15, 2003}
        \author{JAY VICTOR SMITH}
        \committee{Vasant K. Prabhu}{Jonathan Bredow}{Jung-Chih~Chiao}{Sajal~K.~Das}{Harold
@@ -126,12 +134,16 @@
 \tableofcontents
 \listoffigures
 \listoftables
+\newpage
+\input macros.tex
+\input preSymbolsNotation.tex
 \addtocontents{toc}{\noindent\mbox{Chapter}\hfill\mbox{Page}}%
 %\addtocontents{toc}{\noindent\mbox{Chapter}}%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%  First and Following Chapters  %%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     \input macros.tex      % file containing author's macro definitions
+%\input macros.tex     % file containing user defined macros
 \input chap1.tex      % file containing Chapter 2 contents
 \input chap2.tex      % file containing Chapter 2 contents
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
