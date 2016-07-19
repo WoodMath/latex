@@ -167,7 +167,7 @@ is used to parameterize an image point $\mathbf{\tilde{u}}$ (in \textit{pixels})
 &=\begin{bmatrix}f\cdot k_u & 0 & p_u\\ 0 & f\cdot k_v & p_v\\ 0 & 0 & 1\end{bmatrix}
 \end{split}
 \end{equation*}
-where $\mathbf{q}$ is referred to as the \textit{intrinsic calibration matrix}, or more generically as the \textit{camera calibration matrix}. This lets us relates the \textit{pixel point} $\mathbf{\tilde{u}}$ to a point $\mathbf{\tilde{x}}$ in \textit{camera space} as
+which lets us relate the \textit{pixel point} $\mathbf{\tilde{u}}$ to a point $\mathbf{\tilde{x}}$ in \textit{camera space} as
 \begin{equation*}
 \begin{split}
 \mathbf{\tilde{u}}&=\mathbf{K}\cdot\mathbf{\tilde{y}}
@@ -191,7 +191,7 @@ where $\mathbf{q}$ is referred to as the \textit{intrinsic calibration matrix}, 
 %\begin{bmatrix}x_1/x_3 \\ x_2/x_3 \\ x_3/x_3 \\ 1\end{bmatrix}\\
 \end{split}
 \end{equation*}%:w
-
+where $\mathbf{Q}$ is referred to as the \textit{camera calibration matrix}. Since $\mathbf{Q}$ is dependant only on parameters \textit{internal to the camera}, its also referred to as the \textit{intrinsic calibration matrix}. 
 %*****************************************\\
 
 
@@ -222,6 +222,7 @@ which allows us to project  \textit{world coordinates} ${^W\mathbf{\tilde{x}}}$ 
 \mathbf{Q}\cdot\left[\begin{array}{c|c}\mathbf{I} & \vZero\end{array}\right]\cdot{^C_W\mathbf{\tilde{M}}}\cdot{^W\mathbf{\tilde{x}}}
 \end{split}
 \end{equation*}  
+Since the matrix ${^C_W\mathbf{\tilde{M}}}$ is dependent only on the relative position and orientation of the \textit{camera} (rather than the camera itself) it is commonly referred to as the \textit{extrinsic calibration matrix}.
 
 \section{Essential Matrix}
 
