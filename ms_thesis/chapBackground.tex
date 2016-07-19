@@ -105,10 +105,10 @@ f & 0 & 0 & 0\\
 \end{bmatrix}\cdot\begin{bmatrix}x_1\\x_2\\x_3\\1\end{bmatrix}
 \end{split}
 \end{equation*}%
-Since, for a given $\mathbf{x}$ in \textit{camera space}, the quantities 
+Since, for a given $\mathbf{\tilde{x}}$ in \textit{camera space}, the quantities 
 $x_{1/3}=x_1/x_3$ and $x_{2/3}=x_2/x_3$ 
 %$x_1/x_3$ and $x_2/x_3$ 
-are \textit{invariant under the scale of $\mathbf{x}$} 
+are \textit{invariant under the scale of $\mathbf{\tilde{x}}$}, 
 %will be constant \textit{regardless of the units of $\mathbf{x}$}, 
 the location of $\mathbf{\tilde{y}}$ in the \textit{image plane} depends only on the ratios $x_{1/3}$ and $x_{2/3}$ and the quantity $f$. This yields a similar form, obtained from dividing by $x_3$, of
 
@@ -137,29 +137,35 @@ This results in \textit{camera space} points $\mathbf{\tilde{x}}$ with similar v
 
 \subsection{Intrinsic Calibration Matrix}
 *****************************************\\
-\par Points $\mathbf{\tilde{y}}$ given in the \textit{image plane} have the same \textit{units of measure} (or \textit{scale}) as the points $\mathbf{x}$ in \textit{camera space}. When dealing with digital images it's often more convenient to express \textit{image coordinates} in terms of units such as \textit{pixels} rather than real world units such as \textit{inches}, \textit{feet}, or \textit{meters}. The \textit{calibration matrix} 
+\par Points $\mathbf{\tilde{y}}$ given in the \textit{image plane} have the same \textit{units of measure} (or \textit{scale}) as the points $\mathbf{\tilde{x}}$ in \textit{camera space}. When dealing with digital images it's often more convenient to express \textit{image coordinates} in terms of units such as \textit{pixels} rather than real world units such as \textit{inches}, \textit{feet}, or \textit{meters}. The \textit{calibration matrix} 
 \begin{equation*}
 \begin{split}
-\mathbf{K}&=\begin{bmatrix}k_u & 0 & p_u\\ 0 & k_v & p_v\\ 0 & 0 &1\end{bmatrix}
+\mathbf{K}&=\begin{bmatrix}k_u & 0 & p_u\\ 0 & k_v & p_v\\ 0 & 0 & 1\end{bmatrix}
 \end{split}
 \end{equation*}%
 is used to relate a \textit{generic} point $\mathbf{\tilde{y}}$ in the \textit{image plane} to a \textit{pixelized} point $\mathbf{\tilde{u}}$ as
 \begin{equation*}
 \begin{split}
-\mathbf{\tilde{u}}&=\begin{bmatrix}k_u & 0 & p_u\\ 0 & k_v & p_v\\ 0 & 0 &1\end{bmatrix}\cdot\mathbf{\tilde{y}}
+\mathbf{\tilde{u}}&=
+\begin{bmatrix}k_u & 0 & p_u\\ 0 & k_v & p_v\\ 0 & 0 &1\end{bmatrix}\cdot\mathbf{\tilde{y}}\\
+&=\begin{bmatrix}k_u & 0 & p_u\\ 0 & k_v & p_v\\ 0 & 0 & 1\end{bmatrix}\cdot
+\begin{bmatrix}f & 0 & 0 & 0\\ 0 & f & 0 & 0\\ 0 & 0 & 1 & 0\end{bmatrix}\cdot
+\begin{bmatrix}x_1/x_3 \\ x_2/x_3 \\ x_3/x_3 \\ 1 \end{bmatrix}\\
+&=\begin{bmatrix}f\cdot k_u & 0 & p_u & 0\\ 0 & f\cdot k_v & p_v & 0\\ 0 & 0 & 1 & 0\end{bmatrix}\cdot
+\begin{bmatrix}x_1/x_3 \\ x_2/x_3 \\ x_3/x_3 \\ 1\end{bmatrix}
 \end{split}
 \end{equation*}%
+where $k_u$ and $k_v$ are the respective \textit{horizontal} and \textit{vertical} \textit{pixel resolutions} and $\mathbf{p}=[p_x,p_y]^\intercal$ is the \textit{principal point}. 
 
 
-
-\par The \textit{calibration matrix} of $\mathbf{K}$ already given assumes the \textit{principal point} is always located in the \textit{image} at $\mathbf{u}=0$. Projecting the point $\mathbf{\tilde{x}}$ in \textit{camera space} to the \textit{image plane} with arbitrary \textit{principal point} $\mathbf{p}=[p_x,p_y]^\intercal$ requires modifying the \textit{projection matrix} to include additional \textit{camera-specific} parameters. The resulting matrix is referred to as the \textit{intrinsic calibration matrix}, or more generically as the \textit{camera calibration matrix}, and is given as
+\par The \textit{calibration matrix} of $\mathbf{K}$ already given assumes the \textit{principal point} is always located in the \textit{image} at $\mathbf{u}=0$. Projecting the point $\mathbf{\tilde{x}}$ in \textit{camera space} to the \textit{image plane} with arbitrary \textit{principal point} $\mathbf{p}=[p_x,p_y]^\intercal$ requires modifying the \textit{projection matrix} to include additional \textit{camera-specific} parameters. The resulting matrix is referred to as the \textit{projection matrix}, and is given as
 \begin{equation*}
 \begin{split}
 \mathbf{P}&=
 \begin{bmatrix}
-f\cdot k_u & 0 & p_u & 0\\
-0 & f\cdot k_v & p_v & 0\\
-0 & 0 & 1 & 0\\
+f\cdot k_u & 0 & p_u\\
+0 & f\cdot k_v & p_v\\
+0 & 0 & 1\\
 \end{bmatrix}
 \end{split}
 \end{equation*}.
