@@ -7,8 +7,10 @@
 \midrule
 $\mathbf{v}$ & \textit{Vectors} in \textit{lowercase} bold\\
 $v_a$ & \textit{a}-component of vector $\mathbf{v}$ \\
+$v_{a/b}$ & The ratio of vector \textit{v}'s \textit{a}-component to it's \textit{b}-component\\
 $\mathbf{M}$ & \textit{Matrices} in \textit{uppercase} bold\\ 
-$M_{r,c}$ & Entry in row \textit{r} and column \textit{c} of matrix $\mathbf{M}$\\
+$\mathbf{\tilde{M}}$ & Matrix $\mathbf{M}$ expressed {homogeneously} such that \textit{right lowermost} entry equals 1\\
+$M_{r,c}$ & \textit{Entry} in row \textit{r} and column \textit{c} of matrix $\mathbf{M}$\\
 $\mathbf{m}_c$ & \textit{Vector} occurring in column \textit{c} of matrix $\mathbf{M}$\\
 $\mathbf{x}$ & Generic 3-dimensional spatial coordinate\\
 $\mathbf{\tilde{x}}$ & Generic 3-dimensional spatial coordinate (expressed \textit{homogeneously})\\
@@ -24,12 +26,12 @@ $\mathbf{\tilde{u}}$ & Pixelized 2-dimensional image coordinate (expressed \text
 $^{A}{\mathbf{x}}$ & Generic 3-dimensional spatial coordinate in reference frame \textit{A} \\
 $^{A}{\mathbf{\tilde{x}}}$ & Generic 3-dimensional spatial coordinate (expressed \textit{homogeneously}) in reference frame {A}\\
 $^{C}_{B}\mathbf{\tilde{M}}$ & Change from of reference frame \textit{B} to reference frame \textit{C}\\
-$\cong$ & \textit{Equal to to a scale factor}. Used in $\mathbf{v}\cong\mathbf{\tilde{v}}\iff\mathbf{v}=s\cdot\mathbf{\tilde{v}}$\\
+$\cong$ & \textit{Equal to to a scale factor}. Used in $\mathbf{v}\cong\mathbf{\tilde{v}}\iff\mathbf{v}=s\cdot\mathbf{\tilde{v}}$ or $\mathbf{M}\cong\mathbf{\tilde{M}}\iff\mathbf{M}=s\cdot\mathbf{\tilde{M}}$\\
 $f$ & \textit{focal-length}\\
-$s$ & \textit{Scalar} applied to \textit{homogeneous} vector $\mathbf{\tilde{v}}$ such that original $\mathbf{v}=s\cdot\mathbf{\tilde{v}}$ is recovered\\
+$s$ & \textit{Scalar} applied to \textit{homogeneous vector} $\mathbf{\tilde{v}}$ or \textit{homogenous matrix} $\mathbf{\tilde{M}}$ such that original $\mathbf{v}=s\cdot\mathbf{\tilde{v}}$ or $\mathbf{M}=s\cdot\mathbf{\tilde{M}}$ is recovered\\
 $^{D}\mathbb{S}$ & Spatial reference frame \textit{D}\\
 $\skewsym{\mathbf{x}}$ & Skew-symmetric matrix version of vector $\mathbf{x}$ used as \textit{left}-operand in the \textit{cross}-product such that $\skewsym{\mathbf{x}}\cdot\mathbf{y}=\mathbf{x}\times\mathbf{y}$\\
-$l$ & Epipolar line\\
+$\mathbf{l}$ & Epipolar line (expressed as \textit{vector}\\
 $\mathbb{P}$ & Ray (or \textit{pencil}) of all possible vectors $\mathbf{x}$ where $\mathbf{x}=s\cdot\mathbf{\tilde{x}}$ for some value of $s$\\
 \bottomrule
 \end{longtable}
