@@ -9,8 +9,8 @@ Objects that are \textit{farther} away from the observer occur closer together i
 \section{Change of Reference}
 
 \par Each view from a pair of stereo-images encompasses its own \textit{frame of reference} (i.e. the directions of \textit{forward} or \textit{backward} are unique to image and may differe considerably depending on camera displacement).
-This requires expressing points from different frames of reference (traditionally referred to \textit{left} and \textit{right}) in a single reference frame. 
-As such it is necessary to be able to express coordinates in a given reference frame in any other reference frame.
+%This requires expressing points from different frames of reference (traditionally referred to \textit{left} and \textit{right}) in a single reference frame. 
+As such it is necessary to be able to express on coordinates $\xR$ a given reference frame as coordinates $\xL$ in another reference frame.
 
 \par Coordinates given in $\xR$ can be expressed in $\xL$ by the geometric transformation:
 %\renewcommand{\arraystretch}{1.5}
@@ -29,11 +29,8 @@ or
 	&\\
 	&= \rLM\cdot\hxR\\
 \end{align*}
-where $\rLM$ is also the geometric transformation necessary to transform $\sL$ into $\sR$. 
-
-\par Withough calculating any new quantities, rearranging allows us to express coordinates in $\xL$ in the $\xR$ reference frame as:
-
-\par \begin{equation*}
+where $\rLM$ is also the geometric transformation necessary to transform $\sL$ into $\sR$. Without calculating any new quantities, rearranging allows us to express coordinates in $\xL$ in the $\xR$ reference frame as:
+\begin{equation*}
 	{\rLR\tT}\cdot (\xL - \rLt ) = \xR
 \end{equation*}
 and similarly transforms $\sR$ into $\sL$.
@@ -89,20 +86,26 @@ l'=\mathbf{F}\cdot\mathbf{\tilde{x}}
 \end{figure}\newline
 The exact location that $\mathbf{\tilde{y}}$ appears on the image plane is determined by utilizing the \textit{similarity of triangles} between $\mathbf{x}$ and $\mathbf{\tilde{y}}$. 
 Specifically, we see that $y_1/f=x_1/x_3$ and $y_2/f=x_2/x_3$ rearranged gives $x_3\cdot y_1=f\cdot x_1$ and $x_3\cdot y_2=f\cdot x_2$ . This lets us relate $\mathbf{\tilde{x}}$ and $\mathbf{\tilde{y}}$ by the \textit{projection matrix} $\mathbf{P}$ as
-
 \begin{equation*}
 \begin{split}
 x_3\cdot\mathbf{\tilde{y}}
 %=
 %x_3\cdot\begin{bmatrix}y_1\\y_2\\1\end{bmatrix}
 =
-\mathbf{P}\cdot\mathbf{\tilde{x}}
+%\mathbf{P}\cdot\mathbf{\tilde{x}}
+\left[\begin{array}{c|c}\mathbf{P} & \vZero\end{array}\right]\cdot\mathbf{\tilde{x}}
 =
-\begin{bmatrix}
+%\begin{bmatrix}
+%f & 0 & 0 & 0\\
+%0 & f & 0 & 0\\
+%0 & 0 & 1 & 0\\
+%\end{bmatrix}
+\left[\begin{array}{ccc|c}
 f & 0 & 0 & 0\\
 0 & f & 0 & 0\\
 0 & 0 & 1 & 0\\
-\end{bmatrix}\cdot\begin{bmatrix}x_1\\x_2\\x_3\\1\end{bmatrix}
+\end{array}\right]
+\cdot\begin{bmatrix}x_1\\x_2\\x_3\\1\end{bmatrix}
 \end{split}
 \end{equation*}%
 Since, for a given $\mathbf{\tilde{x}}$ in \textit{camera space}, the quantities 
@@ -118,64 +121,108 @@ the location of $\mathbf{\tilde{y}}$ in the \textit{image plane} depends only on
 %=
 %\begin{bmatrix}y_1\\y_2\\1\end{bmatrix}
 =
-\frac{1}{x_3}\mathbf{P}\cdot\mathbf{\tilde{x}}
+%\frac{1}{x_3}\mathbf{P}\cdot\mathbf{\tilde{x}}
+\frac{l}{x_3}\left[\begin{array}{c|c}\mathbf{P}&\vZero\end{array}\right]\cdot\mathbf{\tilde{x}}
 =
-\frac{1}{x_3}\begin{bmatrix}
+%\frac{1}{x_3}\begin{bmatrix}
+%f & 0 & 0 & 0\\
+%0 & f & 0 & 0\\
+%0 & 0 & 1 & 0\\
+%\end{bmatrix}
+\left[\begin{array}{ccc|c}
 f & 0 & 0 & 0\\
 0 & f & 0 & 0\\
 0 & 0 & 1 & 0\\
-\end{bmatrix}\cdot\begin{bmatrix}x_1\\x_2\\x_3\\1\end{bmatrix}
+\end{array}\right]
+\cdot\begin{bmatrix}x_1\\x_2\\x_3\\1\end{bmatrix}
 =
-\begin{bmatrix}
+%\begin{bmatrix}
+%f & 0 & 0 & 0\\
+%0 & f & 0 & 0\\
+%0 & 0 & 1 & 0\\
+%\end{bmatrix}
+\left[\begin{array}{ccc|c}
 f & 0 & 0 & 0\\
 0 & f & 0 & 0\\
 0 & 0 & 1 & 0\\
-\end{bmatrix}\cdot\begin{bmatrix}x_1/x_3\\x_2/x_3\\x_3/x_3\\1\end{bmatrix}
+\end{array}\right]
+\cdot\begin{bmatrix}x_1/x_3\\x_2/x_3\\x_3/x_3\\1\end{bmatrix}
 \end{split}
 \end{equation*}%
-This results in \textit{camera space} points $\mathbf{\tilde{x}}$ with similar values of $x_1$ and $x_2$, but containing infinitley large values of $x_3$ being mapped to the same point $\mathbf{\tilde{y}}$ in the \textit{image plane}. This point $\mathbf{y}=0$ is referred to as the $\textit{principal point}$ (or \textit{center of projection})in the \textit{image plane}, and sometimes appears as a \textit{vanishing point} for fixed values of $x_1$ and $x_2$, but \textit{infinitley increasing} values of $x_3$.\newline
+This results in \textit{camera space} points $\mathbf{\tilde{x}}$ with similar values of $x_1$ and $x_2$, but containing infinitley large values of $x_3$ being mapped to the same point $\mathbf{\tilde{y}}$ in the \textit{image plane}. This point $\mathbf{y}=0$ is referred to as the $\textit{principal point}$ (or \textit{center of projection})in the \textit{image plane}, and sometimes appears as a \textit{vanishing point} for fixed values of $x_1$ and $x_2$, but \textit{infinitley increasing} values of $x_3$.
 
 \subsection{Intrinsic Calibration Matrix}
-*****************************************\\
-\par Points $\mathbf{\tilde{y}}$ given in the \textit{image plane} have the same \textit{units of measure} (or \textit{scale}) as the points $\mathbf{\tilde{x}}$ in \textit{camera space}. When dealing with digital images it's often more convenient to express \textit{image coordinates} in terms of units such as \textit{pixels} rather than real world units such as \textit{inches}, \textit{feet}, or \textit{meters}. The \textit{calibration matrix} 
+%*****************************************\\
+\par Points $\mathbf{\tilde{y}}$ given in the \textit{image plane} have the same \textit{units of measure} (or \textit{scale}) as the points $\mathbf{\tilde{x}}$ in \textit{camera space}. When dealing with digital images it's often more convenient to express \textit{image coordinates} in terms of units such as \textit{pixels} rather than real world units such as \textit{inches}, \textit{feet}, or \textit{meters}. The matrix $\mathbf{K}$, where
 \begin{equation*}
 \begin{split}
 \mathbf{K}&=\begin{bmatrix}k_u & 0 & p_u\\ 0 & k_v & p_v\\ 0 & 0 & 1\end{bmatrix}
 \end{split}
 \end{equation*}%
-is used to relate a \textit{generic} point $\mathbf{\tilde{y}}$ in the \textit{image plane} to a \textit{pixelized} point $\mathbf{\tilde{u}}$ as
+is used to parameterize an image point $\mathbf{\tilde{u}}$ (in \textit{pixels}), as a function of the coordinates $\mathbf{x}$ in \textit{camera space} and the \textit{camera specific parameters} of \textit{horizontal pixel resolution} $k_u$, \textit{vertical pixel resolution} $k_v$, and \textit{principal point} $\mathbf{p}=[p_x,p_y]^\intercal$. When combined with the additional camera specific parameter of \textit{focal length} $f$ in the \textit{projection matrix} $\mathbf{P}$, the result is
 \begin{equation*}
 \begin{split}
-\mathbf{\tilde{u}}&=
-\begin{bmatrix}k_u & 0 & p_u\\ 0 & k_v & p_v\\ 0 & 0 &1\end{bmatrix}\cdot\mathbf{\tilde{y}}\\
-&=\begin{bmatrix}k_u & 0 & p_u\\ 0 & k_v & p_v\\ 0 & 0 & 1\end{bmatrix}\cdot
-\begin{bmatrix}f & 0 & 0 & 0\\ 0 & f & 0 & 0\\ 0 & 0 & 1 & 0\end{bmatrix}\cdot
-\begin{bmatrix}x_1/x_3 \\ x_2/x_3 \\ x_3/x_3 \\ 1 \end{bmatrix}\\
-&=\begin{bmatrix}f\cdot k_u & 0 & p_u & 0\\ 0 & f\cdot k_v & p_v & 0\\ 0 & 0 & 1 & 0\end{bmatrix}\cdot
-\begin{bmatrix}x_1/x_3 \\ x_2/x_3 \\ x_3/x_3 \\ 1\end{bmatrix}
+\mathbf{Q}&=\mathbf{K}\cdot\mathbf{P}\\
+&=\begin{bmatrix}k_u & 0 & p_u\\ 0 & k_v & p_v\\ 0 & 0 & 1\end{bmatrix}\cdot \begin{bmatrix}f & 0 & 0\\ 0 & f & 0\\ 0 & 0 & 1\end{bmatrix}\\
+&=\begin{bmatrix}f\cdot k_u & 0 & p_u\\ 0 & f\cdot k_v & p_v\\ 0 & 0 & 1\end{bmatrix}
 \end{split}
-\end{equation*}%
-where $k_u$ and $k_v$ are the respective \textit{horizontal} and \textit{vertical} \textit{pixel resolutions} and $\mathbf{p}=[p_x,p_y]^\intercal$ is the \textit{principal point}. 
-
-
-\par The \textit{calibration matrix} of $\mathbf{K}$ already given assumes the \textit{principal point} is always located in the \textit{image} at $\mathbf{u}=0$. Projecting the point $\mathbf{\tilde{x}}$ in \textit{camera space} to the \textit{image plane} with arbitrary \textit{principal point} $\mathbf{p}=[p_x,p_y]^\intercal$ requires modifying the \textit{projection matrix} to include additional \textit{camera-specific} parameters. The resulting matrix is referred to as the \textit{projection matrix}, and is given as
+\end{equation*}
+where $\mathbf{q}$ is referred to as the \textit{intrinsic calibration matrix}, or more generically as the \textit{camera calibration matrix}. This lets us relates the \textit{pixel point} $\mathbf{\tilde{u}}$ to a point $\mathbf{\tilde{x}}$ in \textit{camera space} as
 \begin{equation*}
 \begin{split}
-\mathbf{P}&=
-\begin{bmatrix}
-f\cdot k_u & 0 & p_u\\
-0 & f\cdot k_v & p_v\\
-0 & 0 & 1\\
-\end{bmatrix}
+\mathbf{\tilde{u}}&=\mathbf{K}\cdot\mathbf{\tilde{y}}
+\cong\mathbf{K}\cdot\left[\begin{array}{c|c}\mathbf{P} & \vZero\end{array}\right]\cdot
+\mathbf{\tilde{x}}
+%\begin{bmatrix}x_1/x_3 \\ x_2/x_3 \\ x_3/x_3 \\ 1\end{bmatrix}
+=\left[\begin{array}{c|c}\mathbf{Q}&\vZero\end{array}\right]\cdot
+\mathbf{\tilde{x}}
+%\begin{bmatrix}x_1/x_3 \\ x_2/x_3 \\ x_3/x_3 \\ 1\end{bmatrix}
+=\mathbf{Q}\cdot\left[\begin{array}{c|c}\mathbf{I} & \vZero\end{array}\right]\cdot
+\mathbf{\tilde{x}}
+%\begin{bmatrix}x_1/x_3 \\ x_2/x_3 \\ x_3/x_3 \\ 1\end{bmatrix}
+%
+%\begin{bmatrix}k_u & 0 & p_u\\ 0 & k_v & p_v\\ 0 & 0 &1\end{bmatrix}\cdot\mathbf{\tilde{y}}\\
+%&=\begin{bmatrix}k_u & 0 & p_u\\ 0 & k_v & p_v\\ 0 & 0 & 1\end{bmatrix}\cdot
+%\begin{bmatrix}f & 0 & 0 & 0\\ 0 & f & 0 & 0\\ 0 & 0 & 1 & 0\end{bmatrix}\cdot
+%\begin{bmatrix}x_1/x_3 \\ x_2/x_3 \\ x_3/x_3 \\ 1 \end{bmatrix}\\
+%&=\begin{bmatrix}f\cdot k_u & 0 & p_u & 0\\ 0 & f\cdot k_v & p_v & 0\\ 0 & 0 & 1 & 0\end{bmatrix}\cdot
+%\begin{bmatrix}x_1/x_3 \\ x_2/x_3 \\ x_3/x_3 \\ 1\end{bmatrix}\\
+%&=\left[\mathbf{Q}|\vZero\right]\cdot
+%\begin{bmatrix}x_1/x_3 \\ x_2/x_3 \\ x_3/x_3 \\ 1\end{bmatrix}\\
 \end{split}
-\end{equation*}.
-*****************************************\\
+\end{equation*}%:w
+
+%*****************************************\\
 
 
 \subsection{Extrinsic Calibration Matrix}
-\par Use of \textit{pinhole camera model} by itself requires several assumptions being made including that the optical center $C$ occurs at the origin, and that the \textit{image plane} is occurs at $z=f$ (is parallel to \textit{xy}-plane). This implies the \textit{camera space} is coincident with \textit{world space}, or that the \textit{camera}-coordinate and \textit{world}-coordinate systems are one and the same. In simple scenes, this may not present a problem. In more complex scenes, including those with multiple cameras, this requires using the \textit{pinhole camera model} in the context of an arbitary \textit{world space}. This can be accomplished through the previously discussed \textit{change of reference}.\newline
-  
-\par As previously mentioned, the
+
+\par Use of \textit{pinhole camera model} by itself requires several assumptions being made, namely that the optical center $\mathbf{C}$ occurs at the origin, and that the \textit{image plane} is placed at $z=f$ (is parallel to \textit{xy}-plane). This implies the \textit{camera space} is coincident with \textit{world space}, or that the \textit{camera}-coordinate and \textit{world}-coordinate systems are one and the same. In simple scenes, this may not present a problem. In more complex scenes, including those with multiple cameras, this requires using the \textit{pinhole camera model} in the context of an arbitary \textit{world space}. This can be accomplished through the previously discussed \textit{change of reference}.
+ 
+\par As previously discussed, the \textit{change of reference} from a \textit{world coordinate} ${^W\mathbf{x}}$ to a \textit{camera coordinate} ${^C\mathbf{x}}$ is calculated by the formula
+\begin{equation*}
+\begin{split}
+{^{C}\mathbf{x}}&={^{C}_{W}\mathbf{R}}\cdot{^{W}\mathbf{x}}+{^{C}_{W}\mathbf{t}}\\
+\end{split}
+\end{equation*}
+or \textit{homogeneously} as
+\begin{equation*}
+\begin{split}
+{^{C}\mathbf{\tilde{x}}}&=
+\left[\begin{array}{c|c}{^{C}_{W}\mathbf{R}}&{^{C}_{W}\mathbf{t}}\\\hline \vZero & \vOne \end{array}\right]
+\cdot{^{W}\mathbf{\tilde{x}}}\\
+&={^C_W\mathbf{\tilde{M}}}\cdot{^W\mathbf{\tilde{x}}}
+\end{split}
+\end{equation*}
+which allows us to project  \textit{world coordinates} ${^W\mathbf{\tilde{x}}}$ to the \textit{pixel coordinates} $\mathbf{\tilde{u}}$ in the \textit{image plane} as
+\begin{equation*}
+\begin{split}
+\mathbf{\tilde{u}}\cong
+\mathbf{Q}\cdot\left[\begin{array}{c|c}\mathbf{I} & \vZero\end{array}\right]\cdot{^C\mathbf{\tilde{x}}}=
+\mathbf{Q}\cdot\left[\begin{array}{c|c}\mathbf{I} & \vZero\end{array}\right]\cdot{^C_W\mathbf{\tilde{M}}}\cdot{^W\mathbf{\tilde{x}}}
+\end{split}
+\end{equation*}  
+
 \section{Essential Matrix}
 
 \par When coordinates from a reference frame are expressed as \textit{normalized image coordinates} the range of possible NIC values in the corresponding image are given by the 
