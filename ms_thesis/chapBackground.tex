@@ -68,10 +68,107 @@ This definition lets us say $\mathbf{\tilde{y}}$ is located on line $\mathbf{l}$
 \par In the majority of images, the sets of epipolar lines will converge at a point known as an \textit{epipole}, denoted as $\mathbf{e}$ in the \textit{original image} and $\mathbf{e'}$ in the \textit{angled image}. 
 
 \section{Fundamental Matrix}
-In stereo vision, points ($\mathbf{\tilde{x}}$) in one image $I$ are related to the epipolar line ($l'$) that contain the corresponding point ($\mathbf{\tilde{x}}'$) by the \textit{Fundamental Matrix} ($\mathbf{F}$).
+
+\par In stereo vision, points ($\mathbf{\tilde{x}}$) in one image $I$ are related to the epipolar line ($l'$) that contain the corresponding point ($\mathbf{\tilde{x}}'$) by the \textit{Fundamental Matrix} ($\mathbf{F}$).
 \begin{equation*}
 l'=\mathbf{F}\cdot\mathbf{\tilde{x}}
 \end{equation*}
+
+\subsection{Theoretical Calculation}
+
+\subsection{Calculation from Data}
+
+\par Calculation of the \textit{Fundamental Matrix} through theoretical metods may be difficult due to the abscense of parameters or through errors introduced in the use of pixelized points common in digtial cameras. As previously mentioned, the fundamental matrix $\mathbf{F}$ for points $\mathbf{\tilde{y}}_i=[y_{i1},y_{i2},1]^\intercal$ and $\mathbf{\tilde{y}'}_i=[y'_{i1},y'_{i2},1]^\intercal$ (for all $i$) is represented as the formula $0=\mathbf{\tilde{y}}{'^\intercal_i}\cdot\mathbf{F}\cdot\mathbf{\tilde{y}}_i$. Rearranging this gives:
+
+\begin{equation*}
+\begin{split}
+0&=\mathbf{\tilde{y}}{'^\intercal_i}\cdot\mathbf{F}\cdot\mathbf{\tilde{y}}_i\\
+%%
+&=\begin{bmatrix}y'_{i1} & y'_{i2} & 1\end{bmatrix}
+\begin{bmatrix}f_1 & f_2 & f_3\\ f_4 & f_5 & f_6\\ f_7 & f_8 & f_9\end{bmatrix}
+\begin{bmatrix}y_{i1} \\ y_{i2} \\ 1\end{bmatrix}\\
+\end{split}
+\end{equation*}
+\noindent which when the matrices are multiplied, gives
+\begin{equation*}
+\begin{split}
+%%
+%&=\begin{bmatrix}y'_1 & y'_2 & 1\end{bmatrix}
+%\begin{bmatrix}f_1\cdot y_1 + f_2\cdot y_2 + f_3\cdot 1\\ f_4\cdot y_1 + f_5\cdot y_2 + f_6\cdot 1\\ f_7\cdot y_1 + f_8\cdot y_2 + f_9\cdot 1\end{bmatrix}\\
+%%
+0&=\begin{bmatrix}y'_{i1} & y'_{i2} & 1\end{bmatrix}
+\begin{bmatrix}f_1\cdot y_{i1} + f_2\cdot y_{i2} + f_3\\ f_4\cdot y_{i1} + f_5\cdot y_{i2} + f_6\\ f_7\cdot y_{i1} + f_8\cdot y_{i2} + f_9\end{bmatrix}\\
+%%
+%&=\begin{bmatrix}
+%f_1\cdot {y_1\cdot y'_1} + 
+%f_2\cdot {y_2\cdot y'_1} + 
+%f_3\cdot {1\cdot y'_1} +\\
+%f_4\cdot {y_1\cdot y'_2} + 
+%f_5\cdot {y_2\cdot y'_2} + 
+%f_6\cdot {1\cdot y'_2} +\\
+%f_7\cdot {y_1\cdot 1} +
+%f_8\cdot {y_2\cdot 1} + 
+%f_9\cdot {1\cdot 1}
+%\end{bmatrix}\\
+%%
+&=\left[\begin{array}{ccccccc}
+f_1\cdot {y_{i1}\cdot y'_{i1}} &+& %
+f_2\cdot {y_{i2}\cdot y'_{i1}} &+& %
+f_3\cdot {y'_{i1}} &+& \\%
+f_4\cdot {y_{i1}\cdot y'_{i2}} &+& %
+f_5\cdot {y_{i2}\cdot y'_{i2}} &+& %
+f_6\cdot {y'_{i2}} &+& \\%
+f_7\cdot {y_{i1}} &+& %
+f_8\cdot {y_{i2}} &+& %
+f_9\cdot {1} &\;& \\ %
+\end{array}\right]\\
+\end{split}
+\end{equation*}
+\noindent and a factored form of 
+\begin{equation*}
+\begin{split}
+%%
+0&=\begin{bmatrix}
+{y_{i1}\cdot y'_{i1}} &%
+{y_{i2}\cdot y'_{i1}} &%
+{y'_{i1}} &%
+{y_{i1}\cdot y'_{i2}} &%
+{y_{i2}\cdot y'_{i2}} &%
+{y'_{i2}} &%
+{y_{i1}} &%
+{y_{i2}} &%
+1\\ %
+\end{bmatrix}\begin{bmatrix}
+f_1\\%
+f_2\\%
+f_3\\%
+f_4\\%
+f_5\\%
+f_6\\%
+f_7\\%
+f_8\\%
+f_9\\%
+\end{bmatrix}
+%\\&= 
+=
+\mathbf{m}{^\intercal_i}\cdot\mathbf{f}
+%%
+\end{split}
+\end{equation*}
+\noindent The \textit{fundamental matrix (in vector form)} $\mathbf{f}$ is then calculated as the \textit{null space} (or closest possible equivalent) of the collection $\mathbf{M}_n$ of all $n$ pairs of points $\mathbf{m}{^\intercal_i}$ since
+
+\begin{equation*}\begin{split}
+\mathbf{0} &=
+\begin{bmatrix}
+\mathbf{m}{^\intercal_1}\\
+\mathbf{m}{^\intercal_2}\\
+\vdots\\
+\mathbf{m}{^\intercal_n}\\
+\end{bmatrix}
+\cdot \mathbf{f}
+=\mathbf{M}_n\cdot \mathbf{f}
+\end{split}\end{equation*}
+\noindent The vector $\mathbf{f}$ that results in product $\mathbf{M}_i\cdot\mathbf{f}$ closest to the zero vector $\mathbf{0}$ can then be calculated through \textit{linear least squares} throught the \textit{singular value decomposition} of $\mathbf{M}_i$.
 
 \section{Camera Calibration Matrix}
 
@@ -84,7 +181,7 @@ l'=\mathbf{F}\cdot\mathbf{\tilde{x}}
 	\includegraphics[scale=0.25]{Camera}
 	\caption{Pinhole CameraModel}
 \end{figure}\newline
-The exact location that $\mathbf{\tilde{y}}$ appears on the image plane is determined by utilizing the \textit{similarity of triangles} between $\mathbf{x}$ and $\mathbf{\tilde{y}}$. 
+\par The exact location that $\mathbf{\tilde{y}}$ appears on the image plane is determined by utilizing the \textit{similarity of triangles} between $\mathbf{x}$ and $\mathbf{\tilde{y}}$. 
 Specifically, we see that $y_1/f=x_1/x_3$ and $y_2/f=x_2/x_3$ rearranged gives $x_3\cdot y_1=f\cdot x_1$ and $x_3\cdot y_2=f\cdot x_2$ . This lets us relate $\mathbf{\tilde{x}}$ and $\mathbf{\tilde{y}}$ by the \textit{projection matrix} $\mathbf{P}$ as
 \begin{equation*}
 \begin{split}
