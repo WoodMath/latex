@@ -1,0 +1,65 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% begin week00.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{longtable}{l p{12cm} }
+%%		\hline
+		\logentry{3}{30}{2016}{Established research log after 3 hours of learning new \LaTeX}
+		\logentry{4}{2}{2016}{Added some additional comments to the \textbf{Process}}
+		\logentry{4}{3}{2016}{Have been reading [Shum2007]~\cite{Shum2007}.\newline\par 
+			\Kamangar{ regarding [Shum2007]~\cite{Shum2007} about difference between:
+			\begin{itemize}
+				\item \textbf{Camera Plane} : Cooridinates \textit{u},\textit{v}
+				\item \textbf{Focal Plane} : Cooridinates \textit{s},\textit{t}
+			\end{itemize} 
+		}}
+		\logentry{4}{11}{2016}{Reviewing blog articles located at:
+			\begin{itemize}
+				\item \url{https://erget.wordpress.com/2014/02/01/calibrating-a-stereo-camera-with-opencv/}
+				\item \url{https://erget.wordpress.com/2014/02/28/calibrating-a-stereo-pair-with-python/}
+				\item \url{https://erget.wordpress.com/2014/03/13/building-an-interactive-gui-with-opencv/}
+				\item \url{https://erget.wordpress.com/2014/04/27/producing-3d-point-clouds-with-a-stereo-camera-in-opencv/}
+			\end{itemize}
+			for process to get webcam up and running. Previous issues related to fine-tuning \textit{block matching} parameters. Need to review sources at list at bottom of \url{http://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html} to understand.
+		}
+		\logentry{4}{19}{2016}{%
+Made adjustments to python for image acquisition scripts (from blogs mentioned on \formatdate{11}{4}{2016}.) \newline\par
+\NOTE{Consider creating rig with glue to keep stereo camera placement / direction constant.}
+}
+		\logentry{4}{19}{2016}{%
+\UPDATE{Error with \texttt{calibrate\_cameras} python code causing linux machine to crash. If can't be resolved switch over to MacBook.}
+\newline\par\NOTE{Package should be setup by calling \texttt{\$ python setup.py install.}}}
+		\logentry{4}{19}{2016}{%
+\UPDATE{Crash due to recursive shell call and was fixed. OpenCV not detecting all chessboard corners. Will try a new board.}}
+		\logentry{4}{20}{2016}{Did small amount of work on \textbf{Change of Reference} section in the paper. Added a section to the intro containing a map of commonly used symbols and notation.}
+		\logentry{4}{29}{2016}{Read following sections of [Chen1993]~\cite{Chen1993}:
+			\begin{itemize}
+				\item Abstract
+				\item Introduction
+				\item Visibility Morphing
+			\end{itemize} 
+			\quad\par
+			\SUMMARY{Explicit Geometry is ignored (i.e. surface mesh and 3d-points). Geometry is kept in 2-d. 
+			Whereas Image Morphing interpolates between \textit{pixel intensity values in fixed locations} the method in this article interpolates between 
+			\textit{pixel locations with (relatively) fixed intensity values}.
+			\textbf{Question:} Sections read mention that pixel positions are stored in 3d (3-tuple) data structure. I'm not sure I understand this correctly, since 
+			\begin{enumerate}
+				\item This would effectively make this structure a point cloud (but no mention of it in the paper).
+				\item There is no mention of special "depth-based" hardware or cameras (Far as I know this is upposed to be a regular image).
+			\end{enumerate}
+		}}
+		\logentry{4}{30}{2016}{Checked understanding of \textit{epipolar constraint} through reading of [Hartley2004]~\cite{Hartley2004} and its derivation of 
+			\begin{equation*}
+				\begin{split}
+					{\mathbf{'x}^T}\cdot{\mathbf{E}}\cdot\mathbf{x} &= 
+					{\mathbf{'x}^T}\cdot{\lbrack\mathbf{t}\rbrack}_{\times}\cdot{\mathbf{R}}\cdot\mathbf{x} \\
+					&= {\mathbf{'x}^T}\cdot{'l}
+				\end{split}
+			\end{equation*}
+			and creation of MatLab code verifying this.\newline
+			\par I may have been mistaken about relation of \textbf{Fundamental Matrix} and \textbf{Essential Matrix}. \newline
+			\par My current understanding is the \textit{Fundamental Matrix} describes point/epipolar line correspondance for images under \textbf{scale invariant} conditions (i.e. point correspondance and Fundamental matrix does not change when one image (or both images) are scaled (uniformly or omni-directionally). \newline
+			\par \textit{Essential Matrix} describes point/epipolar line correspondance for images under \textbf{normalized} conditions (i.e. unit-length is set equal to focal-length, and projection center is set at $(0,0,1)$.
+		}
+		\logentry{5}{2}{2016}{Additional wording to Stereo-vision section. I am unsure of best order to present ideas related to \textit{multi-view} geometry.
+		}
+	\end{longtable}

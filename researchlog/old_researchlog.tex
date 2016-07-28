@@ -1,0 +1,617 @@
+\input{headers.tex}
+\title{Research Log}
+\author{JeffGWood@mavs.uta.edu}
+\date{\today}
+
+\pdfinfo{
+  /Title    (Research Log)
+  /Author   (Jeff Wood)
+  /Creator  ()
+  /Producer ()
+  /Subject  ()
+  /Keywords ()
+}
+
+\begin{document}
+%% SET section
+\setlength\parindent{-10pt}
+\setlength{\parskip}{10pt}
+\setlength{\parskip}{\baselineskip}
+	\maketitle
+%% TABLE section
+	\begin{longtable}{l p{12cm} }
+%%		\hline
+		\logentry{3}{30}{2016}{Established research log after 3 hours of learning new \LaTeX}
+		\logentry{4}{2}{2016}{Added some additional comments to the \textbf{Process}}
+		\logentry{4}{3}{2016}{Have been reading [Shum2007]~\cite{Shum2007}.\newline\par 
+			\Kamangar{ regarding [Shum2007]~\cite{Shum2007} about difference between:
+			\begin{itemize}
+				\item \textbf{Camera Plane} : Cooridinates \textit{u},\textit{v}
+				\item \textbf{Focal Plane} : Cooridinates \textit{s},\textit{t}
+			\end{itemize} 
+		}}
+		\logentry{4}{11}{2016}{Reviewing blog articles located at:
+			\begin{itemize}
+				\item \url{https://erget.wordpress.com/2014/02/01/calibrating-a-stereo-camera-with-opencv/}
+				\item \url{https://erget.wordpress.com/2014/02/28/calibrating-a-stereo-pair-with-python/}
+				\item \url{https://erget.wordpress.com/2014/03/13/building-an-interactive-gui-with-opencv/}
+				\item \url{https://erget.wordpress.com/2014/04/27/producing-3d-point-clouds-with-a-stereo-camera-in-opencv/}
+			\end{itemize}
+			for process to get webcam up and running. Previous issues related to fine-tuning \textit{block matching} parameters. Need to review sources at list at bottom of \url{http://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html} to understand.
+		}
+		\logentry{4}{19}{2016}{%
+Made adjustments to python for image acquisition scripts (from blogs mentioned on \formatdate{11}{4}{2016}.) \newline\par
+\NOTE{Consider creating rig with glue to keep stereo camera placement / direction constant.}
+}
+		\logentry{4}{19}{2016}{%
+\UPDATE{Error with \texttt{calibrate\_cameras} python code causing linux machine to crash. If can't be resolved switch over to MacBook.}
+\newline\par\NOTE{Package should be setup by calling \texttt{\$ python setup.py install.}}}
+		\logentry{4}{19}{2016}{%
+\UPDATE{Crash due to recursive shell call and was fixed. OpenCV not detecting all chessboard corners. Will try a new board.}}
+		\logentry{4}{20}{2016}{Did small amount of work on \textbf{Change of Reference} section in the paper. Added a section to the intro containing a map of commonly used symbols and notation.}
+		\logentry{4}{29}{2016}{Read following sections of [Chen1993]~\cite{Chen1993}:
+			\begin{itemize}
+				\item Abstract
+				\item Introduction
+				\item Visibility Morphing
+			\end{itemize} 
+			\quad\par
+			\SUMMARY{Explicit Geometry is ignored (i.e. surface mesh and 3d-points). Geometry is kept in 2-d. 
+			Whereas Image Morphing interpolates between \textit{pixel intensity values in fixed locations} the method in this article interpolates between 
+			\textit{pixel locations with (relatively) fixed intensity values}.
+			\textbf{Question:} Sections read mention that pixel positions are stored in 3d (3-tuple) data structure. I'm not sure I understand this correctly, since 
+			\begin{enumerate}
+				\item This would effectively make this structure a point cloud (but no mention of it in the paper).
+				\item There is no mention of special "depth-based" hardware or cameras (Far as I know this is upposed to be a regular image).
+			\end{enumerate}
+		}}
+		\logentry{4}{30}{2016}{Checked understanding of \textit{epipolar constraint} through reading of [Hartley2004]~\cite{Hartley2004} and its derivation of 
+			\begin{equation*}
+				\begin{split}
+					{\mathbf{'x}^T}\cdot{\mathbf{E}}\cdot\mathbf{x} &= 
+					{\mathbf{'x}^T}\cdot{\lbrack\mathbf{t}\rbrack}_{\times}\cdot{\mathbf{R}}\cdot\mathbf{x} \\
+					&= {\mathbf{'x}^T}\cdot{'l}
+				\end{split}
+			\end{equation*}
+			and creation of MatLab code verifying this.\newline
+			\par I may have been mistaken about relation of \textbf{Fundamental Matrix} and \textbf{Essential Matrix}. \newline
+			\par My current understanding is the \textit{Fundamental Matrix} describes point/epipolar line correspondance for images under \textbf{scale invariant} conditions (i.e. point correspondance and Fundamental matrix does not change when one image (or both images) are scaled (uniformly or omni-directionally). \newline
+			\par \textit{Essential Matrix} describes point/epipolar line correspondance for images under \textbf{normalized} conditions (i.e. unit-length is set equal to focal-length, and projection center is set at $(0,0,1)$.
+		}
+		\logentry{5}{2}{2016}{Additional wording to Stereo-vision section. I am unsure of best order to present ideas related to \textit{multi-view} geometry.
+		}
+%\newpage\\\hline %% e-mail 20160523
+		\logentry{5}{18}{2016}{Reviewed [Chen1993]~\cite{Chen1993} Section 2. Consider reviewing follow relevant articles:
+			\begin{itemize}
+				\item Disparity [Gosh89]
+				\item Optical Flow [Nage86]
+				\item Look-up tables [Wolb89]
+				\item 3d scenes [Pogg91]
+			\end{itemize}
+			Working on MatLab code to pick correspondig points in stereo-images, and calculate pixel offset vectors.
+		}
+		\logentry{5}{19}{2016}{Read Section 2.3 of [Chen1993]~\cite{Chen1993}. View interpolation is limited by:
+			\begin{itemize}
+				\item \textbf{Penumbra}: pixels visible in one source image \textit{but not both}
+				\item \textbf{Umbra}, pixels visible in neither source image, and \textit{invisible} in destination image.
+				\item \textbf{Holes}, pixels visible in neither source image, but \textit{visible} in destination image.
+			\end{itemize}
+Calculatred formula for \textit{pre-displaced} quad-pixel calculation using a bi-linear interpolation as:
+\begin{equation*}
+\mathbf{P}(u,v) = 
+\mathbf{P}(0,0)\cdot (1-u)\cdot (1-v)+\mathbf{P}(1,0)\cdot u \cdot (1-v)+
+\mathbf{P}(0,1)\cdot (1-u)\cdot v +\mathbf{P}(1,1)\cdot u \cdot v
+\end{equation*}
+		}
+		\logentry{5}{20}{2016}{
+Derived formula for 
+\textit{uv} calculation using 
+\textit{geometry matrix}, \textit{blending matrix} and
+\textit{basis vectors} of 
+$\mathbf{u}=[u\ 1]^{T}$ and 
+$\mathbf{v}=[v\ 1]^{T}$
+
+
+\begin{equation*}\begin{split}
+x_{uv} &= 
+\begin{bmatrix}u & 1\end{bmatrix}
+\begin{bmatrix}-1 & 1\\ 1 & 0\\\end{bmatrix}
+\begin{bmatrix}x_{00} & x_{01} \\ x_{10} & x_{11}\\\end{bmatrix}
+\begin{bmatrix}-1 & 1\\ 1 & 0\\\end{bmatrix}
+\begin{bmatrix}v \\ 1\\\end{bmatrix}\\
+y_{uv} &= 
+\begin{bmatrix}u & 1\end{bmatrix}
+\begin{bmatrix}-1 & 1\\ 1 & 0\\\end{bmatrix}
+\begin{bmatrix}y_{00} & y_{01} \\ y_{10} & y_{11}\\\end{bmatrix}
+\begin{bmatrix}-1 & 1\\ 1 & 0\\\end{bmatrix}
+\begin{bmatrix}v \\ 1\\\end{bmatrix}\\
+\end{split}\end{equation*}
+
+			\par\Kamangar{Is there a way given $x$ and $y$ to solve for $u$ and $v$?}
+		}
+		\logentry{5}{22}{2016}{
+			Added more to thesis document.\newline
+			\par Worked on singular-value of previous blending equation. where:
+
+\begin{equation*}
+\begin{split}
+\begin{bmatrix}x_{uv} & 0 \\ 0 & y_{uv}\\\end{bmatrix}
+&=
+\begin{bmatrix}\mathbf{u} & \mathbf{0} \\ \mathbf{0} & \mathbf{u} \end{bmatrix}^{T}
+\begin{bmatrix}\mathbf{M} & \mathbf{0} \\ \mathbf{0} & \mathbf{M} \end{bmatrix}^{T}
+\begin{bmatrix}\mathbf{X} & \mathbf{0} \\ \mathbf{0} & \mathbf{Y} \end{bmatrix}
+\begin{bmatrix}\mathbf{M} & \mathbf{0} \\ \mathbf{0} & \mathbf{M} \end{bmatrix}
+\begin{bmatrix}\mathbf{v} & \mathbf{0} \\ \mathbf{0} & \mathbf{v} \end{bmatrix}
+\end{split}
+\end{equation*}
+
+where
+\begin{equation*}
+\begin{split}
+%
+\mathbf{u} =\begin{bmatrix}u \\ 1\\\end{bmatrix}
+\text{, }
+%
+\mathbf{v} =\begin{bmatrix}v \\ 1\\\end{bmatrix}
+\text{, }
+%
+\mathbf{X} =\begin{bmatrix}x_{00} & x_{01} \\ x_{10} & x_{11}\\\end{bmatrix}
+\text{, }
+%
+\mathbf{Y} =\begin{bmatrix}y_{00} & y_{01} \\ y_{10} & y_{11}\\\end{bmatrix}
+\text{, and }
+%
+\mathbf{M} =\begin{bmatrix}-1 & 1 \\ 1 & 0\\\end{bmatrix}
+\end{split}
+\end{equation*}
+		}
+		\logentry{5}{23}{2016}{
+Read [Chen1993]~\cite{Chen1993} section 2.4 on \textit{Block Compression}.\newline\par
+\SUMMARY{Blocks are established established by \textit{threshold} where each block contains pixels that are \textit{offset by no more than the threshold}, allowing all pixels to be offset at once.}\newline\par
+\Kamangar{Doesn't this assume that all pixels in the block have a uniform offset?}\newline\par
+Working on MatLab program to perform pixel offsets of corresponding points (i.e. assign corresponding points to pixels in MatLab by non automatic methods) 
+
+
+		}
+		\logentry{5}{24}{2016}{%
+			Read following sections from [Chen1993]~\cite{Chen1993}:
+			\begin{itemize}
+				\item Implementations (3)
+				\begin{itemize}
+					\item Preprocessing (3.1)
+					\item Interactive Interpolation (3.2)
+					\item Examples (3.3)
+				\end{itemize}
+				\item Applications (4)
+				\begin{itemize}
+					\item Virtual Reality (4.1)
+					\item Motion Blur (4.2)
+				\end{itemize}
+			\end{itemize}
+			\quad\par
+			\Kamangar{With regards to Section 3.1 and Section 1, why is a graph structure needed? Why is it a lattice?}\newline\par
+			\Kamangar{With regards to Section 4.1, I don't understand the concepts of \textit{temporal anti-aliasing} and \textit{super-sampling}?}
+		\newline\par
+		Made additional changes / added material to thesis document.
+		}
+		\logentry{5}{25}{2016}{%
+Was using figures from \url{http://www.robots.ox.ac.uk/~vgg/hzbook/hzbook2/HZfigures.html} as test images, which may not be best source as there white borders, appear to be up-sampled, and do not contain (extrinsic) calibration info. Consider using images located at \url{http://vision.middlebury.edu/stereo/data/scenes2014/} that contain meta-info including (intrinsic) calibration info.
+		}
+		\logentry{5}{29}{2016}{%
+Finished [Chen1993]~\cite{Chen1993}. Not sure if remaining article is of consequence.\newline
+\par
+Finished MatLab program for \textit{animating} / \textit{hand-drawing} (See wording in [Chen1993]~\cite{Chen1993}) offset vectors. Program performs offsets in 2-dimensional space. Conisder adding automatic \textit{feature correspondance} and \textit{z-buffer} information from depth map images avaiable on MiddleBury database.
+		}
+		\logentry{5}{30}{2016}{%
+Point-correspondances do not follow even pattern as indicated in [Chen1993]~\cite{Chen1993}:  \textit{Bi-linear coordinates} and \textit{quad partitionions}; May be better to use \textit{Barycentric coordinates} \ \textit{triangle partitions}.\newline
+\par Read on MatLab \texttt{tform}, \texttt{maketform}, and \texttt{Delaunay} triangles for purpose of image partitions.
+		}
+		\logentry{6}{1}{2016}{%
+Read and finished [Park2003]~\cite{Park2003}.\newline
+\par \SUMMARY{Multiple sections including \textit{point correspondance} and \textit{interpolation}. 
+\textbf{Point correspondance}: Breaks images into rectangular partitions. Gets maximum horizontal and vertical pixel gradients using \textit{Sobel operator} in each partition. The maximum gradient in each partition is thresholded to disregard homogeneous and textured regions. 
+\textbf{Interpolation}: The images are partitioned with \textit{Delaunay triangulation} using the point correspondances as triangle vertices.}\newline
+\par \Kamangar{Article published seems to be vastly different depending on source (See \texttt{Park2003} folder). ScienceDirect version has more math and detail (maybe too much since it details what a \textit{Sobel filter} is). Why would critical information, including algorithm steps and details, be ommitted?}
+		}
+		\logentry{6}{2}{2016}{%
+Reviewing PDF at \url{https://staff.fnwi.uva.nl/l.dorst/hz/chap11_13.pdf} for information on \textit{tri-focal tensor}. Don't understand \textit{practical} calculation of \textit{fundamental matrix} from \textit{Singular Value Decomposition} and \textit{Linear Least Squares} (i.e. don't understand LLS calculation from SVD).
+		}
+		\logentry{6}{3}{2016}{%
+Working on implementing \textit{triangle patch transform} in MatLap (using previously mentioned \texttt{delaunay}, \texttt{tform}, and \texttt{maketform} functions) needed for [Chen1993]~\cite{Chen1993} and [Park2003]~\cite{Park2003}.
+		}
+		\logentry{6}{4}{2016}{%
+Continuting work on getting triangular patches transformed in MatLab. Will use \texttt{affine2d} and \texttt{imwarp} instead of \texttt{maketform} and \texttt{imtransform}.\newline
+\par Spent several hours on a false start trying to implement line drawing on pixel data, in order to implment polygon seperation. Finally found MatLab's \texttt{roipoly} function which does what I need.
+		}
+		\logentry{6}{5}{2016}{%
+Almost done with MatLab triangle interpolation program. Hoping to have something to show Kamangar in the next few days.\newline
+\par Was reading up on image-segmentation as a way to improve feature detection through masking. Came accross references to \textbf{spectral clustering} which I still don't understand after data mining class. Was reading tutorial at \url{http://classes.engr.oregonstate.edu/eecs/spring2012/cs534/notes/Spectral.pdf} for starters.
+		}
+		\logentry{6}{8}{2016}{%
+Finalized most recent changes to MatLab program. It performs interpolation (between \textit{source} and \textit{destination} images of triangular patches defined by Delaunay triangularization of point correspondances from stereo images (See \texttt{Wood\_Kamangar/StatusReports/StatusReport\_00/Images}). Delaunay triangularization is performed on the source image only then extended to the corresponding points in the destination image so the arrangement of Delaunay triangles remains the same between images.\newline
+\par Summary of results is as follows:
+\begin{itemize}
+\item Triangles confined to one disparity region (See statue head in \texttt{image\_source.png}, \texttt{image\_destination.png}, and \texttt{truedisp.row3.col3.pgm}) show few artifacts and minimal blurring.
+\item Triangles crossing disparity regions or containing pixels occluded in the source or destination images (see camcorder tripod and lamp stand) have visibly more artifacts.\newline
+\end{itemize}
+\par Started reading first page (\textit{Abstract} and \textit{Introduction} sections) of [Sharstein2002]~\cite{Scharstein2002}.
+		}
+		\logentry{6}{9}{2016}{%
+Continuing to read [Scharstein2002]~\cite{Scharstein2002}.\newline
+\par
+\SUMMARY{
+Disparity can be defined by two ideas:
+\begin{itemize}
+\item \textit{Human Vision} : Difference in location of features in the left and right eye.
+\item \textit{Computer Vision} : Inverse depth. Can be treated as a 3-dimensional projective transformation (collineation or homographyv)of 3-d space (X,Y,Z).
+\newline
+\end{itemize}
+\par Define fllowing terms:
+\begin{itemize} 
+\item \textbf{Disparity Map}: $d(x,y)$
+\item \textbf{Disparity Space}: $(x,y,d)$
+\item \textbf{Correspondance}: Pixel $(x,y)$ in reference image $r$ and corresponding pixel $(x',y')$ in matching image $m$ given by $x' = x + s d(x,y)$ and$y' = y$ (assuming horizontal displacement \textit{only}), where $s = \pm 1$ is chose do $d$ is always positive. 
+\item \textbf{Disparity Space Image}: Any function or image defined over continous or dispartiy space.
+\newline
+\end{itemize}
+}
+		}
+		\logentry{6}{11}{2016}{%
+Continuing to read [Scharstein2002]~\cite{Scharstein2002}:\newline
+\par
+\SUMMARY{
+Algorithms can be ordered in 4 common subsets:
+\begin{enumerate}
+\item Matching cost computation;
+\item Cost (support) aggregation;
+\item Disparity computation / optimization;
+\item Disparity refinement;\newline 
+\end{enumerate}
+\par Two main types of agorithms:
+\begin{itemize}
+\item \textbf{Local}: Including \textit{Squared Intensity Differences} and \textit{Absolute intensity differences}.
+\item \textbf{Global} Includeing \textit{Energy minimizatio}.\newline
+\end{itemize}
+}
+\par Continuing to read up on \textit{Spectral Clustering} and \textit{Laplacian embedding} for uses in image segmentation.
+		}
+		\logentry{6}{14}{2016}{%
+Working on implementing [Park2003]~\cite{Park2003} in MatLab. \newline
+\par Also working on implementing Spectral Clustering (for images) in MatLab. Started working on \texttt{fnDistance.m} to calculate pixel distances (\textit{Distance Matrix}) for vectorized (row major and column major) images, needed for segmentation through spectral clustering.
+		}
+		\logentry{6}{16}{2016}{%
+Added some additional text regarding the \textit{epipolar constraint} to the thesis document.
+		}
+		\logentry{6}{17}{2016}{%
+Finished implmenting and testing \texttt{fnDistance.m} for distance matrix. Next finished working on and testing \texttt{fnSimilarity.m} implementing a \textit{Similarity Matrix} for spectral clustering.
+		}
+		\logentry{6}{18}{2016}{%
+Wrote small amount additional text on \textit{epipolar contstraint}, and verified understanding through MatLab functions.
+		}
+		\logentry{6}{20}{2016}{%
+Holding off on reading any more of [Scharstein2002]~\cite{Scharstein2002}(\textit{Have completed up to end of page 5}): May be too advanced for me and of little use; Compares methods, but does not go into enough detail about how to implement them. Instead reading [Scharstein1999]~\cite{Scharstein1999} which may be more my level.\newline
+\par Started reading in \textit{Correspondance problem} section of [Scharstein1999]~\cite{Scharstein1999}. \SUMMARY{ Matching can be done via \textit{Fearure based correspondacne} and \textit{Area based correspondance}. \newline
+\par Feature based correpondance finds locally unique or identifiable pixels (i.e. Corners or edge gradients), matchingbetween images occurrs between these reduced set of points. Advantages are only a few points are necessary. Disadvantages are that disparity calculations are confined to these points, so interpoint disparity have to be calculated through interpolation and may not be accurate.\newline
+\par Area based correspondance occurrs over \textit{regions in the image} instead of points used in feature correspondance. Advantages are a denser (and therefore more accurate) disparity map, but require assumptions about local disparity. }
+		}
+		\logentry{6}{21}{2016}{%
+Continued reading [Scharstein1999]~\cite{Scharstein1999}. \newline
+\par \SUMMARY{
+3 general methods are being differentiated:\newline
+\par\begin{itemize}
+\item \textbf{Image Synthesis based on Stereo}: Uses stereo mathods for image creation.
+\item \textbf{Image Interpolation}: Similar to \textit{Image Synthesis based on Stereo}, except mages generated must be on baseline, and baseline must be parallel to image planes.
+\item \textbf{Information from Many Images}: Includes image stitching and panoramic mosaicing.\newline
+\end{itemize}
+\par Other sections involve summaries of various papers and methods published under each of the 3 categories.
+}\newline
+\par Got further clarification on steps for coorespondance matching for \textit{feature-based correspondance}.\newline
+\par\begin{enumerate}
+\item \textbf{Preprocessing}: Color correction between stereo images for conconsitancy, and image warping through rectification so features occur at (approximatley) same horizontal distance reducing search area to the scanline.
+\item \textbf{Cost Calculation}: Per-pixel cost calculation done as either a \textit{square difference} or \textit{absolute difference}.
+\item \textbf{Aggregation}: The summing of the cost calculations over the window in question.
+\item \textbf{Comparison / Calculation}: Window on feature trying to be matched is kept fixed.Window in corresponding image  is moved along the scanline for a comparison of potential window aggregates. Correspondance with minimum aggregate (in difference of costs) is selected as the corresponding point in the image being scanned.
+\item \textbf{Sup-pixel Calculation}: Not yet read. Could be smoothing.\newline
+\end{enumerate}
+\par Read up to section 2.2.5 \textit{Disparity Selection} (PDF page 49, Numbered page 35). Stopped to read up on using Dynamic Programming to increase consistancy of stereo points and disparity, including following sourceses:\newline
+\par\begin{itemize}
+\item \url{http://www.robots.ox.ac.uk/~az/lectures/opt/lect2.pdf}
+\item \url{http://www.cs.umd.edu/~djacobs/CMSC426/PS7.pdf}
+\end{itemize}
+
+		}
+	\logentry{6}{22}{2016}{%
+Continued reading [Sharstein1999]~\cite{Scharstein1999}. I'm still unclear about the process (and use of) \textit{Sub-Pixel Disparity Computation} mentioned in section 2.2.6.\newline
+\par I moved onto Chapter 3 (View Synthesis) and have been reading on \textit{three-view rectification}. Read all of Section 3.1 (\textit{Geometry}) (up to but not including PDF page 60, Numbered page 47).\newline
+\par \SUMMARY{A new image $I_3$ is synthesisized from images $I_1$ and $I_2$, by estabishing reference frame containing camera centers $\mathbf{C_3}$, $\mathbf{C_1}$, and $\mathbf{C_2}$ respectively. The unit-length is established as the difference between camera centers $\mathbf{C_1}$ and $\mathbf{C_2}$. The positions are set along the \textit{x}-axis such that $\mathbf{C_1}=[0,0,0]^\top$ and $\mathbf{C_2}=[1,0,0]^\top$. The \textit{xy}-plane is oriented such that it contains $\mathbf{C_3}=[a,b,0]^\top$ (for some constants \textit{a} and \textit{b}).Images $I_1$ and $I_2$ are \textit{horizontally rectified} (such that pixel-features occur at the same vertical position), through an \textit{affine warp} to images $I'_1$ and $I'_2$ which occur in the \textit{xy}-plane at $z=1$. The synthetic image $I_3$ is produced from the horizontally rectified image $I'_3$ which also occurs in the $z=1$ plane.
+}\newline
+\par \Kamangar{
+How can the homography matrix $\mathbf{H}_i=[\mathbf{R}_i | \mathbf{S}_i | \mathbf{O}_i - \mathbf{C}_i]$  be calculated if the vectors $\mathbf{R}_i$, $\mathbf{S}_i$, and $\mathbf{O}_i$ are unknown. How can they be determined from available information? 
+%\begin{equation*}
+%\mathbf{H}_i = [\begin{array}{c|c|c}
+%\mathbf{R}_i & 
+%\mathbf{S_i} & 
+%\mathbf{O_i}-\mathbf{C_i} 
+%\end{array}]
+%\end{equation*}
+}
+	}
+	\logentry{6}{24}{2016}{%
+Added additional material to thesis document for \textit{Epipolar constraint} section. 
+	}
+	\logentry{6}{25}{2016}{%
+Added additional text to thesis document in \textit{Epipolar constraint} and \textit{Fundamental matrix} sections.\newline
+\par Reading up on on \textit{homographies} and \textit{rectification} for [Scharstein1999]~\cite{Scharstein1999} and for derivation of \textit{Fundamental matrix} for thesis document.
+	}
+	\logentry{6}{26}{2016}{%
+Started reading Chapter 2 of [Hartley2004]~\cite{Hartley2004} for information regarding \textit{Homographices}.\newline
+\par Worked on graphics regarding \textit{Epipolar constraint} for inclusion in thesis document.
+	}
+	\logentry{6}{27}{2016}{%
+Continued reading Chapter 2 of [Hartley2004]~\cite{Hartley2004} containing information on \textit{Homographies} for purpose(s) of deriving \textit{Fundamental matrix} formula as well as understanding \textit{Horizontal rectification} used for matching features along scanlines of images.\newline
+\par \SUMMARY{
+Transformations of points in the image plane can be grouped into the following categories:
+\begin{itemize}
+\item \textbf{Isometries} (Denoted by $\mathbf{H}_E$): Transfomrations in $\mathbb{P}_2$ including \textit{translation} and  \textit{rotation} (including composites of the two) that peserve \textit{Euclidean}-distance. Tranformations are of the form
+\begin{equation*}
+\begin{bmatrix}\epsilon\cos(\theta) & -\sin(\theta) & t_x \\ \epsilon\sin(\theta) & \cos(\theta) & t_y \\ 0 & 0 & 1 \end{bmatrix}
+\end{equation*}
+where $\epsilon=\pm 1$. Angles are preserved if $\epsilon=1$, else if $\epsilon=-1$ angles are reversed (reflection accross an axis).
+\item \textbf{Similarity} (Denoted by $\mathbf{H}_S$): Transformations include \textit{translation}, \textit{rotation}, and \textit{scaling}. Matrices are of the form
+\begin{equation*}
+\begin{bmatrix}s\cos(\theta) & -s\sin(\theta) & t_x \\ s\sin(\theta) & s\cos(\theta) & t_y \\ 0 & 0 & 1 \end{bmatrix}
+\end{equation*}
+where $s$ is the scaling factor. While \textit{distances} are not preserved, the \textit{ratio of distances} and \textit{angles} are preserved.
+\item \textbf{Affine} (Denoted by $\mathbf{H}_A$): Transformations include all linear transformations of \textit{translation}, \textit{rotation}, \textit{scaling}, and \textit{shearing}. Matrices are of the form
+\begin{equation*}
+\begin{bmatrix}a_{11} & a_{12} & t_x \\ a_{21} & a_{22} & t_y \\ 0 & 0 & 1 \end{bmatrix}
+\end{equation*}
+
+\item \textbf{Projective} (Denoted by $\mathbf{H}_P$): Transformations in $\mathbb{P}_2$ that are linear transformations in $\mathbb{R}_3$. Matrices are of the form
+\begin{equation*}
+\begin{bmatrix}h_{11} & h_{12} & h_{13} \\ h_{21} & h_{22} & h_{23} \\ h_{31} & h_{32} & h_{33} \end{bmatrix}
+\end{equation*}
+
+
+\end{itemize}
+
+}
+
+	}
+	\logentry{6}{29}{2016}{%
+Continuing to read [Hartley2004]~\cite{Hartley2004} for \textit{affine rectification}. Chapters of [Hartley2004]~\cite{Hartley2004} include:\newline
+\begin{itemize}
+\item \textbf{Chapter 2: Projective Geometry}:
+\begin{itemize}
+\item \textbf{Section 2.1: Planar Geometry}:
+\item \textbf{Section 2.2: The 2D projective plane}:\newline
+\par
+Lines in $\mathbb{R}^{2}$ are detailed by $\mathbf{l}=[a,b,c]^{\intercal}$ and points as $\mathbf{x}=[x,y,1]^\intercal$ such that $\mathbf{l}^{\intercal}\cdot\mathbf{x}=a\cdot{x}+b\cdot{y}+1=0$. Coordinates $\mathbf{x}=[x,y,0]^\intercal$ with a $0$ instead of $1$ in the last place represent a \textit{point at infinity} since they are the only points where $a\cdot{x}+b\cdot{y}+c\cdot{0}=a\cdot{x}+b\cdot{y}+c'\cdot{0}$ for the two \textit{parallel} lines of $\mathbf{l}=[a,b,c]^\intercal$ and $\mathbf{l'}=[a,b,c']^\intercal$
+\newline
+\par Cross product of points $\mathbf{x}$ and $\mathbf{x'}$ result in line $\mathbf{l}$ joining the two points (i.e. $\mathbf{x}\times\mathbf{x'}=\mathbf{l}$). Cross product of lines $\mathbf{l}$ and $\mathbf{l'}$ result in point $\mathbf{x}$ where intersection of two lines (i.e. $\mathbf{l}\times\mathbf{l'}=\mathbf{x}$).\newline
+\par Circles and ovals can be reprsented by a \textit{conic-matrix} of the form
+\begin{equation*}
+\begin{split}
+0&=\mathbf{x}^\intercal\cdot\mathbf{C}\cdot\mathbf{x}\\
+&=\left[\begin{array}{ccc}x & y & 1\end{array} \right]\cdot
+\left[\begin{array}{ccc}a & b/2 & d/2 \\ b/2 & c & e/2 \\ d/2 & e/2 & f\\\end{array}\right]\cdot\left[\begin{array}{c}x \\ y \\ 1 \end{array}\right]\\
+&=a\cdot{x}^2+b\cdot{xy}+c\cdot{y}^2+d\cdot{x}+e\cdot{y}+f\cdot{1}
+\end{split}
+\end{equation*}
+\item \textbf{Section 2.3: Projective transformations}:\newline
+\par Point $\mathbf{x}$ on an image is mapped to point $\mathbf{x'}$ via a homography $\mathbf{H}$, such that $\mathbf{x'}=\mathbf{H}\cdot\mathbf{x}$. Because a point $\mathbf{x}$ lies on line $\mathbf{l}$ if $\mathbf{l}^\intercal\cdot\mathbf{x}=0$, then because 
+\begin{equation*}
+\begin{split}
+0&=\mathbf{l}^\intercal\cdot\mathbf{x}\\
+&=\mathbf{l}^\intercal\cdot\mathbf{H}^{-1}\cdot\mathbf{H}\cdot\mathbf{x}\\
+&=\mathbf{l}^\intercal\cdot\mathbf{H}^{-1}\cdot\mathbf{x'}
+\end{split}
+\end{equation*}
+the point $\mathbf{x'}$ lies on the line $\mathbf{l'}$ defined by $\mathbf{l'}^\intercal=\mathbf{l}^\intercal\cdot\mathbf{H}^{-1}$, or $\mathbf{l'}=\mathbf{H}^{-\intercal}\cdot\mathbf{l}$. Therefore a homograhy that gives a \textit{point-mapping} of $\mathbf{x'}=\mathbf{H}\cdot{x}$ has a corresponding \textit{line-mapping} of $\mathbf{l'}=\mathbf{H}^{-\intercal}\cdot\mathbf{l}$.\newline
+\par Similarly, for a homography given by $\mathbf{x'}=\mathbf{H}\cdot\mathbf{x}$, the conic under the homography is given by 
+\begin{equation*}
+\begin{split}
+0&=\mathbf{x}^\intercal\cdot\mathbf{C}\cdot\mathbf{x}\\
+&=(\mathbf{H}^{-1}\cdot\mathbf{x'})^{\intercal}\cdot\mathbf{C}\cdot(\mathbf{H}^{-1}\cdot\mathbf{x'})\\
+&=\mathbf{x'}^\intercal\cdot\mathbf{H}^{-\intercal}\cdot\mathbf{C}\cdot\mathbf{H}^{-1}\cdot\mathbf{x'}\\
+&=\mathbf{x'}^\intercal\cdot\mathbf{C'}\cdot\mathbf{x'}\\
+\end{split}
+\end{equation*}
+where $\mathbf{C'}=\mathbf{H}^{-\intercal}\cdot\mathbf{C}\cdot\mathbf{H}^{-1}$.\newline
+\par
+\item \textbf{Section 2.4: A hierarchy of transformations}:\newline
+\par See entry from \formatdate{27}{6}{2016}.\newline
+\par
+\end{itemize}
+\end{itemize}
+}\logentry{6}{29}{2016}{%
+\textit{...Continued}
+\begin{itemize}
+\item \textbf{Chapter 6: Camera Models}:
+\begin{itemize}
+\item \textbf{Section 6.1: Finite cameras}:\newline
+\par Transformation from \textit{world-coordinate} system $\mathbf{x}$ to \textit{camera-coordinate} system $^{C}\mathbf{x}$ is given by $^{C}\mathbf{x}=\mathbf{R}\cdot(\mathbf{x}-\mathbf{c})$. The Camera in \textit{world-space} occurs at $\mathbf{x}=\mathbf{c}$. \textit{Camera-space} has the camera located at $^C\mathbf{x}=0$ and includes an \textit{image-plane} at $z=f$. All rays intersect the \textit{image plane} at $z=f$ and converge on the origin $^C\mathbf{x}=0$ which is known as the \textit{camera center}. This results in points $^{C}\mathbf{x}$ in \textit{camera space} being projected to points $\mathbf{\tilde{y}}$ in the \textit{image plane} by means of the \textit{projection matrix} $\mathbf{P}$ such that
+
+ 
+\begin{equation*}
+\begin{split}
+\mathbf{P}\cdot{^{C}\mathbf{\tilde{x}}}&=
+\begin{bmatrix}
+f & 0 & 0 & 0\\
+0 & f & 0 & 0\\
+0 & 0 & 1 & 0\\
+\end{bmatrix}\left[\begin{array}{c}{^Cx_1}\\{^Cx_2}\\{^Cx_3}\\1\\\end{array}\right]
+=\left[\begin{array}{c}
+f\cdot {^Cx_1}\\
+f\cdot {^Cx_2}\\
+{^Cx_3}
+\end{array}\right]\\
+&=
+{^Cx_3}\cdot\begin{bmatrix}
+f\cdot{^Cx_1}/{^Cx_3}\\
+f\cdot{^Cx_2}/{^Cx_3}\\
+1\\
+\end{bmatrix}
+={^Cx_3}\cdot\mathbf{\tilde{y}}
+\end{split}
+\end{equation*} 
+
+This results in points containing infinitley large values of $x_3$ being mapped to the same \textit{principal point} of $\mathbf{y}=0$ in the \textit{image plane}. This assumes the \textit{princpal point} is always located in the \textit{image plane} at $\mathbf{y}=0$. Projecting point $\mathbf{\tilde{x}}$ to the \textit{image plane} with arbitrary \textit{principal point} $\mathbf{p}=[p_x,p_y]$ requires modifying the \textit{projection matrix} to include \textit{camera-specific} parameters. The \textit{camera calibration matrix} $\mathbf{K}$ is given as
+ 
+\begin{equation*}
+\begin{split}
+\mathbf{P}\cdot{^{C}\mathbf{\tilde{x}}}&=
+\begin{bmatrix}
+f & 0 & p_x & 0\\
+0 & f & p_y & 0\\
+0 & 0 & 1 & 0\\
+\end{bmatrix}\left[\begin{array}{c}{^Cx_1}\\{^Cx_2}\\{^Cx_3}\\1\\\end{array}\right]
+=\left[\begin{array}{c}
+f\cdot {^Cx_1}+p_x\cdot {^Cx_3}\\
+f\cdot {^Cx_2}+p_y\cdot {^Cx_3}\\
+{^Cx_3}
+\end{array}\right]\\
+&=
+{^Cx_3}\cdot\begin{bmatrix}
+f\cdot{^Cx_1}/{^Cx_3}+p_x\\
+f\cdot{^Cx_2}/{^Cx_3}+p_y\\
+1\\
+\end{bmatrix}
+={^Cx_3}\cdot\mathbf{\tilde{y}}
+\end{split}
+\end{equation*} 
+
+%\item \textbf{Section 6.2: The projective camera}:
+\end{itemize}
+%\item \textbf{Chapter 9: Epipolar Geometry and the Fundamental Matrix}:
+%\begin{itemize}
+%\item \textbf{Section 9.1: Epipolar geometry}:
+%\item \textbf{Section 9.2: The fundamental matrix \texttt{F}}:
+%\end{itemize}
+%\item \textbf{Chapter 11: Computation of the Fundamental Matrix}:
+%\begin{itemize}
+%\item \textbf{Section 11.1: Basic Equations}:
+%\end{itemize}
+\end{itemize}
+
+	}
+
+	\logentry{6}{30}{2016}{%
+\Kamangar{On pages 162 and 244, how is the ray back-projected from $\mathbf{x}$ by $\mathbf{P}$ (where $\mathbf{x}=\mathbf{PX}$ and $\mathbf{P}=\mathbf{K}[\mathbf{R}|\mathbf{t}]$) given by the formula $\mathbf{X}(\lambda)=\mathbf{P}^{+}\mathbf{x}+\lambda\mathbf{C}$? How is the formula derived?
+}
+	}
+	\logentry{7}{1}{2016}{%
+Added section called \textbf{Points and Lines in the Image Plane} in the \textbf{Background} section.
+	}
+	\logentry{7}{5}{2016}{%
+Continued adding text to \textbf{Background} section of Thesis Document, in \textit{Epipolar Geometry} and \textit{Intrinsic Calibration Matrix} sections.
+	}
+	\logentry{7}{11}{2016}{%
+Trying to consolidate knowledge (and explain in thesis document) behind the pinhole camera model. Specifically the concept of \textit{focal-length} as it relates to \textit{similarity of triangles}.
+	}
+	\logentry{7}{12}{2016}{%
+Started reading [Martin2008]~\cite{Martin2008}.
+	}
+	\logentry{7}{13}{2016}{%
+Reading [Fusiello1999]~\cite{Fusiello1999}. Running throuh MatLab code at \url{http://www.diegm.uniud.it/fusiello/demo/rect/} to understand algorithm. [Fusiello1999]~\cite{Fusiello1999} gives more insight into \textit{rectification} discussed on \formatdate{22}{6}{2016}:\newline
+
+\par \SUMMARY{\textit{Rectification of stereo images} warps each image so that points are (vertically) aligned with their conjugate epipolar lines, and so that the collection of epipolar lines (in each image) are parallel. This aids in the use of Dynamic Programming for searching of corresponding points along each \textit{scan-line} of the rectified image.\newline
+
+\par Normally, when the \textit{camera centers} do not lie in \textit{focal planes}\footnote{May cause confusion depending on understanding of the terms \textit{focal plane} and \textit{retinal plane}. [Fusiello1999]~\cite{Fusiello1999} refers to \textit{focal plane} as the plane containing the \textit{optical center} and parallel to the \textit{image plane}. The \textit{image plane} is also referred to as the \textit{retinal plane}. [Hartley2004]~\cite[Hartley2004] refers to  \textit{focal plane} as being synonymous with the \textit{image plane}, but the \textit{retinal plane} is the plane containing the \textit{optical center} and parallel to the \textit{image plane}. Here we are using the definition from [Fusiello1999]~\cite{Fusiello1999}.}, the \textit{epipolar lines} intersect at the \textit{epipole}. When the \textit{camera center} of image A is located in the \textit{focal plane} of image B, the \textit{epipolar lines} in image B will be parallel. Similary, when the \textit{camera center} of image B is located in the \textit{focal plane} of image A, the \textit{epipolar lines} in image A will be parallel.\newline
+
+\par \textbf{Rectification consists of transforming the cameras in each image such that the \textit{camera centers} are co-planar}
+}\newline
+
+\par \Kamangar{My current understanding is this: \textit{Rectification} of images is used to search along \textit{scanlines} for \textit{point correspondances}. In order to do \textit{Rectification}, \textit{point correspondances} are required. Doesn't this present a problem? It seems to be a \textit{chicken and the egg} type problem.}
+	}
+	\logentry{7}{15}{2016}{%
+Finished reading [Fusiello2000]~\cite{Fusiello2000}. Aside from details of algorithm and errors in experimental resuls, no more useful information gained since summarizing on \formatdate{13}{7}{2016}.\newline
+
+\par Since implementation is already done in \texttt{MatLab}, I'm porting methodology to \texttt{Python} using \texttt{OpenCV} and \texttt{OpenGL} in \textit{final demonstration}. \newline
+
+\par Resumed reading of [Martin2008]~\cite{Martin2008}.
+	}
+	\logentry{7}{17}{2016}{%
+Spent a couple of hours working on \textit{demonstration} code in OpenGL and OpenCV.
+	}
+	\logentry{7}{18}{2016}{%
+Spending day working on thesis document. Sections worked on include:
+\begin{itemize}
+\item Intrinsic Calibration Matrix
+\item Fundamental Matrix
+\end{itemize}
+	}
+	\logentry{7}{19}{2016}{%
+Continuing to add material to thesis document, including:
+\begin{itemize}
+\item Extrinsi Calibration Matrix
+\item Fundamental Matrix
+\end{itemize}
+Going back to reread first parts of Chapter 6 from [Hartley2004]~\cite{Hartley2004}, as I need clarification on some aspects of the \textit{calibration matrix}. Namely, I \textit{still} do not understand how $\mathbf{X}(\lambda)=\mathbf{P}^+\mathbf{x}+\lambda\mathbf{C}$ represents the equation of a ray passing through \textit{optical center} $\mathbf{C}$ in \textit{world space}, with \textit{projection matrix} $\mathbf{P}$.
+	}
+	\logentry{7}{20}{2016}{%
+Added material on \textit{fundamental matrix calculation from data} to thesis document. Reading additional material from [Hartley2004]~\cite{Hartley2004} on \textit{fundamenta matrix theoretical calculation}.
+	} 
+	\logentry{7}{21}{2016}{%
+Continuing to read [Martin2008]~\cite{Martin2008}. See questions below.\newline
+
+\par \Kamangar{%
+I don't understand the difference between \textit{forward mapping} and \textit{backward mapping}.
+}\newline
+
+\par I'm a bit confused about most of the material being discussed in [Martin2008]~\cite{Martin2008}. Will read [Karathanasis1996]~\cite{Karathanasis1996} for background on \textit{disparity estimation using dynamic programming}.\newline
+
+\par \UPDATE{%
+My question on \formatdate{13}{7}{2016} may have been worded wrong: The \textit{dynamic programming} is used for estimating \textit{disparity}, which in turn is used for \textit{point correspondance}. The \textit{dynamic programming} is not used DIRECTLY, in calcuating \textit{point correspondance}.}\newline
+
+\par Orignal question still holds though:\newline
+
+\par \Kamangar{% 
+I understand \textit{ALL} of the following to be \textit{TRUE}, which one needs to be \textit{FALSE} (or my understanding revised):
+\begin{itemize}
+\item \textit{Point correspondence} is needed to compute \textit{rectifying homographies}.
+\item \textit{Rectifying homography} is needed to compute \textit{disparities}.
+\item \textit{Disparity} is needed to compute \textit{point correspondence}.
+\end{itemize} 
+}
+
+	}
+	\logentry{7}{22}{2016}{%
+Started reading [Karathanasis1996]~\cite{Karathanasis1996}, no new information from first few sections.
+	}
+	\logentry{7}{25}{2016}{%
+Started woring on implmentation of \textit{disparity estimation using dynamic programming} in \texttt{MatLab}. The generic method (summary below) seems to be a little different than method described in [Karathanasis1996]~\cite{Karathanasis1996}.\newline
+
+\par \SUMMARY{A left image \textit{L} and right image \textit{R} each contain many \textit{scanlines}, each at the same vertical position. Though each image's scanline is 1-\textit{dimensional}, each point in the scanline is a $k \times k$ square matrix of \textit{normalized} pixel values (commonly referred to as a \textit{Window}). The window centered at pixel \textit{i} in \textit{L} is denoted by vector $\mathbf{L}(i,k)$, and similarly the window centered at pixel \textit{j} in \textit{R} is denoted by vector $\mathbf{R}(j,k)$.\newline
+
+\par A feature at \textit{i} in \textit{L} is closely matched to the feature at \textit{j} in \textit{R} if the \textit{sum of square differences} $SSD(i,j,k)=||\mathbf{L}(i,k)-\mathbf{R}(j,k)||_2$ is minimal (ideally 0). The dynamic programming approach to disparity estimation attempts to minimize the sum of $SSD(i,j,k)$ over all possible \textit{i} and \textit{j}, by including a constant \textit{occlusion cost} ($OC$) for instances when a window centered at \textit{i} in \textit{L} does not have a matching feature at \textit{j} in \textit{R}, and simlarly a window centered at \textit{j} in \textit{R} does not have a matching feature at \textit{i} in \textit{L}. The \textit{matching cost} ($MC(i,j,m)$) at for the windows centered at \textit{i} in \textit{L} and \textit{j} in \textit{R} is then assigned to be the \textit{minimum} of:
+\begin{itemize}
+\item $MC(i-1,j-1,m)+SSD(i,j,k)$
+\item $MC(i-1,j,m)+OC$
+\item $MC(i,j-1,m)+OC$
+\end{itemize} 
+to a $(m+1)\times (n+1)$ table (where \textit{m} is the number of window values (\textit{image width} less $(k-1)$) in \textit{L}, and \textit{n} is the number of window values in \textit{R}. In addition to the above assignments, we let
+\begin{itemize}
+\item $MC(0,0,m)=0$ for the initial cost.
+\item $MC(s\cdot OC,0,m)$ (for all $s\leq m$) to denote first \textit{s} windows in \textit{L} are occluded from \textit{R}.
+\item $MC(0,t\cdot OC,m)$ (for all $t\leq n$) to denote first \textit{t} windows in \textit{R} are occluded from \textit{L}.
+\end{itemize}
+}
+	}
+	\logentry{7}{27}{2016}{%
+\par Continued reading [Karathanasis1996]~\cite{Karathanasis1996}\newline
+\par Made additional changes to python Demo using OpenCV and OpenGL. Still a long way from finished.
+	}
+%	\hline
+	\end{longtable}
+
+	\newpage
+
+	%% Code below should be used for citations 
+
+%	Longuet-Higgins' Fundamental Matix ~\cite{Longuet-Higgins}
+	\bibliography{citations}{}
+	\bibliographystyle{unsrt}
+
+
+\end{document}

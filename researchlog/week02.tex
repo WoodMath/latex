@@ -1,0 +1,73 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% begin week02.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{longtable}{l p{12cm} }
+		\logentry{5}{22}{2016}{
+			Added more to thesis document.\newline
+			\par Worked on singular-value of previous blending equation. where:
+
+\begin{equation*}
+\begin{split}
+\begin{bmatrix}x_{uv} & 0 \\ 0 & y_{uv}\\\end{bmatrix}
+&=
+\begin{bmatrix}\mathbf{u} & \mathbf{0} \\ \mathbf{0} & \mathbf{u} \end{bmatrix}^{T}
+\begin{bmatrix}\mathbf{M} & \mathbf{0} \\ \mathbf{0} & \mathbf{M} \end{bmatrix}^{T}
+\begin{bmatrix}\mathbf{X} & \mathbf{0} \\ \mathbf{0} & \mathbf{Y} \end{bmatrix}
+\begin{bmatrix}\mathbf{M} & \mathbf{0} \\ \mathbf{0} & \mathbf{M} \end{bmatrix}
+\begin{bmatrix}\mathbf{v} & \mathbf{0} \\ \mathbf{0} & \mathbf{v} \end{bmatrix}
+\end{split}
+\end{equation*}
+
+where
+\begin{equation*}
+\begin{split}
+%
+\mathbf{u} =\begin{bmatrix}u \\ 1\\\end{bmatrix}
+\text{, }
+%
+\mathbf{v} =\begin{bmatrix}v \\ 1\\\end{bmatrix}
+\text{, }
+%
+\mathbf{X} =\begin{bmatrix}x_{00} & x_{01} \\ x_{10} & x_{11}\\\end{bmatrix}
+\text{, }
+%
+\mathbf{Y} =\begin{bmatrix}y_{00} & y_{01} \\ y_{10} & y_{11}\\\end{bmatrix}
+\text{, and }
+%
+\mathbf{M} =\begin{bmatrix}-1 & 1 \\ 1 & 0\\\end{bmatrix}
+\end{split}
+\end{equation*}
+		}
+		\logentry{5}{23}{2016}{
+Read [Chen1993]~\cite{Chen1993} section 2.4 on \textit{Block Compression}.\newline\par
+\SUMMARY{Blocks are established established by \textit{threshold} where each block contains pixels that are \textit{offset by no more than the threshold}, allowing all pixels to be offset at once.}\newline\par
+\Kamangar{Doesn't this assume that all pixels in the block have a uniform offset?}\newline\par
+Working on MatLab program to perform pixel offsets of corresponding points (i.e. assign corresponding points to pixels in MatLab by non automatic methods) 
+
+
+		}
+		\logentry{5}{24}{2016}{%
+			Read following sections from [Chen1993]~\cite{Chen1993}:
+			\begin{itemize}
+				\item Implementations (3)
+				\begin{itemize}
+					\item Preprocessing (3.1)
+					\item Interactive Interpolation (3.2)
+					\item Examples (3.3)
+				\end{itemize}
+				\item Applications (4)
+				\begin{itemize}
+					\item Virtual Reality (4.1)
+					\item Motion Blur (4.2)
+				\end{itemize}
+			\end{itemize}
+			\quad\par
+			\Kamangar{With regards to Section 3.1 and Section 1, why is a graph structure needed? Why is it a lattice?}\newline\par
+			\Kamangar{With regards to Section 4.1, I don't understand the concepts of \textit{temporal anti-aliasing} and \textit{super-sampling}?}
+		\newline\par
+		Made additional changes / added material to thesis document.
+		}
+		\logentry{5}{25}{2016}{%
+Was using figures from \url{http://www.robots.ox.ac.uk/~vgg/hzbook/hzbook2/HZfigures.html} as test images, which may not be best source as there white borders, appear to be up-sampled, and do not contain (extrinsic) calibration info. Consider using images located at \url{http://vision.middlebury.edu/stereo/data/scenes2014/} that contain meta-info including (intrinsic) calibration info.
+		}
+	\end{longtable}

@@ -1,0 +1,32 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% begin week03.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{longtable}{l p{12cm} }
+
+		\logentry{5}{29}{2016}{%
+Finished [Chen1993]~\cite{Chen1993}. Not sure if remaining article is of consequence.\newline
+\par
+Finished MatLab program for \textit{animating} / \textit{hand-drawing} (See wording in [Chen1993]~\cite{Chen1993}) offset vectors. Program performs offsets in 2-dimensional space. Conisder adding automatic \textit{feature correspondance} and \textit{z-buffer} information from depth map images avaiable on MiddleBury database.
+		}
+		\logentry{5}{30}{2016}{%
+Point-correspondances do not follow even pattern as indicated in [Chen1993]~\cite{Chen1993}:  \textit{Bi-linear coordinates} and \textit{quad partitionions}; May be better to use \textit{Barycentric coordinates} \ \textit{triangle partitions}.\newline
+\par Read on MatLab \texttt{tform}, \texttt{maketform}, and \texttt{Delaunay} triangles for purpose of image partitions.
+		}
+		\logentry{6}{1}{2016}{%
+Read and finished [Park2003]~\cite{Park2003}.\newline
+\par \SUMMARY{Multiple sections including \textit{point correspondance} and \textit{interpolation}. 
+\textbf{Point correspondance}: Breaks images into rectangular partitions. Gets maximum horizontal and vertical pixel gradients using \textit{Sobel operator} in each partition. The maximum gradient in each partition is thresholded to disregard homogeneous and textured regions. 
+\textbf{Interpolation}: The images are partitioned with \textit{Delaunay triangulation} using the point correspondances as triangle vertices.}\newline
+\par \Kamangar{Article published seems to be vastly different depending on source (See \texttt{Park2003} folder). ScienceDirect version has more math and detail (maybe too much since it details what a \textit{Sobel filter} is). Why would critical information, including algorithm steps and details, be ommitted?}
+		}
+		\logentry{6}{2}{2016}{%
+Reviewing PDF at \url{https://staff.fnwi.uva.nl/l.dorst/hz/chap11_13.pdf} for information on \textit{tri-focal tensor}. Don't understand \textit{practical} calculation of \textit{fundamental matrix} from \textit{Singular Value Decomposition} and \textit{Linear Least Squares} (i.e. don't understand LLS calculation from SVD).
+		}
+		\logentry{6}{3}{2016}{%
+Working on implementing \textit{triangle patch transform} in MatLap (using previously mentioned \texttt{delaunay}, \texttt{tform}, and \texttt{maketform} functions) needed for [Chen1993]~\cite{Chen1993} and [Park2003]~\cite{Park2003}.
+		}
+		\logentry{6}{4}{2016}{%
+Continuting work on getting triangular patches transformed in MatLab. Will use \texttt{affine2d} and \texttt{imwarp} instead of \texttt{maketform} and \texttt{imtransform}.\newline
+\par Spent several hours on a false start trying to implement line drawing on pixel data, in order to implment polygon seperation. Finally found MatLab's \texttt{roipoly} function which does what I need.
+		}
+	\end{longtable}

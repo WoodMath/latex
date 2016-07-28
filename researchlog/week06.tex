@@ -1,0 +1,61 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% begin week06.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{longtable}{l p{12cm} }
+
+		\logentry{6}{20}{2016}{%
+Holding off on reading any more of [Scharstein2002]~\cite{Scharstein2002}(\textit{Have completed up to end of page 5}): May be too advanced for me and of little use; Compares methods, but does not go into enough detail about how to implement them. Instead reading [Scharstein1999]~\cite{Scharstein1999} which may be more my level.\newline
+\par Started reading in \textit{Correspondance problem} section of [Scharstein1999]~\cite{Scharstein1999}. \SUMMARY{ Matching can be done via \textit{Fearure based correspondacne} and \textit{Area based correspondance}. \newline
+\par Feature based correpondance finds locally unique or identifiable pixels (i.e. Corners or edge gradients), matchingbetween images occurrs between these reduced set of points. Advantages are only a few points are necessary. Disadvantages are that disparity calculations are confined to these points, so interpoint disparity have to be calculated through interpolation and may not be accurate.\newline
+\par Area based correspondance occurrs over \textit{regions in the image} instead of points used in feature correspondance. Advantages are a denser (and therefore more accurate) disparity map, but require assumptions about local disparity. }
+		}
+		\logentry{6}{21}{2016}{%
+Continued reading [Scharstein1999]~\cite{Scharstein1999}. \newline
+\par \SUMMARY{
+3 general methods are being differentiated:\newline
+\par\begin{itemize}
+\item \textbf{Image Synthesis based on Stereo}: Uses stereo mathods for image creation.
+\item \textbf{Image Interpolation}: Similar to \textit{Image Synthesis based on Stereo}, except mages generated must be on baseline, and baseline must be parallel to image planes.
+\item \textbf{Information from Many Images}: Includes image stitching and panoramic mosaicing.\newline
+\end{itemize}
+\par Other sections involve summaries of various papers and methods published under each of the 3 categories.
+}\newline
+\par Got further clarification on steps for coorespondance matching for \textit{feature-based correspondance}.\newline
+\par\begin{enumerate}
+\item \textbf{Preprocessing}: Color correction between stereo images for conconsitancy, and image warping through rectification so features occur at (approximatley) same horizontal distance reducing search area to the scanline.
+\item \textbf{Cost Calculation}: Per-pixel cost calculation done as either a \textit{square difference} or \textit{absolute difference}.
+\item \textbf{Aggregation}: The summing of the cost calculations over the window in question.
+\item \textbf{Comparison / Calculation}: Window on feature trying to be matched is kept fixed.Window in corresponding image  is moved along the scanline for a comparison of potential window aggregates. Correspondance with minimum aggregate (in difference of costs) is selected as the corresponding point in the image being scanned.
+\item \textbf{Sup-pixel Calculation}: Not yet read. Could be smoothing.\newline
+\end{enumerate}
+\par Read up to section 2.2.5 \textit{Disparity Selection} (PDF page 49, Numbered page 35). Stopped to read up on using Dynamic Programming to increase consistancy of stereo points and disparity, including following sourceses:\newline
+\par\begin{itemize}
+\item \url{http://www.robots.ox.ac.uk/~az/lectures/opt/lect2.pdf}
+\item \url{http://www.cs.umd.edu/~djacobs/CMSC426/PS7.pdf}
+\end{itemize}
+
+		}
+	\logentry{6}{22}{2016}{%
+Continued reading [Sharstein1999]~\cite{Scharstein1999}. I'm still unclear about the process (and use of) \textit{Sub-Pixel Disparity Computation} mentioned in section 2.2.6.\newline
+\par I moved onto Chapter 3 (View Synthesis) and have been reading on \textit{three-view rectification}. Read all of Section 3.1 (\textit{Geometry}) (up to but not including PDF page 60, Numbered page 47).\newline
+\par \SUMMARY{A new image $I_3$ is synthesisized from images $I_1$ and $I_2$, by estabishing reference frame containing camera centers $\mathbf{C_3}$, $\mathbf{C_1}$, and $\mathbf{C_2}$ respectively. The unit-length is established as the difference between camera centers $\mathbf{C_1}$ and $\mathbf{C_2}$. The positions are set along the \textit{x}-axis such that $\mathbf{C_1}=[0,0,0]^\top$ and $\mathbf{C_2}=[1,0,0]^\top$. The \textit{xy}-plane is oriented such that it contains $\mathbf{C_3}=[a,b,0]^\top$ (for some constants \textit{a} and \textit{b}).Images $I_1$ and $I_2$ are \textit{horizontally rectified} (such that pixel-features occur at the same vertical position), through an \textit{affine warp} to images $I'_1$ and $I'_2$ which occur in the \textit{xy}-plane at $z=1$. The synthetic image $I_3$ is produced from the horizontally rectified image $I'_3$ which also occurs in the $z=1$ plane.
+}\newline
+\par \Kamangar{
+How can the homography matrix $\mathbf{H}_i=[\mathbf{R}_i | \mathbf{S}_i | \mathbf{O}_i - \mathbf{C}_i]$  be calculated if the vectors $\mathbf{R}_i$, $\mathbf{S}_i$, and $\mathbf{O}_i$ are unknown. How can they be determined from available information? 
+%\begin{equation*}
+%\mathbf{H}_i = [\begin{array}{c|c|c}
+%\mathbf{R}_i & 
+%\mathbf{S_i} & 
+%\mathbf{O_i}-\mathbf{C_i} 
+%\end{array}]
+%\end{equation*}
+}
+	}
+	\logentry{6}{24}{2016}{%
+Added additional material to thesis document for \textit{Epipolar constraint} section. 
+	}
+	\logentry{6}{25}{2016}{%
+Added additional text to thesis document in \textit{Epipolar constraint} and \textit{Fundamental matrix} sections.\newline
+\par Reading up on on \textit{homographies} and \textit{rectification} for [Scharstein1999]~\cite{Scharstein1999} and for derivation of \textit{Fundamental matrix} for thesis document.
+	}
+	\end{longtable}

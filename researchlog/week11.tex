@@ -1,0 +1,38 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% begin week11.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{longtable}{l p{12cm} }
+
+	\logentry{7}{25}{2016}{%
+Started woring on implmentation of \textit{disparity estimation using dynamic programming} in \texttt{MatLab}. The generic method (summary below) seems to be a little different than method described in [Karathanasis1996]~\cite{Karathanasis1996}.\newline
+
+\par \SUMMARY{A left image \textit{L} and right image \textit{R} each contain many \textit{scanlines}, each at the same vertical position. Though each image's scanline is 1-\textit{dimensional}, each point in the scanline is a $k \times k$ square matrix of \textit{normalized} pixel values (commonly referred to as a \textit{Window}). The window centered at pixel \textit{i} in \textit{L} is denoted by vector $\mathbf{L}(i,k)$, and similarly the window centered at pixel \textit{j} in \textit{R} is denoted by vector $\mathbf{R}(j,k)$.\newline
+
+\par A feature at \textit{i} in \textit{L} is closely matched to the feature at \textit{j} in \textit{R} if the \textit{sum of square differences} $SSD(i,j,k)=||\mathbf{L}(i,k)-\mathbf{R}(j,k)||_2$ is minimal (ideally 0). The dynamic programming approach to disparity estimation attempts to minimize the sum of $SSD(i,j,k)$ over all possible \textit{i} and \textit{j}, by including a constant \textit{occlusion cost} ($OC$) for instances when a window centered at \textit{i} in \textit{L} does not have a matching feature at \textit{j} in \textit{R}, and simlarly a window centered at \textit{j} in \textit{R} does not have a matching feature at \textit{i} in \textit{L}. The \textit{matching cost} ($MC(i,j,m)$) at for the windows centered at \textit{i} in \textit{L} and \textit{j} in \textit{R} is then assigned to be the \textit{minimum} of:
+\begin{itemize}
+\item $MC(i-1,j-1,m)+SSD(i,j,k)$
+\item $MC(i-1,j,m)+OC$
+\item $MC(i,j-1,m)+OC$
+\end{itemize} 
+to a $(m+1)\times (n+1)$ table (where \textit{m} is the number of window values (\textit{image width} less $(k-1)$) in \textit{L}, and \textit{n} is the number of window values in \textit{R}. In addition to the above assignments, we let
+\begin{itemize}
+\item $MC(0,0,m)=0$ for the initial cost.
+\item $MC(s\cdot OC,0,m)$ (for all $s\leq m$) to denote first \textit{s} windows in \textit{L} are occluded from \textit{R}.
+\item $MC(0,t\cdot OC,m)$ (for all $t\leq n$) to denote first \textit{t} windows in \textit{R} are occluded from \textit{L}.
+\end{itemize}
+}
+	}
+	\logentry{7}{27}{2016}{%
+\par Continued reading [Karathanasis1996]~\cite{Karathanasis1996}\newline
+\par Made additional changes to python Demo using OpenCV and OpenGL. Still a long way from finished.
+	}
+%	\hline
+	\end{longtable}
+
+	\newpage
+
+	%% Code below should be used for citations 
+
+%	Longuet-Higgins' Fundamental Matix ~\cite{Longuet-Higgins}
+	\bibliography{citations}{}
+	\bibliographystyle{unsrt}

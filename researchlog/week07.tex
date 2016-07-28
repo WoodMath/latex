@@ -1,0 +1,165 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% begin week07.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{longtable}{l p{12cm} }
+	\logentry{6}{26}{2016}{%
+Started reading Chapter 2 of [Hartley2004]~\cite{Hartley2004} for information regarding \textit{Homographices}.\newline
+\par Worked on graphics regarding \textit{Epipolar constraint} for inclusion in thesis document.
+	}
+	\logentry{6}{27}{2016}{%
+Continued reading Chapter 2 of [Hartley2004]~\cite{Hartley2004} containing information on \textit{Homographies} for purpose(s) of deriving \textit{Fundamental matrix} formula as well as understanding \textit{Horizontal rectification} used for matching features along scanlines of images.\newline
+\par \SUMMARY{
+Transformations of points in the image plane can be grouped into the following categories:
+\begin{itemize}
+\item \textbf{Isometries} (Denoted by $\mathbf{H}_E$): Transfomrations in $\mathbb{P}_2$ including \textit{translation} and  \textit{rotation} (including composites of the two) that peserve \textit{Euclidean}-distance. Tranformations are of the form
+\begin{equation*}
+\begin{bmatrix}\epsilon\cos(\theta) & -\sin(\theta) & t_x \\ \epsilon\sin(\theta) & \cos(\theta) & t_y \\ 0 & 0 & 1 \end{bmatrix}
+\end{equation*}
+where $\epsilon=\pm 1$. Angles are preserved if $\epsilon=1$, else if $\epsilon=-1$ angles are reversed (reflection accross an axis).
+\item \textbf{Similarity} (Denoted by $\mathbf{H}_S$): Transformations include \textit{translation}, \textit{rotation}, and \textit{scaling}. Matrices are of the form
+\begin{equation*}
+\begin{bmatrix}s\cos(\theta) & -s\sin(\theta) & t_x \\ s\sin(\theta) & s\cos(\theta) & t_y \\ 0 & 0 & 1 \end{bmatrix}
+\end{equation*}
+where $s$ is the scaling factor. While \textit{distances} are not preserved, the \textit{ratio of distances} and \textit{angles} are preserved.
+\item \textbf{Affine} (Denoted by $\mathbf{H}_A$): Transformations include all linear transformations of \textit{translation}, \textit{rotation}, \textit{scaling}, and \textit{shearing}. Matrices are of the form
+\begin{equation*}
+\begin{bmatrix}a_{11} & a_{12} & t_x \\ a_{21} & a_{22} & t_y \\ 0 & 0 & 1 \end{bmatrix}
+\end{equation*}
+
+\item \textbf{Projective} (Denoted by $\mathbf{H}_P$): Transformations in $\mathbb{P}_2$ that are linear transformations in $\mathbb{R}_3$. Matrices are of the form
+\begin{equation*}
+\begin{bmatrix}h_{11} & h_{12} & h_{13} \\ h_{21} & h_{22} & h_{23} \\ h_{31} & h_{32} & h_{33} \end{bmatrix}
+\end{equation*}
+
+
+\end{itemize}
+
+}
+
+	}
+	\logentry{6}{29}{2016}{%
+Continuing to read [Hartley2004]~\cite{Hartley2004} for \textit{affine rectification}. Chapters of [Hartley2004]~\cite{Hartley2004} include:\newline
+\begin{itemize}
+\item \textbf{Chapter 2: Projective Geometry}:
+\begin{itemize}
+\item \textbf{Section 2.1: Planar Geometry}:
+\item \textbf{Section 2.2: The 2D projective plane}:\newline
+\par
+Lines in $\mathbb{R}^{2}$ are detailed by $\mathbf{l}=[a,b,c]^{\intercal}$ and points as $\mathbf{x}=[x,y,1]^\intercal$ such that $\mathbf{l}^{\intercal}\cdot\mathbf{x}=a\cdot{x}+b\cdot{y}+1=0$. Coordinates $\mathbf{x}=[x,y,0]^\intercal$ with a $0$ instead of $1$ in the last place represent a \textit{point at infinity} since they are the only points where $a\cdot{x}+b\cdot{y}+c\cdot{0}=a\cdot{x}+b\cdot{y}+c'\cdot{0}$ for the two \textit{parallel} lines of $\mathbf{l}=[a,b,c]^\intercal$ and $\mathbf{l'}=[a,b,c']^\intercal$
+\newline
+\par Cross product of points $\mathbf{x}$ and $\mathbf{x'}$ result in line $\mathbf{l}$ joining the two points (i.e. $\mathbf{x}\times\mathbf{x'}=\mathbf{l}$). Cross product of lines $\mathbf{l}$ and $\mathbf{l'}$ result in point $\mathbf{x}$ where intersection of two lines (i.e. $\mathbf{l}\times\mathbf{l'}=\mathbf{x}$).\newline
+\par Circles and ovals can be reprsented by a \textit{conic-matrix} of the form
+\begin{equation*}
+\begin{split}
+0&=\mathbf{x}^\intercal\cdot\mathbf{C}\cdot\mathbf{x}\\
+&=\left[\begin{array}{ccc}x & y & 1\end{array} \right]\cdot
+\left[\begin{array}{ccc}a & b/2 & d/2 \\ b/2 & c & e/2 \\ d/2 & e/2 & f\\\end{array}\right]\cdot\left[\begin{array}{c}x \\ y \\ 1 \end{array}\right]\\
+&=a\cdot{x}^2+b\cdot{xy}+c\cdot{y}^2+d\cdot{x}+e\cdot{y}+f\cdot{1}
+\end{split}
+\end{equation*}
+\item \textbf{Section 2.3: Projective transformations}:\newline
+\par Point $\mathbf{x}$ on an image is mapped to point $\mathbf{x'}$ via a homography $\mathbf{H}$, such that $\mathbf{x'}=\mathbf{H}\cdot\mathbf{x}$. Because a point $\mathbf{x}$ lies on line $\mathbf{l}$ if $\mathbf{l}^\intercal\cdot\mathbf{x}=0$, then because 
+\begin{equation*}
+\begin{split}
+0&=\mathbf{l}^\intercal\cdot\mathbf{x}\\
+&=\mathbf{l}^\intercal\cdot\mathbf{H}^{-1}\cdot\mathbf{H}\cdot\mathbf{x}\\
+&=\mathbf{l}^\intercal\cdot\mathbf{H}^{-1}\cdot\mathbf{x'}
+\end{split}
+\end{equation*}
+the point $\mathbf{x'}$ lies on the line $\mathbf{l'}$ defined by $\mathbf{l'}^\intercal=\mathbf{l}^\intercal\cdot\mathbf{H}^{-1}$, or $\mathbf{l'}=\mathbf{H}^{-\intercal}\cdot\mathbf{l}$. Therefore a homograhy that gives a \textit{point-mapping} of $\mathbf{x'}=\mathbf{H}\cdot{x}$ has a corresponding \textit{line-mapping} of $\mathbf{l'}=\mathbf{H}^{-\intercal}\cdot\mathbf{l}$.\newline
+\par Similarly, for a homography given by $\mathbf{x'}=\mathbf{H}\cdot\mathbf{x}$, the conic under the homography is given by 
+\begin{equation*}
+\begin{split}
+0&=\mathbf{x}^\intercal\cdot\mathbf{C}\cdot\mathbf{x}\\
+&=(\mathbf{H}^{-1}\cdot\mathbf{x'})^{\intercal}\cdot\mathbf{C}\cdot(\mathbf{H}^{-1}\cdot\mathbf{x'})\\
+&=\mathbf{x'}^\intercal\cdot\mathbf{H}^{-\intercal}\cdot\mathbf{C}\cdot\mathbf{H}^{-1}\cdot\mathbf{x'}\\
+&=\mathbf{x'}^\intercal\cdot\mathbf{C'}\cdot\mathbf{x'}\\
+\end{split}
+\end{equation*}
+where $\mathbf{C'}=\mathbf{H}^{-\intercal}\cdot\mathbf{C}\cdot\mathbf{H}^{-1}$.\newline
+\par
+\item \textbf{Section 2.4: A hierarchy of transformations}:\newline
+\par See entry from \formatdate{27}{6}{2016}.\newline
+\par
+\end{itemize}
+\end{itemize}
+}\logentry{6}{29}{2016}{%
+\textit{...Continued}
+\begin{itemize}
+\item \textbf{Chapter 6: Camera Models}:
+\begin{itemize}
+\item \textbf{Section 6.1: Finite cameras}:\newline
+\par Transformation from \textit{world-coordinate} system $\mathbf{x}$ to \textit{camera-coordinate} system $^{C}\mathbf{x}$ is given by $^{C}\mathbf{x}=\mathbf{R}\cdot(\mathbf{x}-\mathbf{c})$. The Camera in \textit{world-space} occurs at $\mathbf{x}=\mathbf{c}$. \textit{Camera-space} has the camera located at $^C\mathbf{x}=0$ and includes an \textit{image-plane} at $z=f$. All rays intersect the \textit{image plane} at $z=f$ and converge on the origin $^C\mathbf{x}=0$ which is known as the \textit{camera center}. This results in points $^{C}\mathbf{x}$ in \textit{camera space} being projected to points $\mathbf{\tilde{y}}$ in the \textit{image plane} by means of the \textit{projection matrix} $\mathbf{P}$ such that
+
+ 
+\begin{equation*}
+\begin{split}
+\mathbf{P}\cdot{^{C}\mathbf{\tilde{x}}}&=
+\begin{bmatrix}
+f & 0 & 0 & 0\\
+0 & f & 0 & 0\\
+0 & 0 & 1 & 0\\
+\end{bmatrix}\left[\begin{array}{c}{^Cx_1}\\{^Cx_2}\\{^Cx_3}\\1\\\end{array}\right]
+=\left[\begin{array}{c}
+f\cdot {^Cx_1}\\
+f\cdot {^Cx_2}\\
+{^Cx_3}
+\end{array}\right]\\
+&=
+{^Cx_3}\cdot\begin{bmatrix}
+f\cdot{^Cx_1}/{^Cx_3}\\
+f\cdot{^Cx_2}/{^Cx_3}\\
+1\\
+\end{bmatrix}
+={^Cx_3}\cdot\mathbf{\tilde{y}}
+\end{split}
+\end{equation*} 
+
+This results in points containing infinitley large values of $x_3$ being mapped to the same \textit{principal point} of $\mathbf{y}=0$ in the \textit{image plane}. This assumes the \textit{princpal point} is always located in the \textit{image plane} at $\mathbf{y}=0$. Projecting point $\mathbf{\tilde{x}}$ to the \textit{image plane} with arbitrary \textit{principal point} $\mathbf{p}=[p_x,p_y]$ requires modifying the \textit{projection matrix} to include \textit{camera-specific} parameters. The \textit{camera calibration matrix} $\mathbf{K}$ is given as
+ 
+\begin{equation*}
+\begin{split}
+\mathbf{P}\cdot{^{C}\mathbf{\tilde{x}}}&=
+\begin{bmatrix}
+f & 0 & p_x & 0\\
+0 & f & p_y & 0\\
+0 & 0 & 1 & 0\\
+\end{bmatrix}\left[\begin{array}{c}{^Cx_1}\\{^Cx_2}\\{^Cx_3}\\1\\\end{array}\right]
+=\left[\begin{array}{c}
+f\cdot {^Cx_1}+p_x\cdot {^Cx_3}\\
+f\cdot {^Cx_2}+p_y\cdot {^Cx_3}\\
+{^Cx_3}
+\end{array}\right]\\
+&=
+{^Cx_3}\cdot\begin{bmatrix}
+f\cdot{^Cx_1}/{^Cx_3}+p_x\\
+f\cdot{^Cx_2}/{^Cx_3}+p_y\\
+1\\
+\end{bmatrix}
+={^Cx_3}\cdot\mathbf{\tilde{y}}
+\end{split}
+\end{equation*} 
+
+%\item \textbf{Section 6.2: The projective camera}:
+\end{itemize}
+%\item \textbf{Chapter 9: Epipolar Geometry and the Fundamental Matrix}:
+%\begin{itemize}
+%\item \textbf{Section 9.1: Epipolar geometry}:
+%\item \textbf{Section 9.2: The fundamental matrix \texttt{F}}:
+%\end{itemize}
+%\item \textbf{Chapter 11: Computation of the Fundamental Matrix}:
+%\begin{itemize}
+%\item \textbf{Section 11.1: Basic Equations}:
+%\end{itemize}
+\end{itemize}
+
+	}
+
+	\logentry{6}{30}{2016}{%
+\Kamangar{On pages 162 and 244, how is the ray back-projected from $\mathbf{x}$ by $\mathbf{P}$ (where $\mathbf{x}=\mathbf{PX}$ and $\mathbf{P}=\mathbf{K}[\mathbf{R}|\mathbf{t}]$) given by the formula $\mathbf{X}(\lambda)=\mathbf{P}^{+}\mathbf{x}+\lambda\mathbf{C}$? How is the formula derived?
+}
+	}
+	\logentry{7}{1}{2016}{%
+Added section called \textbf{Points and Lines in the Image Plane} in the \textbf{Background} section.
+	}
+	\end{longtable}

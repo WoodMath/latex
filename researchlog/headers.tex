@@ -1,0 +1,56 @@
+%	Syntax from following sources
+%		https://www.sharelatex.com/learn/Sections_and_chapters
+%		https://www.sharelatex.com/learn/Table_of_contents
+%		http://www.bibtex.org/Using/
+%		https://www.economics.utoronto.ca/osborne/latex/BIBTEX.HTM
+%		https://www.latex-tutorial.com/tutorials/beginners/latex-bibtex/
+%		http://tex.stackexchange.com/questions/205/what-graphics-packages-are-there-for-creating-graphics-in-latex-documents
+%		https://www.sharelatex.com/learn/Bibtex_bibliography_styles
+%	
+%% Main stuff
+\documentclass[a4paper,10pt]{article}
+
+%% PACKAGES section
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+
+%% Math Packages
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\allowdisplaybreaks
+%% Date Time Pakcages
+\usepackage[USenglish]{babel}
+\usepackage[nodayofweek,level]{datetime}
+\usepackage[margin=0.5in]{geometry}
+
+%% Formatting Packages
+\usepackage{indentfirst}
+
+%% Citation Packages
+\usepackage{cite}
+\usepackage{hyperref}
+
+%% Table packages
+\usepackage{longtable}
+
+%% Color packages
+\usepackage{color}
+
+%% COMMANDS section
+\newcommand{\logentry}[4]{\hline\\[-0.25ex]\selectlanguage{USenglish}\formatdate{#2}{#1}{#3}&{#4}\par\\[-0.25ex]}
+\newcommand{\logpage}[0]{\}\{\\[-0.25ex]\selectlanguage{USenglish}\par\\[-0.25ex]}
+
+
+\newcommand{\Kamangar}[1]{%
+	{\noindent\textbf{\color{red}Question for Kamangar: }{\noindent #1} \noindent}
+}
+\newcommand{\NOTE}[1]{%
+	{\noindent\textbf{\color{blue}NOTE: }{\noindent #1} \noindent}
+}
+\newcommand{\SUMMARY}[1]{%
+	{\noindent\textbf{\color{blue}SUMMARY: }{\noindent #1} \noindent}
+}
+\newcommand{\UPDATE}[1]{%
+	{\noindent\textbf{\color{blue}UPDATE: }{\noindent #1} \noindent}
+}
