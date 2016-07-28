@@ -4,7 +4,13 @@
 	\begin{longtable}{l p{12cm} }
 
 	\logentry{7}{25}{2016}{%
-Started woring on implmentation of \textit{disparity estimation using dynamic programming} in \texttt{MatLab}. The generic method (summary below) seems to be a little different than method described in [Karathanasis1996]~\cite{Karathanasis1996}.\newline
+Started woring on implmentation of \textit{disparity estimation using dynamic programming} in \texttt{MatLab}. So far I have completed the \textit{dynamic programming} aspect only. I need to work on: 
+\begin{itemize}
+\item Seperation of image into seperate scanlines, where number is based on window size.
+\item Conversion of window values to values used in the dynamic programming.\newline
+\end{itemize}
+
+\par The generic method (summary below) seems to be a little different than method described in [Karathanasis1996]~\cite{Karathanasis1996}.\newline
 
 \par \SUMMARY{A left image \textit{L} and right image \textit{R} each contain many \textit{scanlines}, each at the same vertical position. Though each image's scanline is 1-\textit{dimensional}, each point in the scanline is a $k \times k$ square matrix of \textit{normalized} pixel values (commonly referred to as a \textit{Window}). The window centered at pixel \textit{i} in \textit{L} is denoted by vector $\mathbf{L}(i,k)$, and similarly the window centered at pixel \textit{j} in \textit{R} is denoted by vector $\mathbf{R}(j,k)$.\newline
 
