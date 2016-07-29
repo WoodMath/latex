@@ -4,7 +4,8 @@
 	\begin{longtable}{l p{12cm} }
 
 	\logentry{7}{25}{2016}{%
-Started woring on implmentation of \textit{disparity estimation using dynamic programming} in \texttt{MatLab}. So far I have completed the \textit{dynamic programming} aspect only. I need to work on: 
+Started woring on implmentation of \textit{disparity estimation using dynamic programming} in \texttt{MatLab}. So far I have completed the \textit{dynamic programming} aspect only. I need to work on:\newline 
+\par
 \begin{itemize}
 \item Seperation of image into seperate scanlines, where number is based on window size.
 \item Conversion of window values to values used in the dynamic programming.\newline
@@ -14,7 +15,8 @@ Started woring on implmentation of \textit{disparity estimation using dynamic pr
 
 \par \SUMMARY{A left image \textit{L} and right image \textit{R} each contain many \textit{scanlines}, each at the same vertical position. Though each image's scanline is 1-\textit{dimensional}, each point in the scanline is a $k \times k$ square matrix of \textit{normalized} pixel values (commonly referred to as a \textit{Window}). The window centered at pixel \textit{i} in \textit{L} is denoted by vector $\mathbf{L}(i,k)$, and similarly the window centered at pixel \textit{j} in \textit{R} is denoted by vector $\mathbf{R}(j,k)$.\newline
 
-\par A feature at \textit{i} in \textit{L} is closely matched to the feature at \textit{j} in \textit{R} if the \textit{sum of square differences} $SSD(i,j,k)=||\mathbf{L}(i,k)-\mathbf{R}(j,k)||_2$ is minimal (ideally 0). The dynamic programming approach to disparity estimation attempts to minimize the sum of $SSD(i,j,k)$ over all possible \textit{i} and \textit{j}, by including a constant \textit{occlusion cost} ($OC$) for instances when a window centered at \textit{i} in \textit{L} does not have a matching feature at \textit{j} in \textit{R}, and simlarly a window centered at \textit{j} in \textit{R} does not have a matching feature at \textit{i} in \textit{L}. The \textit{matching cost} ($MC(i,j,m)$) at for the windows centered at \textit{i} in \textit{L} and \textit{j} in \textit{R} is then assigned to be the \textit{minimum} of:
+\par A feature at \textit{i} in \textit{L} is closely matched to the feature at \textit{j} in \textit{R} if the \textit{sum of square differences} $SSD(i,j,k)=||\mathbf{L}(i,k)-\mathbf{R}(j,k)||_2$ is minimal (ideally 0). The dynamic programming approach to disparity estimation attempts to minimize the sum of $SSD(i,j,k)$ over all possible \textit{i} and \textit{j}, by including a constant \textit{occlusion cost} ($OC$) for instances when a window centered at \textit{i} in \textit{L} does not have a matching feature at \textit{j} in \textit{R}, and simlarly a window centered at \textit{j} in \textit{R} does not have a matching feature at \textit{i} in \textit{L}. The \textit{matching cost} ($MC(i,j,m)$) at for the windows centered at \textit{i} in \textit{L} and \textit{j} in \textit{R} is then assigned to be the \textit{minimum} of:\newline
+\par
 \begin{itemize}
 \item $MC(i-1,j-1,m)+SSD(i,j,k)$
 \item $MC(i-1,j,m)+OC$
@@ -29,21 +31,12 @@ to a $(m+1)\times (n+1)$ table (where \textit{m} is the number of window values 
 }
 	}
 	\logentry{7}{27}{2016}{%
-\par Continued reading [Karathanasis1996]~\cite{Karathanasis1996}\newline
+Continued reading [Karathanasis1996]~\cite{Karathanasis1996}\newline
 \par Made additional changes to python Demo using OpenCV and OpenGL. Still a long way from finished.
 	}
 	\logentry{7}{28}{2016}{%
-\par Resumed work on \textit{disparity estimaion using dynamic programming} in \texttt{MatLab}. Completed seperating images into seperate scanlines, as well as windows into dynamic programming values. Calculated disparities based on this technique and included output in relative \textt{statusreport_week11} folder..\newline
-
-\par
+Resumed work on \textit{disparity estimaion using dynamic programming} in \texttt{MatLab}. Completed seperating images into seperate scanlines, as well as windows into dynamic programming values. Calculated disparities based on this technique and included output in relative \texttt{statusreport\_week11} folder.\newline
 	}
 %	\hline
 	\end{longtable}
 
-	\newpage
-
-	%% Code below should be used for citations 
-
-%	Longuet-Higgins' Fundamental Matix ~\cite{Longuet-Higgins}
-	\bibliography{citations}{}
-	\bibliographystyle{unsrt}
