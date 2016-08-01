@@ -3,7 +3,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{longtable}{l p{12cm} }
 	\logentry{7}{31}{2016}{%
-Decided to test \textit{spectral clustering} routines \texttt{fnDistance} and \texttt{fnSimilarity} from \formatdate{5}{6}{2016}. Output can be viewed in \texttt{Wood\_Kamangar/StatusReports/StatusReport\_12/images}.\newline
+Decided to test \textit{spectral clustering} routines \texttt{fnDistance} and \texttt{fnSimilarity} from \formatdate{5}{6}{2016}. Routines work on small images (approximaltey 100 pixels in size), but are bombing out \texttt{matlab} on larger images since for an image containing \textit{n} pixels, the \textit{Laplacian matrix} would be $n\times n$ in size requiring large amounts of memory.\newline
+
+\par I am looking into other methods of \textit{image segmentation} including \textit{graph-cuts} (described as the "gold-standard").\newline
+
 
 	}
 %	\hline
