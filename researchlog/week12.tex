@@ -9,6 +9,14 @@ Decided to test \textit{spectral clustering} routines \texttt{fnDistance} and \t
 
 
 	}
+	\logentry{8}{1}{2016}{%
+Started reading [Mark1997]~\cite{Mark1997}.\newline
+
+\par\SUMMARY{Paper describes expanded algorithm for \textit{view interpolation} that building on [Chen1993]~\cite{Chen1993}. Pixels (including \textit{z}-buffer and color information) in source images (referred to in article as \textit{reference frames}) are transformed to the new new frame (referred to in article as \textit{derived frames}) via \textit{Euclidean}-transformations and \textit{Affine}-transformations.\newline
+
+\par The paper addresses problems associated with \textit{holes} being proudced in the derived frame, which result from a number of sources.  They inlcude pixels \textit{occluded} in the reference frame. Another source are surfaces that are highly incident to the image plane in the refence frames, but more closely parallel to the image plane in the derived images. The occurance of holes can be addressed through the use of a \textit{mesh} for surface reprsenation (similar to that resulting from a \textit{point cloud}). This results in holes of the latter type (surfaces of different angles to the image plane) being filled. Holes of the former type (from occluded pixel areas) occur along a siloutte of the backround/foreground surfaces. Normally the mesh results in a distorted surface connecting that foreground and background surface. The proposed algorithm addresses this issue by keeping the surfaces distinct and seperate and filling in the missing pixels with those containing the maximum (farthest) \textit{z}-value. 
+}
+	}
 %	\hline
 	\end{longtable}
 
