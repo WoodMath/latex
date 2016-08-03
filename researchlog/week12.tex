@@ -21,11 +21,22 @@ Started reading [Mark1997]~\cite{Mark1997}.\newline
 	\logentry{8}{2}{2016}{%
 Finished reading [Mark1997]~\cite{Mark1997}. Still unclear about some aspects including details calculations in section \textbf{4.3 Connectedness Calculation}.\newline
 
-\par\SUMMARY{The pixels (including \textit{color}, \textit{z-value}, and \textit{block size}) in the two reference frames are transformed to the common derived frame. Each reference frame is transformed seperateley, after which the compositing algorithm chooses which pixel values from the \textit{transformed-reference} frames are used in the \textit{derived} frame (pixel intensities are a \textit{boolean decision} rather than an \textit{interpolation calculation}. Because this maps \textit{integer} pixel positions to \textit{non-integer} pixel positions. Integer pixe 
+\par\SUMMARY{The compositing algorithm works by transforming the pixels in each \textit{reference} frame to seperate \textit{transformed-reference} frames. Each pixel buffer contain position, \textit{z}-buffer, and color information. Because a multiple pixels from a single \textit{reference} frame can be mapped to the same pixel buffer in its \textit{transformed-reference} frame, pential new pixel values are compared with those already in the pixel buffer, with those pixels containing the closest (minimum) \textit{z}-value remaining in the buffer.\newline
 
+\par Another aspect of the proposed algorithm is the treatment of \textit{rubber surfaces} that occur along the siloutte lines between the foreground and backround segments of the generated mesh surface. This is handled by the notion of \textit{connectedness} of surfaces. Pixels with mesh vertices part of a single object surface are considered to be \textit{highly-connected}, whereas mest trianges covering disjoint and seperate surfaces have \textit{low-connectiveness}.\newline
+
+\par An additional concept the authors make use of is \textit{confidence value}. The article references the confidence value as the ratio of a pixel's \textit{solid angle} in the reference frame to the \textit{solid angle} in the derived frame. It is essentially a measure of how much a surface is parallel to the image plane. Surfaces, whose normal vector turns \textit{towards} the image plane when transforming from the reference frame to derived frame,  result in \textit{pixel holes} and have low confidence values. Sufaces, whos normal vector turns away from the image plane are oversampled and have high confidence values.\newline
+
+\par When selecting pixels for the \textit{derived} frame a number of scenarios arise: If both pixels have high connectedness, the one with closer \textit{Z}-value is used in the derived frame. If the \textit{Z}-values are the same (within a tolerance), the pixel with higher \textit{confidence value} is used. If only one of the pixels has high connectedness, that pixel is selected. If nneither pixel has high connectedness, the pixel with the higher confidence value is used. When dealing mesh triangles of low connectedness, instead of interpolating between the \textit{foreground} and \textit{background} surface textures, the surface texture with the \textit{farthest} \textit{Z}-value is used to approximate the occluded areas.\newline
 } 
 
-
+\par\Kamangar{
+I don't understand the explantion given for section \textbf{4.3 Connectedness Calculation}.
+}
+	}
+	
+	\logentry{8}{3}{2016}{%
+Started reading [Saito2002]~\cite{Saito2002}.
 	}
 
 %	\hline
