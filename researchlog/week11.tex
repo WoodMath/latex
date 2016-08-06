@@ -20,13 +20,14 @@ Started woring on implmentation of \textit{disparity estimation using dynamic pr
 \begin{itemize}
 \item $MC(i-1,j-1,m)+SSD(i,j,k)$
 \item $MC(i-1,j,m)+OC$
-\item $MC(i,j-1,m)+OC$
+\item $MC(i,j-1,m)+OC$\newline
 \end{itemize} 
-to a $(m+1)\times (n+1)$ table (where \textit{m} is the number of window values (\textit{image width} less $(k-1)$) in \textit{L}, and \textit{n} is the number of window values in \textit{R}. In addition to the above assignments, we let
-\begin{itemize}
+\par
+to a $(m+1)\times (n+1)$ table (where \textit{m} is the number of window values (\textit{image width} less $(k-1)$) in \textit{L}, and \textit{n} is the number of window values in \textit{R}. In addition to the above assignments, we let\newline
+\par\begin{itemize}
 \item $MC(0,0,m)=0$ for the initial cost.
 \item $MC(s\cdot OC,0,m)$ (for all $s\leq m$) to denote first \textit{s} windows in \textit{L} are occluded from \textit{R}.
-\item $MC(0,t\cdot OC,m)$ (for all $t\leq n$) to denote first \textit{t} windows in \textit{R} are occluded from \textit{L}.
+\item $MC(0,t\cdot OC,m)$ (for all $t\leq n$) to denote first \textit{t} windows in \textit{R} are occluded from \textit{L}.\newline
 \end{itemize}
 }
 	}
