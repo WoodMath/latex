@@ -43,8 +43,43 @@ Started reading [Saito2002]~\cite{Saito2002}. I am trying to understand concept 
 	\logentry{8}{4}{2016}{%
 Continued reading [Saito2002]~\cite{Saito2002}. Will need to read [Saito1999]~\cite{Saito1999} for background on \textit{projective grid space}. Summary of [Saito2002]~\cite{Saito2002} follows.\newline
 
-\par\SUMMARY{
+\par\SUMMARY{%
+[Saito2002]~\cite{Saito2002} describes a system used in \textit{virtualized television} and \textit{free viewpoint television}, and specifically with regards to televizing soccer matches. It defines a \textit{projective grid space} (PGS) betweens two images $I_1$ and $I_2$. Instead of a cooridinate system where the basis vectors are all \textit{orthoganal}, the PGS defines two of the basis vectors as being along the principal axis of each of the images being interpolated.\newline
+
+\par There exist \textit{fundamental matrices} from $I_1$ to $I_2$ (denoted in the article as $\mathbf{F}_{12}$) and from $I_2$ to $I_1$ (denoted as $\mathbf{F}_{21}$) which transforms points in one image to \textit{epipolar lines} in a the other image. Corresponding points $\mathbf{P}_1$ in $I_1$ and $\mathbf{P}_2$ in $I_2$ can similarly be transformed to epipolar lines in a mid-view image $I_i$ by the fundamental matrices $\mathbf{F}_{1i}$ and $\mathbf{F}_{2i}$. The intersection of the two generated epipolar lines is the position of the corresponding point in $\mathbf{P}_i$ in $I_i$.\newline
+
+\par The viewing angle and position of the interpolated image $I_i$ is confined to the baseline between two images $I_1$ and $I_2$ using \textit{linear interpolation}. When a third image $I_3$ (viewed from a higher angle) is adde, the viewing angle and position are confined to the triangle connecting the optical centers of the 3 image planes using \textit{barycentric interpolations}. The interpolation methods are used for both \textit{pixel position} and \textit{pixel color}.\newline
+
+\par Scene components are divided into 3 major components including:\newline
+
+\par
+\begin{itemize}
+\item Players and Ball
+\item Field ground and goal
+\item Background including stands\newline
+\end{itemize}
+
+pixel operations dependant on the component type to which it belongs. The \textit{players and ball} component is considered to be \textit{dynamic} since it is changing between fames. The \textit{players and ball} components are actually silloutted areas created from extracting the \textit{field ground and goal} components. The pixels in the intermediate views are determined from interpolating pixel values between boundaries (along the epipolar lines) of the sillouetted areas. The \textit{field ground and goal} components are transformed via \textit{homographies} with the planes corresponding to the \textit{field ground} and sides of the \textit{goal post} treated as seperate planes. \textbf{Although not explicitly stated, I'm guessing pictures of the field ground (without the goal post or players) may  also be taken before hand to account for pixels that might otherwise be occluded (with the inclusion of the players and goal post)}. The remaining area containing the \textit{background and stands} are transformed with \textit{image mosaicing} and a \textit{plane at infinity}. 
+
+}\newline
+	}
+	\logentry{8}{5}{2016}{%
+\UPDATE{
+Discussed the matter of memory issues related to \textit{spectral clustering} detailed on \formatdate{31}{7}{2016} with \texttt{levine@uta.edu}. Due to the memory issues related to rendering moderate size images (300x200 pixels) I decided it might be better to:\newline
+
+\par
+\begin{enumerate}
+\item Downsample original image to manageble size on which \textit{spectral clustering} can be performed.
+\item Extract edge regions of down sampled areas.
+\item Partition original size image into manageble sub areas. 
+\item Perform \textit{spectral clustering} on sub areas corresponding to edge regions extracted from downsampled image.
+\item Join sub areas from image partitioning by mapping possibly non-equal segment labels between sub areas.
+\end{enumerate}
+
 }
+
+
+
 	}
 %	\hline
 	\end{longtable}
