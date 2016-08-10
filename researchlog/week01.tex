@@ -3,22 +3,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{longtable}{l p{12cm} }
 %\newpage\\\hline %% e-mail 20160523
-		\logentry{5}{18}{2016}{Reviewed [Chen1993]~\cite{Chen1993} Section 2. Consider reviewing follow relevant articles:
+		\logentry{5}{18}{2016}{Reviewed [Chen1993]~\cite{Chen1993} Section 2. Consider reviewing follow relevant articles:\newline
+\par
 			\begin{itemize}
 				\item Disparity [Gosh89]
 				\item Optical Flow [Nage86]
 				\item Look-up tables [Wolb89]
-				\item 3d scenes [Pogg91]
+				\item 3d scenes [Pogg91]\newline
 			\end{itemize}
-			Working on MatLab code to pick correspondig points in stereo-images, and calculate pixel offset vectors.
+\par Working on MatLab code to pick correspondig points in stereo-images, and calculate pixel offset vectors.
 		}
-		\logentry{5}{19}{2016}{Read Section 2.3 of [Chen1993]~\cite{Chen1993}. View interpolation is limited by:
+		\logentry{5}{19}{2016}{Read Section 2.3 of [Chen1993]~\cite{Chen1993}. View interpolation is limited by:\newline
+\par
 			\begin{itemize}
 				\item \textbf{Penumbra}: pixels visible in one source image \textit{but not both}
 				\item \textbf{Umbra}, pixels visible in neither source image, and \textit{invisible} in destination image.
-				\item \textbf{Holes}, pixels visible in neither source image, but \textit{visible} in destination image.
+				\item \textbf{Holes}, pixels visible in neither source image, but \textit{visible} in destination image.\newline
 			\end{itemize}
-Calculatred formula for \textit{pre-displaced} quad-pixel calculation using a bi-linear interpolation as:
+\par Calculatred formula for \textit{pre-displaced} quad-pixel calculation using a bi-linear interpolation as:
 \begin{equation*}
 \mathbf{P}(u,v) = 
 \mathbf{P}(0,0)\cdot (1-u)\cdot (1-v)+\mathbf{P}(1,0)\cdot u \cdot (1-v)+
