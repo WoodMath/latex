@@ -3,10 +3,25 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\begin{longtable}{l p{12cm} }
 	\logentry{8}{14}{2016}{%
-Continued setting up \texttt{PrimeSense} and \texttt{Kinect}.
+Continued setting up \texttt{PrimeSense} and \texttt{Kinect}. Having problems with \texttt{Java} extensions in \texttt{OpenNI2}.
 	}
+	\logentry{8}{15}{2016}{%
+Tested \textit{spectral clustering} code on reduced size image. See \texttt{Wood\_Kamangar/StatusReports/StatusReport\_14/spectral\_clustering/} directory. \newline
 
-	
+\par The results of the algorithm can be viewed in \texttt{img\_write.png} which contains different gray-values for segmented areas. The file \texttt{im\_fruit.png} was reduced in size to be the file \texttt{im\_test.png}. The results can be reproduced by the following code:\newline
+
+
+\texttt{%
+im\_test = imread('im\_test.png');\newline
+img\_write = fnSegTest(im\_test);\newline
+}
+
+\par I still need to implment code to get sub images of original size.
+
+	}
+	\logentry{8}{17}{2016}{%
+Continuing to work on \texttt{Python} program. Ported it to \texttt{MacOSX}. As a result, discovered a bug related to buffering in \texttt{OpenGL} routines.
+	}	
 %	\hline
 	\end{longtable}
 
