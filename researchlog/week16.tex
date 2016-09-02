@@ -5,6 +5,18 @@
 	\logentry{8}{28}{2016}{%
 Reworking of original camera grab programming made using \texttt{OpenCV} during \texttt{CSE 5393}. Previous version required manual trigger. Recoded version displays timer and takes shots at end of countdown. Recoded version also displays reduced resolution camera version for preview purposes, but saves full sized images.
 	}
+	\logentry{9}{1}{2016}{%
+Brought in test data, and created test point cloud data into \texttt{MatLab} using following steps.\newline
+\par
+\begin{enumerate}
+\item Calibrate \textit{intrinsic} and \textit{extrinsic} camera parameters from checkerboard images.
+\item Using same camera setup, take picture of scene with checkerboard removed.
+\item Rectify image using \texttt{MatLab} or [Fusiello1999]~\cite{Fusiello1999}.
+\item Computer disparity.
+\item Compute depth map.
+\item Compute point cloud.
+\end{enumerate} 
+	}
 %	\hline
 	\end{longtable}
 
